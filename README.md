@@ -110,6 +110,18 @@ python src/fit_innovation.py <owner>/<repo>
 
 The generates several plots depicting activity in the chosen repository. Close each plot after viewing it to let the program run to proceed. 
 
+## Usage through a front end GUI
+
+Install dependencies: `pip install -r requirements.txt`
+
+1. Start the Flask development server from the root of the `oss-lifecycle` folder:
+```bash
+python src/server.py
+```
+2. Open a web browser and navigate to `http://localhost:5000`
+
+Try it with a small repository first as large ones take time to download and process all the commits. For example, enter the Repository Owner as `jupyterlab` and the Repository Name as `jupyter-ai`. 
+
 ## Using `pandoc` to convert Markdown files to PDF:
 
 ```

@@ -8,14 +8,15 @@ A detailed bibliography for open source project analysis that complements the pa
 
 The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.  
 
-## Source Code
+
+## Distribution
 
 To create the distribution file using `uv` run the following from the top level of the repository:
 ```
 uv build
 ```
 
-You can download the `.tar.gz` or `.whl` files from the [dist](https://github.com/srdas/oss-lifecycle/tree/main/src) folder.
+You can distribute the `.tar.gz` or `.whl` files from the `dist` folder.
 
 Unzip the tar file into any folder
 ```
@@ -28,6 +29,8 @@ uv run src/server.py
 ```
 
 The details of the files are discussed next. 
+
+## Source Code
 
 The [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for collecting, processing, and analyzing commit data of any GitHub repository. To download the commit data for any repo and create the three data files noted above, run [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/github_gather.py). This code takes some time to run as older projects have tens of thousands of commits. To gather the commit data for multiple projects in one job, edit in the projects you want to download in [`collector_script.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/collector_script.py) and then run it. To count the number of code tokens in a repo, use [`count_tokens.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/count_tokens.py).
 

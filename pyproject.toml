@@ -1,0 +1,27 @@
+[project]
+name = "oss-lifecycle"
+version = "0.1.0"
+description = "A package to analyze open-source GitHub projects life cycles"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Sanjiv Das", email = "srdas@scu.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "flask", 
+    "flask-cors",
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "scikit-learn",
+    "scipy",
+    "GitPython",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["src", "data", "docs", "images", "LICENSE", "paper.bib", "paper.md", "paper.pdf", "README.md", "requirements.txt", "pyproject.toml"]

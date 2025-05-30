@@ -2,25 +2,44 @@
 
 This repository is intended for work related to analyzing the open source ecosystem. The code helps analyze commit streams for content and its statistics. The number of developers and growth levels in open source projects are modeled and the code solves the dynamic (differential) equations that describe the evolution of innovation and developers over time. 
 
-A paper titled ["Project Life Cycles in Open Source Software"](https://github.com/srdas/open-source/blob/main/docs/OS_innovation.pdf) (available in the [`docs`](https://github.com/srdas/open-source/blob/main/docs/) folder) develops dynamic models of developer engagement and innovation that leads to growth in open source projects. 
+A paper titled ["Project Life Cycles in Open Source Software"](https://github.com/srdas/oss-lifecycle/blob/main/docs/OS_Innovation.pdf) (available in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder) develops dynamic models of developer engagement and innovation that leads to growth in open source projects. 
 
-A detailed bibliography for open source project analysis that complements the paper is provided as a resource in the [`docs`](https://github.com/srdas/open-source/blob/main/docs/) folder in the [OpenSource.bib](https://github.com/srdas/open-source/blob/main/docs/OpenSource.bib) file, which is in `bibTeX` format.
+A detailed bibliography for open source project analysis that complements the paper is provided as a resource in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder in the [OpenSource.bib](https://github.com/srdas/oss-lifecycle/blob/main/docs/OpenSource.bib) file, which is in `bibTeX` format.
 
-The [`data`](https://github.com/srdas/open-source/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`src`](https://github.com/srdas/open-source/tree/main/src) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/open-source/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.  
+The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.  
 
 ## Source Code
 
-The [`src`](https://github.com/srdas/open-source/tree/main/src) folder contains Python scripts for collecting, processing, and analyzing commit data of any GitHub repository. To download the commit data for any repo and create the three data files noted above, run [`github_gather.py`](https://github.com/srdas/open-source/blob/main/src/github_gather.py). This code takes some time to run as older projects have tens of thousands of commits. To gather the commit data for multiple projects in one job, edit in the projects you want to download in [`collector_script.py`](https://github.com/srdas/open-source/blob/main/src/collector_script.py) and then run it. To count the number of code tokens in a repo, use [`count_tokens.py`](https://github.com/srdas/open-source/blob/main/src/count_tokens.py).
+To create the distribution file using `uv` run the following from the top level of the repository:
+```
+uv build
+```
+
+You can download the `.tar.gz` or `.whl` files from the [dist](https://github.com/srdas/oss-lifecycle/tree/main/src) folder.
+
+Unzip the tar file into any folder
+```
+tar -xzvf oss_lifecycle-0.1.0.tar.gz
+```
+
+This will create a folder `oss_lifecycle-0.1.0`. Change directory to this folder. Then run the following to see the front end:
+```
+uv run src/server.py
+```
+
+The details of the files are discussed next. 
+
+The [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for collecting, processing, and analyzing commit data of any GitHub repository. To download the commit data for any repo and create the three data files noted above, run [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/github_gather.py). This code takes some time to run as older projects have tens of thousands of commits. To gather the commit data for multiple projects in one job, edit in the projects you want to download in [`collector_script.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/collector_script.py) and then run it. To count the number of code tokens in a repo, use [`count_tokens.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/count_tokens.py).
 
 The next steps are to fit developer engagement to the data and also fit the growth in the project (activity) in two steps:
-1. To fit the differential equation to model the developer activity over time, run the code in [`fit_bass.py`](https://github.com/srdas/open-source/blob/main/src/fit_bass.py). 
-2. The module [`fit_innovation.py`](https://github.com/srdas/open-source/blob/main/src/fit_innovation.py) fits both the developer/contributor engagement over time as well as the cumulative innovation in the open source project as measured by lines of code changed. Various sample plots are stored in the [`images`](https://github.com/srdas/open-source/tree/main/images) folder. 
+1. To fit the differential equation to model the developer activity over time, run the code in [`fit_bass.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/fit_bass.py). 
+2. The module [`fit_innovation.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/fit_innovation.py) fits both the developer/contributor engagement over time as well as the cumulative innovation in the open source project as measured by lines of code changed. Various sample plots are stored in the [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder. 
 
-If a monthly report is needed run [`activity_report.py`](https://github.com/srdas/open-source/blob/main/src/activity_report.py), which generates monthly reports based on the commit data. The modifications to the codebase are summarized for the month using a LLM. This can help in preparing a monthly report for internal of external reporting, for example, a project that may need to report to the Linux Foundation. This reporting feature is useful to delve into the details of commits and it uses a LLM (Claude-3.5) to summarize the commits. Several statistics about a project from PyPi are collected using the code in [stats.py](https://github.com/srdas/open-source/blob/main/src/stats.py).
+If a monthly report is needed run [`activity_report.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/activity_report.py), which generates monthly reports based on the commit data. The modifications to the codebase are summarized for the month using a LLM. This can help in preparing a monthly report for internal of external reporting, for example, a project that may need to report to the Linux Foundation. This reporting feature is useful to delve into the details of commits and it uses a LLM (Claude-3.5) to summarize the commits. Several statistics about a project from PyPi are collected using the code in [stats.py](https://github.com/srdas/oss-lifecycle/blob/main/src/stats.py).
 
 ## Data Files
 
-The [`data`](https://github.com/srdas/open-source/tree/main/data) folder contains CSV files with detailed commit information for various projects. These files are created automatically when running [`github_gather.py`](https://github.com/srdas/open-source/blob/main/src/github_gather.py). These files form the basis for further analysis using the code in this repository. 
+The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder contains CSV files with detailed commit information for various projects. These files are created automatically when running [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/github_gather.py). These files form the basis for further analysis using the code in this repository. 
 
 ### Examples of file contents
 
@@ -129,7 +148,7 @@ pandoc paper.md --bibliography=paper.bib --citeproc -o paper.pdf
 ```
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/srdas/open-source/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/srdas/oss-lifecycle/blob/main/LICENSE) file for details.
 
 ## Contact
 For any questions or inquiries, please contact the project maintainers:

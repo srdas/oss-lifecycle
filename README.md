@@ -28,6 +28,8 @@ This will create a folder `oss_lifecycle-0.1.0`. Change directory to this folder
 uv run src/server.py
 ```
 
+See GUI usage [below](#usage-through-a-front-end-gui).
+
 The details of the files are discussed next. 
 
 ## Source Code
@@ -132,7 +134,7 @@ python src/fit_innovation.py <owner>/<repo>
 
 The generates several plots depicting activity in the chosen repository. Close each plot after viewing it to let the program run to proceed. 
 
-## Usage through a front end GUI
+## Usage through a front end *GUI*
 
 Install dependencies: `pip install -r requirements.txt`
 

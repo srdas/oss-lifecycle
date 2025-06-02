@@ -2,7 +2,7 @@
 
 This repository is intended for work related to analyzing the open source ecosystem. The code helps analyze commit streams for content and its statistics. The number of developers and growth levels in open source projects are modeled and the code solves the dynamic (differential) equations that describe the evolution of innovation and developers over time. 
 
-A paper titled ["Project Life Cycles in Open Source Software"](https://github.com/srdas/oss-lifecycle/blob/main/docs/OS_Innovation.pdf) (available in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder) develops dynamic models of developer engagement and innovation that leads to growth in open source projects. 
+A long paper titled ["Project Life Cycles in Open Source Software"](https://github.com/srdas/oss-lifecycle/blob/main/docs/OS_Innovation.pdf) (available in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder) develops dynamic models of developer engagement and innovation that leads to growth in open source projects. The short version of the paper that accompanies this repository is here: [JOSS](https://github.com/srdas/oss-lifecycle/blob/main/paper.pdf).
 
 A detailed bibliography for open source project analysis that complements the paper is provided as a resource in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder in the [OpenSource.bib](https://github.com/srdas/oss-lifecycle/blob/main/docs/OpenSource.bib) file, which is in `bibTeX` format.
 

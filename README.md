@@ -8,6 +8,16 @@ A detailed bibliography for open source project analysis that complements the pa
 
 The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.  
 
+## Getting started
+
+To use the code in this repository clone it 
+
+```
+git clone https://github.com/srdas/oss-lifecycle.git
+```
+
+Then follow the usage instructions below to run various analyses. 
+
 
 ## Distribution
 

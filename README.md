@@ -105,7 +105,7 @@ To collect commit data for any project run from the *top level* folder:
 python src/github_gather.py <owner>/<repo>
 ```
 
-An example of `<owner>/<repo>` is `pandas-dev/pandas`
+An example of `<owner>/<repo>` is `jupyterlab/jupyter-ai`
 
 To collect a list of repositories, use the `collector_script.py` module. First edit it to add in the repos you want to download. 
 

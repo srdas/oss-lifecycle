@@ -25,10 +25,9 @@ $ cd oss-lifecycle
 $ pip install -r requirements.txt
 ```
 
-For GUI usage, follow these [instructions](#usage-through-a-front-end-gui).
-
 Then follow the [usage instructions](#usage) below to run various analyses. 
 
+For GUI usage, follow these [instructions](#usage-through-a-front-end-gui).
 
 ## Distribution
 

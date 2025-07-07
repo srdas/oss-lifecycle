@@ -137,7 +137,7 @@ python src/activity_report.py <owner>/<repo> YYYY-MM
 
 This code solves the differential equation for developer engagement and calibrates it to the collected commits data. 
 
-Run this from the command line:
+Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
 python src/fit_bass.py <owner>/<repo>
@@ -148,7 +148,7 @@ python src/fit_bass.py <owner>/<repo>
 This code solves the differential equation for project growth and calibrates it to the collected commits data. 
 
 
-Run this from the command line:
+Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
 python src/fit_innovation.py <owner>/<repo>

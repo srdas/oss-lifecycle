@@ -18,7 +18,7 @@ To use the code in this repository clone it
 git clone https://github.com/srdas/oss-lifecycle.git
 ```
 
-Then follow the usage instructions below to run various analyses. 
+Then follow the [usage instructions](#usage) below to run various analyses. 
 
 
 ## Distribution

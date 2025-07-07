@@ -97,6 +97,8 @@ The files in the `data` folder are examples and need not be retained. As time pr
 
 ## Usage
 
+Given the large amounts of data that may be processed (dependent on repository size), some of the scripts below will take time to run. 
+
 **Gathering commit data from GitHub**
 
 To collect commit data for any project run from the *top level* folder:

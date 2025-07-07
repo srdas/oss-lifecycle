@@ -153,7 +153,7 @@ pandoc paper.md --bibliography=paper.bib --citeproc -o paper.pdf
 ```
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/srdas/oss-lifecycle/blob/main/LICENSE) file for details.
+This project is licensed under the Apache-2.0 License. See the [LICENSE](https://github.com/srdas/oss-lifecycle/blob/main/LICENSE) file for details.
 
 ## Contact
 For any questions or inquiries, please contact the project maintainers:

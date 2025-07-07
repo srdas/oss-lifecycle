@@ -30,7 +30,7 @@ affiliations:
    index: 2
  - name: California Polytechnic, San Luis Obispo
    index: 3
-date: 31 May 2025
+date: 07 July 2025
 bibliography: paper.bib
 ---
 
@@ -54,7 +54,7 @@ $$
 $$
 Here, $\gamma>0$ is a constant "efficiency" parameter; $\lambda$ is elasticity of labor; if $\lambda=1$ doubling $L$ doubles the growth rate. If $\lambda<1$, there are diminishing returns to adding more contributors. If $\lambda>1$, there are increasing returns to adding contributors. Also, $\phi$ is growth spillover. If $\phi<0$, growth makes new growth harder (the "fishing out" effect). If $\phi=0$, new growth is not a function of past growth. If $0<\phi<1$, there are positive but diminishing returns to existing growth. If $\phi=1$, new growth is linear in existing growth. And if $\phi>0$, growth is explosive. There are scale effects: If $\lambda+\phi>1$, there are increasing returns to scale. If $\lambda+\phi=1$, there are constant returns to scale. If $\lambda+\phi<1$, there are decreasing returns to scale.
 
-[2] **Developer engagement**: Define the probability of a developer working on an OS project in month $t$ as $f(t)$. Then, the probability of engagement at time $t$ is the density function $f(t)=F'(t)$, where $F(t)$ is the cumulative probability. We can re-express this as a rate, conditional on no engagement thus far, i.e., $\frac{f(t)}{1-F(t)}$. A functional form proposed for this rate is the diffusion equation
+[2] **Developer engagement**: We adapt the @bass_new_1969 model to calibrate developer engagement. Define the probability of a developer working on an OS project in month $t$ as $f(t)$. Then, the probability of engagement at time $t$ is the density function $f(t)=F'(t)$, where $F(t)$ is the cumulative probability. We can re-express this as a rate, conditional on no engagement thus far, i.e., $\frac{f(t)}{1-F(t)}$. A functional form proposed for this rate is the diffusion equation
 $$
 \frac{dF/dt}{1-F} = p + q \cdot F, \quad F(0)=0
 $$

@@ -15,8 +15,16 @@ The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder inclu
 To use the code in this repository clone it 
 
 ```
-git clone https://github.com/srdas/oss-lifecycle.git
+$ git clone https://github.com/srdas/oss-lifecycle.git
 ```
+
+Now install all required packages:
+
+```
+$ cd oss-lifecycle
+$ pip install -r requirements.txt
+```
+
 
 Then follow the [usage instructions](#usage) below to run various analyses. 
 

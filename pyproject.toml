@@ -31,4 +31,4 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
-packages = ["src", "data", "docs", "images", "LICENSE", "paper.bib", "paper.md", "paper.pdf", "README.md", "requirements.txt", "pyproject.toml"]
+packages = ["oss_lifecycle"]

@@ -115,7 +115,7 @@ def get_project_developer_model_stats(repo_string):
 if __name__ == "__main__":
     """
     To run: 
-    python src/fit_bass.py "<owner>/<repo>" (from root folder)
+    python oss_lifecycle/fit_bass.py "<owner>/<repo>" (from root folder)
     """
     if len(sys.argv) < 2:
         print("Please provide a GitHub repository name in format '<owner>/<repo>'.")

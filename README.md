@@ -8,7 +8,7 @@ A long paper titled ["Project Life Cycles in Open Source Software"](https://gith
 
 A detailed bibliography for open source project analysis that complements the paper is provided as a resource in the [`docs`](https://github.com/srdas/oss-lifecycle/blob/main/docs/) folder in the [OpenSource.bib](https://github.com/srdas/oss-lifecycle/blob/main/docs/OpenSource.bib) file, which is in `bibTeX` format.
 
-The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.
+The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder includes sample CSV files with commit and contributor information, while the [`oss_lifecycle`](https://github.com/srdas/oss-lifecycle/tree/main/oss_lifecycle) folder contains Python scripts for processing and analyzing this data. The [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder contains sample images generated for several open-source projects showing the developer engagement over time and the growth in the codebase.
 
 ## Getting started
 
@@ -56,7 +56,7 @@ tar -xzvf oss_lifecycle-0.1.0.tar.gz
 This will create a folder `oss_lifecycle-0.1.0`. Change directory to this folder. Then run the following to see the front end:
 
 ```
-uv run src/server.py
+uv run oss_lifecycle/server.py
 ```
 
 See GUI usage [below](#usage-through-a-front-end-gui).
@@ -65,18 +65,18 @@ The details of the files are discussed next.
 
 ## Source Code
 
-The [`src`](https://github.com/srdas/oss-lifecycle/tree/main/src) folder contains Python scripts for collecting, processing, and analyzing commit data of any GitHub repository. To download the commit data for any repo and create the three data files noted above, run [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/github_gather.py). This code takes some time to run as older projects have tens of thousands of commits. To gather the commit data for multiple projects in one job, edit in the projects you want to download in [`collector_script.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/collector_script.py) and then run it. To count the number of code tokens in a repo, use [`count_tokens.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/count_tokens.py).
+The [`oss_lifecycle`](https://github.com/srdas/oss-lifecycle/tree/main/oss_lifecycle) folder contains Python scripts for collecting, processing, and analyzing commit data of any GitHub repository. To download the commit data for any repo and create the three data files noted above, run [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/github_gather.py). This code takes some time to run as older projects have tens of thousands of commits. To gather the commit data for multiple projects in one job, edit in the projects you want to download in [`collector_script.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/collector_script.py) and then run it. To count the number of code tokens in a repo, use [`count_tokens.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/count_tokens.py).
 
 The next steps are to fit developer engagement to the data and also fit the growth in the project (activity) in two steps:
 
-1. To fit the differential equation to model the developer activity over time, run the code in [`fit_bass.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/fit_bass.py).
-2. The module [`fit_innovation.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/fit_innovation.py) fits both the developer/contributor engagement over time as well as the cumulative innovation in the open source project as measured by lines of code changed. Various sample plots are stored in the [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder.
+1. To fit the differential equation to model the developer activity over time, run the code in [`fit_bass.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/fit_bass.py).
+2. The module [`fit_innovation.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/fit_innovation.py) fits both the developer/contributor engagement over time as well as the cumulative innovation in the open source project as measured by lines of code changed. Various sample plots are stored in the [`images`](https://github.com/srdas/oss-lifecycle/tree/main/images) folder.
 
-If a monthly report is needed run [`activity_report.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/activity_report.py), which generates monthly reports based on the commit data. The modifications to the codebase are summarized for the month using a LLM. This can help in preparing a monthly report for internal of external reporting, for example, a project that may need to report to the Linux Foundation. This reporting feature is useful to delve into the details of commits and it uses a LLM (Claude-3.5) to summarize the commits. Several statistics about a project from PyPi are collected using the code in [stats.py](https://github.com/srdas/oss-lifecycle/blob/main/src/stats.py).
+If a monthly report is needed run [`activity_report.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/activity_report.py), which generates monthly reports based on the commit data. The modifications to the codebase are summarized for the month using a LLM. This can help in preparing a monthly report for internal of external reporting, for example, a project that may need to report to the Linux Foundation. This reporting feature is useful to delve into the details of commits and it uses a LLM (Claude-3.5) to summarize the commits. Several statistics about a project from PyPi are collected using the code in [stats.py](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/stats.py).
 
 ## Data Files
 
-The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder contains CSV files with detailed commit information for various projects. These files are created automatically when running [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/src/github_gather.py). These files form the basis for further analysis using the code in this repository.
+The [`data`](https://github.com/srdas/oss-lifecycle/tree/main/data) folder contains CSV files with detailed commit information for various projects. These files are created automatically when running [`github_gather.py`](https://github.com/srdas/oss-lifecycle/blob/main/oss_lifecycle/github_gather.py). These files form the basis for further analysis using the code in this repository.
 
 ### Examples of file contents
 
@@ -115,7 +115,7 @@ Given the large amounts of data that may be processed (dependent on repository s
 To collect commit data for any project run from the _top level_ folder:
 
 ```
-python src/github_gather.py <owner>/<repo>
+python oss_lifecycle/github_gather.py <owner>/<repo>
 ```
 
 An example of `<owner>/<repo>` is `jupyterlab/jupyter-ai`
@@ -125,7 +125,7 @@ To collect a list of repositories, use the `collector_script.py` module. First e
 You will run
 
 ```
-python src/collector_script.py
+python oss_lifecycle/collector_script.py
 ```
 
 **Activity Report**
@@ -135,13 +135,13 @@ To generate an activity report for any month, run the following commands:
 1. First gather the data required, collect the repo data by running from the root folder:
 
 ```
-python src/github_gather.py <owner>/<repo>
+python oss_lifecycle/github_gather.py <owner>/<repo>
 ```
 
 Then, run the activity report:
 
 ```
-python src/activity_report.py <owner>/<repo> YYYY-MM
+python oss_lifecycle/activity_report.py <owner>/<repo> YYYY-MM
 ```
 
 **Fit the developer activity over time**
@@ -151,7 +151,7 @@ This code solves the differential equation for developer engagement and calibrat
 Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
-python src/fit_bass.py <owner>/<repo>
+python oss_lifecycle/fit_bass.py <owner>/<repo>
 ```
 
 **Fit the cumulative growth in the project**
@@ -161,7 +161,7 @@ This code solves the differential equation for project growth and calibrates it 
 Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
-python src/fit_innovation.py <owner>/<repo>
+python oss_lifecycle/fit_innovation.py <owner>/<repo>
 ```
 
 The generates several plots depicting activity in the chosen repository. Close each plot after viewing it to let the program run to proceed.
@@ -173,7 +173,7 @@ Install dependencies: `pip install -r requirements.txt`
 1. Start the Flask development server from the root of the `oss-lifecycle` folder:
 
 ```bash
-python src/server.py
+python oss_lifecycle/server.py
 ```
 
 2. Open a web browser and navigate to `http://localhost:5000`

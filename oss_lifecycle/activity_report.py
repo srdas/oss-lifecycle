@@ -108,10 +108,10 @@ if __name__ == "__main__":
     """
     To run: 
     First, collect the repo data by running from the root folder:
-        python src/github_gather.py <owner>/<repo>
+        python oss_lifecycle/github_gather.py <owner>/<repo>
 
     Next, run
-        python src/activity_report.py <owner>/<repo> YYYY-MM (from root folder)
+        python oss_lifecycle/activity_report.py <owner>/<repo> YYYY-MM (from root folder)
     """
     if len(sys.argv) < 3:
         print("Please provide a GitHub repository name in format `<owner>/<repo> YYYY-MM`> .")

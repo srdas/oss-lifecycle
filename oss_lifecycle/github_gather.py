@@ -167,7 +167,7 @@ def get_monthly_commits(df):
 if __name__ == "__main__":
     """
     To run: 
-    python src/github_gather.py <owner>/<repo> (from root folder)
+    python oss_lifecycle/github_gather.py <owner>/<repo> (from root folder)
     """
     if len(sys.argv) < 2:
         print("Please provide a GitHub repository name in format '<owner>/<repo>'.")

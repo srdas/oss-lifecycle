@@ -26,7 +26,7 @@ def run_github_gather():
         # Run the github_gather script
         result = subprocess.run([
             sys.executable, 
-            'src/github_gather.py', 
+            'oss_lifecycle/github_gather.py', 
             repo_name
         ], 
         capture_output=True, 
@@ -81,7 +81,7 @@ def run_bass_model():
         # Run the Bass model fitting script
         result = subprocess.run([
             sys.executable, 
-            'src/fit_bass.py', 
+            'oss_lifecycle/fit_bass.py', 
             repo_name
         ], 
         capture_output=True, 
@@ -134,7 +134,7 @@ def run_innovation_model():
         # Run the innovation model fitting script
         result = subprocess.run([
             sys.executable, 
-            'src/fit_innovation.py', 
+            'oss_lifecycle/fit_innovation.py', 
             repo_name
         ], 
         capture_output=True, 

@@ -47,7 +47,7 @@ def tokenize_and_count(repo_path):
 if __name__ == "__main__":
     """
     To run: 
-    python src/count_tokens.py <owner>/<repo> (from root folder)
+    python oss_lifecycle/count_tokens.py <owner>/<repo> (from root folder)
     """
     if len(sys.argv) < 2:
         print("Please provide a GitHub repository name in format '<owner>/<repo>'.")

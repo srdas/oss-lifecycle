@@ -18,7 +18,46 @@ To install this package:
 $ pip install oss-lifecycle
 ```
 
-Or,
+Then start Python:
+
+```
+python
+```
+
+There are just three steps to use this package to analyze any GitHub repository:
+
+**Step 1**: Gather the commit history for any `<owner>/<repo>`, we will use `jupyterlab/jupyter-ai` as an example. This can take some time if the repo is very large.
+
+```python
+>>> from oss_lifecycle import github_gather
+>>> github_gather.collect("jupyterlab/jupyter-ai")
+```
+
+The extracted and processed data will be in the `data/` sub folder if you need to use it for any other analyses.
+
+**Step 2**: Fit the commit data to the model for developer engagement.
+
+```python
+from oss_lifecycle import fit_bass
+fit_bass.devs("jupyterlab/jupyter-ai")
+```
+
+When you run this two figures will pop up one after the other. You may view them and close them to proceed. These figures are saved in the `images/` folder.
+
+**Step 3**: Fit the growth model to commit data and the developer model data.
+
+```python
+from oss_lifecycle import fit_innovation
+fit_innovation.growth("jupyterlab/jupyter-ai")
+```
+
+This time, four figures will appear one after the other and you proceed by closing each one. These figures are also saved in the `images/` folder.
+
+From the figures you can assess both developer engagement and growth of GitHub repositories. See the paper ["Project Life Cycles in Open Source Software"](https://github.com/srdas/oss-lifecycle/blob/main/docs/OS_Innovation.pdf) for application to many popular repositories.
+
+The remaining discussion in this README delves more into the source code, and alternate ways to run the code including using a GUI.
+
+## Using the code from source
 
 To use the code in this repository clone it
 
@@ -115,7 +154,7 @@ Given the large amounts of data that may be processed (dependent on repository s
 To collect commit data for any project run from the _top level_ folder:
 
 ```
-python oss_lifecycle/github_gather.py <owner>/<repo>
+python -m oss_lifecycle.github_gather <owner>/<repo>
 ```
 
 An example of `<owner>/<repo>` is `jupyterlab/jupyter-ai`
@@ -125,7 +164,7 @@ To collect a list of repositories, use the `collector_script.py` module. First e
 You will run
 
 ```
-python oss_lifecycle/collector_script.py
+python -m oss_lifecycle.collector_script
 ```
 
 **Activity Report**
@@ -135,13 +174,13 @@ To generate an activity report for any month, run the following commands:
 1. First gather the data required, collect the repo data by running from the root folder:
 
 ```
-python oss_lifecycle/github_gather.py <owner>/<repo>
+python -m oss_lifecycle.github_gather <owner>/<repo>
 ```
 
 Then, run the activity report:
 
 ```
-python oss_lifecycle/activity_report.py <owner>/<repo> YYYY-MM
+python -m oss_lifecycle.activity_report <owner>/<repo> YYYY-MM
 ```
 
 **Fit the developer activity over time**
@@ -151,7 +190,7 @@ This code solves the differential equation for developer engagement and calibrat
 Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
-python oss_lifecycle/fit_bass.py <owner>/<repo>
+python -m oss_lifecycle.fit_bass <owner>/<repo>
 ```
 
 **Fit the cumulative growth in the project**
@@ -161,7 +200,7 @@ This code solves the differential equation for project growth and calibrates it 
 Run this from the command line and close each graph as it appears. Graphs will be saved in the `images` folder:
 
 ```
-python oss_lifecycle/fit_innovation.py <owner>/<repo>
+python -m oss_lifecycle.fit_innovation <owner>/<repo>
 ```
 
 The generates several plots depicting activity in the chosen repository. Close each plot after viewing it to let the program run to proceed.
@@ -173,7 +212,7 @@ Install dependencies: `pip install -r requirements.txt`
 1. Start the Flask development server from the root of the `oss-lifecycle` folder:
 
 ```bash
-python oss_lifecycle/server.py
+python -m oss_lifecycle.server
 ```
 
 2. Open a web browser and navigate to `http://localhost:5000`

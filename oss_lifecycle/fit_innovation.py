@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from scipy.optimize import curve_fit, minimize
 from scipy.integrate import solve_ivp
-from fit_bass import bass, fitBass, forecastL
+from .fit_bass import bass, fitBass, forecastL
 
 
 def polyfit_innovation_timeseries(df, repo_string):
@@ -192,24 +192,13 @@ def plotForecast(A, L, forecast_length, repo_string):
     plt.show()
 
 
-
-# Main run
-if __name__ == "__main__":
+def growth(repo_name):
     """
-    To run: 
-    python oss_lifecycle/fit_innovation.py "<owner>/<repo>" (from root folder)
+    Fit the growth model to the lines of code and number of developers in a project
     """
-    if len(sys.argv) < 2:
+    if not "/" in repo_name:
         print("Please provide a GitHub repository name in format '<owner>/<repo>'.")
-        # EXAMPLES
-        # repo_name = 'jupyterlab/jupyter-ai'
-        # repo_name = 'jupyter-server/jupyter-scheduler'
-        # repo_name = 'pandas-dev/pandas'
-        # repo_name = 'jupyterlab/jupyterlab'
-        # repo_name = 'langchain-ai/langchain'
-        # repo_name = 'langchain-ai/langchain-aws'        
-    else:  
-        repo_name = sys.argv[1]
+    else:
         owner, repo = repo_name.split('/')
         repo_string = owner + '-' + repo
         df = pd.read_csv("data/" + repo_string + "-monthly.csv")
@@ -233,4 +222,23 @@ if __name__ == "__main__":
         # A = forecastA(gamma, lam, phi, t, df['cumInnovation'][0], L)
         A = forecastA(gamma, lam, phi, t, df['cumInnovation'][0], df['contributors'], L)
         plotForecast(A, L, forecast_length, repo_string)
-        
+
+
+# Main run
+if __name__ == "__main__":
+    """
+    To run: 
+    python oss_lifecycle/fit_innovation.py "<owner>/<repo>" (from root folder)
+    """
+    if len(sys.argv) < 2:
+        print("Please provide a GitHub repository name in format '<owner>/<repo>'.")
+        # EXAMPLES
+        # repo_name = 'jupyterlab/jupyter-ai'
+        # repo_name = 'jupyter-server/jupyter-scheduler'
+        # repo_name = 'pandas-dev/pandas'
+        # repo_name = 'jupyterlab/jupyterlab'
+        # repo_name = 'langchain-ai/langchain'
+        # repo_name = 'langchain-ai/langchain-aws'        
+    else:  
+        repo_name = sys.argv[1]
+        growth(repo_name)

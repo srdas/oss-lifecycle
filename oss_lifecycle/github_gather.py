@@ -109,7 +109,7 @@ def collect_commits(repo_path):
     
     return df_commits
 
-def get_commits_df(repo_url):
+def get_commits_df(repo_url, repo_name):
     """
     Main function to clone repo and collect commits
     
@@ -121,6 +121,11 @@ def get_commits_df(repo_url):
     # Clone the repository
     repo_path = clone_github_repo(repo_url)
     package = repo_name.replace('/', '-')
+
+    # Ensure data directory exists
+    data_dir = 'data'
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
     
     # Collect commits
     df_commits = collect_commits(repo_path)
@@ -131,7 +136,7 @@ def get_commits_df(repo_url):
     df.columns = ['commit_id','author','date','lines_added','lines_removed']
     
     # Save to CSV
-    output_file = 'data/' + package + '-commits.csv'
+    output_file = os.path.join(data_dir, package + '-monthly.csv')
     df.to_csv(output_file, index=False)
     print(f"\nCommits collected. Total commits: {len(df)}")
     print(f"Saved commits to {output_file}")
@@ -139,7 +144,7 @@ def get_commits_df(repo_url):
     return df
 
 # Create monthly data frame
-def get_monthly_commits(df):
+def get_monthly_commits(df, repo_name):
     """
     Consolidates the commits data by month to give a time series for modeling
     """
@@ -157,11 +162,40 @@ def get_monthly_commits(df):
     print("Monthly dataframe shape =", df1.shape)
 
     package = repo_name.replace('/', '-')
-    output_file = 'data/' + package + '-monthly.csv'
+    data_dir = 'data'
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
+    output_file = os.path.join(data_dir, package + '-monthly.csv')
     df1.to_csv(output_file)
     print(f"Saved monthly data to {output_file}")
 
     return df1
+
+
+def collect(repo_name):
+    """
+    To run: 
+    python oss_lifecycle/github_gather.py <owner>/<repo> (from root folder)
+    """
+    if not "/" in repo_name:
+        print("Please provide a GitHub repository name in format '<owner>/<repo>'.")
+        # EXAMPLES
+        # repo_name = 'jupyterlab/jupyter-ai'
+        # repo_name = 'jupyter-server/jupyter-scheduler'
+        # repo_name = 'pandas-dev/pandas'
+        # repo_name = 'jupyterlab/jupyterlab'
+        # repo_name = 'langchain-ai/langchain'
+        # repo_name = 'langchain-ai/langchain-aws'        
+    else:  
+        # repo_name = sys.argv[1]
+        owner, repo = repo_name.split('/', 1)
+        print(f"Owner: {owner} | Repo: {repo}")
+        repo_url = "https://github.com/" + repo_name + ".git"
+        df = get_commits_df(repo_url, repo_name)
+        df1 = get_monthly_commits(df, repo_name)
+        shutil.rmtree(repo)
+
+
 
 # Main run
 if __name__ == "__main__":
@@ -180,9 +214,4 @@ if __name__ == "__main__":
         # repo_name = 'langchain-ai/langchain-aws'        
     else:  
         repo_name = sys.argv[1]
-        owner, repo = repo_name.split('/', 1)
-        print(f"Owner: {owner} | Repo: {repo}")
-        repo_url = "https://github.com/" + repo_name + ".git"
-        df = get_commits_df(repo_url)
-        df1 = get_monthly_commits(df)
-        shutil.rmtree(repo)
+        collect(repo_name)

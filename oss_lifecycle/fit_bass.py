@@ -7,6 +7,7 @@ from datetime import datetime
 import sys
 from sklearn.linear_model import LinearRegression
 from scipy.optimize import fsolve
+import os
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
@@ -111,27 +112,23 @@ def get_project_developer_model_stats(repo_string):
     print("Remaining months =", T-t, " =", yrs, "years")
     return start_date, end_date, p, q, m, t, T, yrs
 
-# Main run
-if __name__ == "__main__":
+
+def devs(repo_name):
     """
-    To run: 
-    python oss_lifecycle/fit_bass.py "<owner>/<repo>" (from root folder)
+    Fit the Bass model to the number of developers in a project
     """
-    if len(sys.argv) < 2:
+    if not "/" in repo_name:
         print("Please provide a GitHub repository name in format '<owner>/<repo>'.")
-        # EXAMPLES
-        # repo_name = 'jupyterlab/jupyter-ai'
-        # repo_name = 'jupyter-server/jupyter-scheduler'
-        # repo_name = 'pandas-dev/pandas'
-        # repo_name = 'jupyterlab/jupyterlab'
-        # repo_name = 'langchain-ai/langchain'
-        # repo_name = 'langchain-ai/langchain-aws'        
     else:  
-        repo_name = sys.argv[1]
         print("Repo name:", repo_name)
         owner, repo = repo_name.split('/')
         repo_string = owner + '-' + repo
         df = pd.read_csv("data/" + repo_string + "-monthly.csv")
+
+        # Ensure images directory exists
+        images_dir = "images"
+        if not os.path.exists(images_dir):
+            os.makedirs(images_dir)
 
         # Fit the Bass model
         num_devs_df = df[['contributors']]
@@ -154,5 +151,26 @@ if __name__ == "__main__":
         t_list = np.arange(t, T)
         f, _ = bass(p, q, t_list)
         plt.plot(t_list, f*m, linewidth=2, color='red')
-        plt.savefig(f"images/{repo_string}_contributors_to_end.png")
+        plt.savefig(f"{images_dir}/{repo_string}_contributors_to_end.png")
         plt.show()
+    
+    print("Bass model fitting complete. Results saved.")
+
+# Main run
+if __name__ == "__main__":
+    """
+    To run: 
+    python oss_lifecycle/fit_bass.py "<owner>/<repo>" (from root folder)
+    """
+    if len(sys.argv) < 2:
+        print("Please provide a GitHub repository name in format '<owner>/<repo>'.")
+        # EXAMPLES
+        # repo_name = 'jupyterlab/jupyter-ai'
+        # repo_name = 'jupyter-server/jupyter-scheduler'
+        # repo_name = 'pandas-dev/pandas'
+        # repo_name = 'jupyterlab/jupyterlab'
+        # repo_name = 'langchain-ai/langchain'
+        # repo_name = 'langchain-ai/langchain-aws'        
+    else:  
+        repo_name = sys.argv[1]
+        devs(repo_name)

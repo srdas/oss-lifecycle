@@ -1,6 +1,6 @@
 [project]
 name = "oss-lifecycle"
-version = "0.1.0"
+version = "0.1.2"
 description = "A package to analyze open-source GitHub projects life cycles"
 readme = "README.md"
 license = { file = "LICENSE" }

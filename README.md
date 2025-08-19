@@ -55,7 +55,7 @@ This time, four figures will appear one after the other and you proceed by closi
 
 From the figures you can assess both developer engagement and growth of GitHub repositories. See the paper ["Project Life Cycles in Open Source Software"](https://github.com/srdas/oss-lifecycle/blob/main/docs/OS_Innovation.pdf) for application to many popular repositories.
 
-The remaining discussion in this README delves more into the source code, and alternate ways to run the code including using a GUI.
+The remaining discussion in this README delves more into the source code, and alternate ways to run the code including using a GUI, as well as some extra useful scripts.
 
 ## Using the code from source
 

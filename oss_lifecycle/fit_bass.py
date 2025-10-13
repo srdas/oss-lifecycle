@@ -65,6 +65,11 @@ def fitBass(df, repo_string, do_plot=True):
     return p, q, m
 
 
+# Time at which f peaks
+def peak_time(p, q):
+    return np.log(q/p)/(p + q)
+
+
 def forecastL(p, q, m, t):
     """
     Forecast the number of developers at through t

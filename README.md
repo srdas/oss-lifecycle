@@ -29,8 +29,8 @@ There are just three steps to use this package to analyze any GitHub repository:
 **Step 1**: Gather the commit history for any `<owner>/<repo>`, we will use `jupyterlab/jupyter-ai` as an example. This can take some time if the repo is very large.
 
 ```python
->>> from oss_lifecycle import github_gather
->>> github_gather.collect("jupyterlab/jupyter-ai")
+from oss_lifecycle import github_gather
+github_gather.collect("jupyterlab/jupyter-ai")
 ```
 
 The extracted and processed data will be in the `data/` sub folder if you need to use it for any other analyses.

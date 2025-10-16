@@ -22,35 +22,35 @@ from datetime import datetime
 import subprocess
 import sys
 import shutil
-import git
-import re
-import time
 
 def install_gitpython():
     """Install GitPython if not already installed"""
     try:
         import git
         print("Git already installed")
+        return git
     except ImportError:
         print("Installing Git")
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'GitPython'])
+        import git
+        return git
 
 # Install GitPython
-install_gitpython()
+git = install_gitpython()
 
 # Functions to collect GitHub commits
 def clone_github_repo(repo_url, local_path=None):
     """
     Clone a GitHub repository to a local directory
-
+    
     Parameters:
     -----------
     repo_url : str
         URL of the GitHub repository
     local_path : str, optional
-        Local path to clone the repository.
+        Local path to clone the repository. 
         If None, uses the repository name in current directory
-
+    
     Returns:
     --------
     str
@@ -60,127 +60,87 @@ def clone_github_repo(repo_url, local_path=None):
     if local_path is None:
         repo_name = repo_url.split('/')[-1].replace('.git', '')
         local_path = os.path.join(os.getcwd(), repo_name)
-
+    
     # Ensure directory doesn't exist or is empty
     if os.path.exists(local_path):
         print(f"Directory {local_path} already exists. Skipping clone.")
-        # If the directory exists but is empty, remove it and clone again
-        if not os.listdir(local_path):
-            print(f"Directory {local_path} is empty. Removing and cloning again.")
-            shutil.rmtree(local_path)
-            git.Repo.clone_from(repo_url, local_path)
-            print(f"Repository cloned to {local_path}")
     else:
         # Clone the repository
         git.Repo.clone_from(repo_url, local_path)
         print(f"Repository cloned to {local_path}")
-
+    
     return local_path
 
 def collect_commits(repo_path):
     """
-    Collect commit information from a local git repository using git log
-
+    Collect commit information from a local git repository
+    
     Parameters:
     -----------
     repo_path : str
         Path to the local git repository
-
+    
     Returns:
     --------
     pandas.DataFrame
         DataFrame with commit details
     """
-    print("Collecting commits...")
-    # Use git log with a custom format to get commit details and stats
-    # Format: hash, author name, author email, author date (ISO 8601), full message
-    log_format = "--pretty=format:%H%x09%an%x09%ae%x09%aI%x09%B" # %B for full message
-    command = ["git", "-C", repo_path, "log", "--numstat", log_format]
-    result = subprocess.run(command, capture_output=True, text=True, check=True)
-
+    # Open the repository
+    repo = git.Repo(repo_path)
+    
+    # Collect commit information
     commits_data = []
-    current_commit = None
-    # Regex to extract commit details from lines starting with --
-    commit_regex = re.compile(r"([0-9a-f]{40})\t(.*?)\t(.*?)\t(.*?)\t(.*)", re.DOTALL) # Updated regex and added re.DOTALL for multiline messages
-
-    for line in result.stdout.splitlines():
-        commit_match = commit_regex.match(line)
-        if commit_match:
-            if current_commit:
-                commits_data.append(current_commit)
-            hash, author, author_email, date, message = commit_match.groups()
-            current_commit = {
-                'hash': hash,
-                'author': author,
-                'author_email': author_email,
-                'date': date,
-                'message': message.strip(),
-                'additions': 0,
-                'deletions': 0,
-                'files_changed': 0
-            }
-        elif current_commit and line.strip() and not commit_regex.match(line):
-             # This line contains file stats from --numstat
-            parts = line.strip().split()
-            if len(parts) >= 2 and (parts[0].isdigit() or parts[0] == '-') and (parts[1].isdigit() or parts[1] == '-'):
-                additions = 0 if parts[0] == '-' else int(parts[0])
-                deletions = 0 if parts[1] == '-' else int(parts[1])
-                current_commit['additions'] += additions
-                current_commit['deletions'] += deletions
-                current_commit['files_changed'] += 1
-            # Lines with only file name are not stat lines we need to process here
-            else: # add other text to the message
-                current_commit['message'] += "\n" + line.strip()
-
-    if current_commit:
-        commits_data.append(current_commit)
-
+    for commit in repo.iter_commits():
+        commit_info = {
+            'hash': commit.hexsha,
+            'author': commit.author.name,
+            'author_email': commit.author.email,
+            'date': commit.authored_datetime,
+            'message': commit.message.strip(),
+            'additions': commit.stats.total['insertions'],
+            'deletions': commit.stats.total['deletions'],
+            'files_changed': commit.stats.total['files']
+        }
+        commits_data.append(commit_info)
+        print(commit.authored_datetime, end='..')
+    
     # Convert to DataFrame
     df_commits = pd.DataFrame(commits_data)
-
-    # Convert date to datetime objects, handling potential errors
-    df_commits['date'] = pd.to_datetime(df_commits['date'], utc=True, errors='coerce')
-
+    
     return df_commits
-
 
 def get_commits_df(repo_url, repo_name):
     """
     Main function to clone repo and collect commits
-
+    
     Parameters:
     -----------
     repo_url : str
         URL of the GitHub repository
     """
     # Clone the repository
-    start_time = time.time()
     repo_path = clone_github_repo(repo_url)
-    end_time = time.time()
-    print(f"\nTime to clone repo: {end_time - start_time} seconds")
     package = repo_name.replace('/', '-')
 
     # Ensure data directory exists
     data_dir = 'data'
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
-
+    
     # Collect commits
-    start_time = time.time()
     df_commits = collect_commits(repo_path)
-    end_time = time.time()
-    print(f"\nTime to collect commits: {end_time - start_time} seconds")
-
-    # Save to CSV
     df_commits.to_csv('data/' + package + '-commits_w_desc.csv', index=False)
 
-    # Reformat df to clean up
-    df = df_commits[['hash','author','date','additions','deletions', 'message']]
-    df.columns = ['commit_id','author','date','lines_added','lines_removed', 'message']
-
+    # Reformat df to clean up 
+    df = df_commits[['hash','author','date','additions','deletions']]
+    df.columns = ['commit_id','author','date','lines_added','lines_removed']
+    
     # Save to CSV
+    output_file = os.path.join(data_dir, package + '-monthly.csv')
+    df.to_csv(output_file, index=False)
     print(f"\nCommits collected. Total commits: {len(df)}")
-
+    print(f"Saved commits to {output_file}")
+    
     return df
 
 # Create monthly data frame
@@ -214,7 +174,7 @@ def get_monthly_commits(df, repo_name):
 
 def collect(repo_name):
     """
-    To run:
+    To run: 
     python oss_lifecycle/github_gather.py <owner>/<repo> (from root folder)
     """
     if not "/" in repo_name:
@@ -225,9 +185,9 @@ def collect(repo_name):
         # repo_name = 'pandas-dev/pandas'
         # repo_name = 'jupyterlab/jupyterlab'
         # repo_name = 'langchain-ai/langchain'
-        # repo_name = 'langchain-ai/langchain-aws'
-    else:
-        repo_name = sys.argv[1]
+        # repo_name = 'langchain-ai/langchain-aws'        
+    else:  
+        # repo_name = sys.argv[1]
         owner, repo = repo_name.split('/', 1)
         print(f"Owner: {owner} | Repo: {repo}")
         repo_url = "https://github.com/" + repo_name + ".git"

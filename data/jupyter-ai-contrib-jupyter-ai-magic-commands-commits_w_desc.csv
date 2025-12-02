@@ -1,0 +1,24 @@
+hash,author,author_email,date,message,additions,deletions,files_changed
+b96d83354a9ed4306204f835c566ecaa89228028,dlqqq,dlqqq@users.noreply.github.com,2025-10-30 23:15:15+00:00,"Publish 0.0.2
+SHA256 hashes:
+jupyter_ai_magic_commands-0.0.2-py3-none-any.whl: 1dc7ff26975345fa06d166b00813d3876f7947b3b318b8c9fbabbed3e46d9711
+jupyter_ai_magic_commands-0.0.2.tar.gz: 57451a82b165ba4c32b5747eb2036b2cf0abcfa7dcae2d703ecaa3f989e70f30",21,3,2
+b8c00ed75fbaa5fc70568bd9bdab0a9476646c20,Sanjiv Das,srdas@scu.edu,2025-10-30 23:10:54+00:00,"Updated README post-release (#4)
+The installation instructions have been revised after the package is released on `PyPI`.",1,10,1
+8669d3ce5927082a4787954a409316b582fda3ca,David L. Qiu,david@qiu.dev,2025-10-30 22:52:47+00:00,Fix version import (#3),1,1,1
+3b0de296bee9ecbec9092edf6da304cb19fcb042,dlqqq,dlqqq@users.noreply.github.com,2025-10-30 22:11:45+00:00,"Publish 0.0.1
+SHA256 hashes:
+jupyter_ai_magic_commands-0.0.1-py3-none-any.whl: 3fc1551667283abca3d6ae5e664f75404df0f838becf7848c9c66bcd59feb359
+jupyter_ai_magic_commands-0.0.1.tar.gz: 608f8c1381cc270159a45a363bf7ec30e8e2f1f20c403cd88d9044fd0c8d61c3",16,2,2
+d8ba298e2daec5623811e2b52928c2b481d25524,David L. Qiu,david@qiu.dev,2025-10-30 22:08:33+00:00,"Prepare repo for PyPI release via Jupyter Releaser (#2)
+* prepare repo for PyPI release via Jupyter Releaser
+* add CHANGELOG.md",23,41,7
+18aefb8deda262c676adf8d2a748b87bf955e136,Sanjiv Das,srdas@scu.edu,2025-10-30 21:15:25+00:00,"Initialization of the repository for Jupyter AI magic commands (#1)
+* first commit
+* delete notebook
+* Removed redundant files and added release yml files
+* create .gitignore
+* Update README
+* Update README.md
+* Update check-release.yml",1842,2,20
+90a17c3ffc387cd18f32988eb248c80c64f249b3,Sanjiv Das,srdas@scu.edu,2025-10-23 21:19:45+00:00,Initial commit,30,0,2

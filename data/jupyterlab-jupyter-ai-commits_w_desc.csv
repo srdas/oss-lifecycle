@@ -1,4 +1,31 @@
 hash,author,author_email,date,message,additions,deletions,files_changed
+482c7dc5796428c972757c7099b30ba03d8e4e80,dlqqq,dlqqq@users.noreply.github.com,2025-11-05 17:37:47+00:00,"Publish 3.0.0b9
+SHA256 hashes:
+jupyter_ai-3.0.0b9-py3-none-any.whl: 4afe3ad7d2ea93681d8bddf40c4e2b49bfe598e13b4a1086a81fe4069e941385
+jupyter_ai-3.0.0b9.tar.gz: 32854874155ea1159fb607496729601c9b93fcda46b6ab63249c09b48baec2a7",17,3,2
+bc407706258e93f9a2ae3cd7bbb05ada9c31acc3,David L. Qiu,david@qiu.dev,2025-11-05 17:30:37+00:00,Fix chat commands UI & Jupyternaut model configuration (#1498),2,2,1
+a158513d4ffe092f563471b9184f33d3a1976bcd,dlqqq,dlqqq@users.noreply.github.com,2025-11-03 01:18:04+00:00,"Publish 3.0.0b8
+SHA256 hashes:
+jupyter_ai-3.0.0b8-py3-none-any.whl: c0ef23974e83810f7820e0fc70b1e1493470a51a108c770c4c56f5bcaf335d6b
+jupyter_ai-3.0.0b8.tar.gz: 8ba7c8451de41859c401e62745ef8c684cee56abc2d8941dccb3018c86669585",19,3,2
+e819ba1de1c126fdb394b1e1163bc8ef60afd78c,David L. Qiu,david@qiu.dev,2025-11-03 01:12:47+00:00,"Make Jupyter AI a metapackage (#1494)
+* delete packages/*
+* delete examples/*
+* delete yarn.lock
+* update package.json & pyproject.toml
+* remove lerna & nx monorepo configuration
+* remove package.json, hatch-nodejs-builder
+* add tool.hatch.version.path field
+* add _version.py to .gitignore
+* remove test & lint workflows
+* make version non-dynamic
+* use dynamic version defined in __init__.py
+* remove v2 examples from documentation
+* update version floors
+* add jupyterlab_chat and jupyter_ai_magic_commands
+* bump jupyter_ai_jupyternaut floor
+* bump jupyter_ai_chat_commands version floor
+* bump jupyter_ai_jupyternaut to fix missing avatar",53,37719,194
 e4df0f194fed30e6d74dafa5bf9360d851e4fcdb,dlqqq,dlqqq@users.noreply.github.com,2025-09-10 18:35:44+00:00,"Publish 3.0.0beta7
 SHA256 hashes:
 jupyter-ai-core-3.0.0-beta.7.tgz: d6bf93bfe47a7e8f0b4188d230b3b694b1e758a983811263724cbec47e488d41

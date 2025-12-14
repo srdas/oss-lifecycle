@@ -227,7 +227,7 @@ def collect(repo_name):
         # repo_name = 'langchain-ai/langchain'
         # repo_name = 'langchain-ai/langchain-aws'
     else:
-        repo_name = sys.argv[1]
+        # repo_name = sys.argv[1]
         owner, repo = repo_name.split('/', 1)
         print(f"Owner: {owner} | Repo: {repo}")
         repo_url = "https://github.com/" + repo_name + ".git"

@@ -1,4 +1,936 @@
 hash,author,author_email,date,message,additions,deletions,files_changed
+1672fae93d6ea3310c89af66b1e873c12a6341b2,Arjun Verma,arjxn.py@gmail.com,2025-12-12 12:19:13+00:00,"feat: Add a ""Stop Debugger"" button to the paused overlay (#18184)
+* feat: Add a ""Stop Debugger"" button to the paused overlay
+* add debugger stopped signal and update debug button state on debugger stop
+* add docstring
+* make `IDebugger.stopped` signal `readonly`
+* Disconnect debugger stopped signal when removing handlers",47,3,5
+19ccacf9079dce66e3672a3223b77c4ff574dbfb,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-12-11 18:54:14+00:00,"Switch from `webpack` to `rspack` for bundling (#16005)
+* Switch to rspack
+* Update yarn.lock
+* Update to rspack 1.6.4
+* Add recommended type for css modules
+* Fix typo in mini extract css migration
+* Handle CSS files in the base webpack config
+* Fix example rspack config to account for css
+* Fix examples
+* Ignore webpack links, which are now giving us 403 errors even for valid links
+* Include style js map files in the nbconvert.css published package.
+* jlpm run deduplicate
+* Fix css inclusion for examples
+* Update screenshot to show rspack instead of webpack config file in filebrowser
+* Revert the builder default to use style-loader and css-loader
+This may fix a css issue in the federated example, where the notification css was not getting loaded properly.
+* Fix jlpm integrity
+List the style-loader in the builder package unused dependencies again
+* Fix color string comparison in galata tests
+* Remove @types/webpack-sources
+Apparently this is out of date, and no longer needed with rspack.
+See https://github.com/web-infra-dev/rspack/pull/5868
+* Fix jupyter lab --dev-mode --watch
+Claude Code (after a few restarts with guidance) found the issue and explained:
+The issue was that the watch script on line 17 of dev_mode/package.json was running rspack --watch without specifying the config file. When rspack runs without a config, it tries to use default conventions and looks for ./src/index.js as the entry point, which doesn't exist in your setup. I've updated the watch script to:
+""watch"": ""rspack --watch --config webpack.config.js""
+This matches the pattern used by the build script on line 7 and ensures rspack uses the correct configuration with the proper entry points defined in webpack.config.js.
+* Enable license file generation
+* Close hanging parenthesis in RELEASE.md
+* Fix mentions of webpack in source files, and enable the rsdoctor tool.
+* Fix build:dev:prod:minimize:report target
+* Fix build_log.json generation conflicts with rsdoctor
+* Update watch mode logic
+* Remove skipLibCheck
+* Add note about rspack migration to extension migration guide.
+---------
+Co-authored-by: Jason Grout <jason@jasongrout.org>
+Co-authored-by: Jason Grout <jasongrout@users.noreply.github.com>",2008,898,57
+3774ec05ef89e55c55d9c3ca3a564a26e01f2df8,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-12-11 14:48:47+00:00,"Check if the list of commands, tokens and plugins has changed (#18198)
+* Check if the list of commands, tokens and plugins has changed
+* fix check
+* fix check
+* fixes
+* tmp: test command
+* Revert ""tmp: test command""
+This reverts commit b53fedf136a7e6390630da647946a762db592792.",53,16,5
+eb03e9c469c7f1202e7a53c52d49af2c439e4df1,Florence Haudin,99649086+HaudinFlorence@users.noreply.github.com,2025-12-11 11:53:29+00:00,"Debugger: Fix restart and debug command. (#18115)
+* Fix restart and debug command.
+* Remove commented call to start method in restoreDebuggerState.
+* Update packages/debugger-extension/src/index.ts
+Co-authored-by: martinRenou <martin.renou@gmail.com>
+* Fix missing bracket.
+* Take review comment into account: use statusChanged signal to track the kernel restart and stop the debugger service.
+* Replace use of statusChangedSignal to track the kernel restart by adding an optional callback method to the argument of the restart method from SessionContext class.
+* Update packages/debugger-extension/src/index.ts
+Co-authored-by: martinRenou <martin.renou@gmail.com>
+* Complement review suggestion with removing returning the kernel status for the onBeforeRestart method.
+Fix issue related to the restart method and its second argument restartOptions that needs to be optional.
+* Move IRestartOptions interface inse the ISessionContext namespace.
+* Document onBeforeRestart method in IRestartOptions interface.
+* Fix missing call of onBeforeRestart method.
+* Add missing await in the call of onBeforeRestart.
+* Move onBeforeRestart just before restarting the kernel inside the restart method from SessionContextDialogs class.
+---------
+Co-authored-by: martinRenou <martin.renou@gmail.com>",24,9,3
+f74534e18b87b6a7a6bddf97319a00d0bcc801ba,Meriem Ben Ismail,161816721+Meriem-BenIsmail@users.noreply.github.com,2025-12-10 15:35:51+00:00,"Fix `scrollPastEnd` for text editors (#18186)
+* apply scrollpastend for text editors
+* update snapshot
+* fix snapshot
+* update snapshots",44,2,8
+fc1d9939d0df27089b914932c3525372e459e34f,martinRenou,martin.renou@gmail.com,2025-12-10 12:16:55+00:00,"Drives: Deprecate the notion of defaultContentProvider (#18169)
+* Drives: Deprecate the notion of defaultContentProvider
+* Remove unused prop
+* Fix save -> js-test caught a valid issue
+* Handle review comment
+* Remove unused import
+* Add Changelog entry
+* Prettier
+* Remove unused ""required"" entry
+Co-authored-by: Jeremy Tuloup <jeremy.tuloup@gmail.com>
+* Handle review comment
+* Handle review comment
+* Remove tokens from public list
+* [pre-commit.ci] auto fixes from pre-commit.com hooks
+for more information, see https://pre-commit.ci
+* Add token removal comment
+---------
+Co-authored-by: Jeremy Tuloup <jeremy.tuloup@gmail.com>
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>",74,30,7
+703b49528b0046e7cbc449007e8cd16e4fd059cc,Arjun Verma,arjxn.py@gmail.com,2025-12-10 08:01:49+00:00,"Move Kernel Sources filter bar to toolbar and enable live filtering (#18079)
+* Move Kernel Sources filter bar to toolbar and enable live filtering
+* remove unused css classes
+* update snapshot
+* shorten filter placeholder text in kernel sources panel
+* update debugger sidebar snapshot
+* fix css of filter search
+* update snapshot
+* Remove `filteredKernelSources` property from `IKernelSources.IModel`
+* Make kernel source filtering case-insensitive and use filtering logic from the model.
+* style: add font-weight to debugger kernel sources filter input
+* update snapshot",24,57,6
+315d6b5abb6a147b3ecfa2a825356648857b0ecf,Meriem Ben Ismail,161816721+Meriem-BenIsmail@users.noreply.github.com,2025-12-08 10:10:15+00:00,"Enable undo/redo in JSON settings editor (#18165)
+* enable undo/redo in JSON settings editor
+* add dependencies",17,1,3
+c3a51aea54cdbcaf088a9fa24095fdb459d8ae20,Meriem Ben Ismail,161816721+Meriem-BenIsmail@users.noreply.github.com,2025-12-04 18:11:25+00:00,"Restore focus after closing the modal command palette (#18167)
+* restore focus on last active cell
+* update dependencies
+* update dependencies
+* remove notebook dependency
+* requested changes
+* add docstring",19,1,2
+c0a67e1b5f77f820e2e0e1c8ec92e54a49f75105,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-12-03 18:45:42+00:00,"Revert ""Add the 'jupyterlab' entry point (#18158)"" (#18166)
+This reverts commit 2b7290ce6d763263b5a52503bc237af5e79aa042.",1,3,1
+92d01e5f00fe33a9ea3624594ff56d0f94494f5f,ANUJ KUMAR SINGH,151390316+MUFFANUJ@users.noreply.github.com,2025-12-03 17:12:39+00:00,"Fix inconsistent state updates of toolbar buttons (#17230)
+* fix: ensure consistent button behavior for keyboard and mouse interactions
+* add suggestion to fix
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",6,5,1
+acb07b9cbb7d93865f1ed17fd8dd181fe8964954,ANUJ KUMAR SINGH,151390316+MUFFANUJ@users.noreply.github.com,2025-12-03 15:08:22+00:00,"Add a setting to show file filter bar by default (#18104)
+* add setting to expose search bar by default
+* change key to showFileFilter
+* change title
+* addd wait for fuzzy test
+* adjustments
+* add suggestion
+* added test
+* fix
+* check commit
+* add fix
+* Update reload behavior and wait for settings change
+* Lint
+---------
+Co-authored-by: Darshan Poudel <pranishpoudel10@gmail.com>",51,0,3
+2b7290ce6d763263b5a52503bc237af5e79aa042,Nicolas Brichet,32258950+brichet@users.noreply.github.com,2025-12-02 16:44:15+00:00,Add the 'jupyterlab' entry point (#18158),3,1,1
+81edbd8112f5ad8af2180de487faecf8c9f0316e,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-12-02 10:59:40+00:00,"Update to Playwright 1.57.0 (#18151)
+* Update to Playwright 1.57.0
+* snapshot update",16,16,3
+22bfbe4e1085e487483ef582fa438bab5bc60ed6,Ana,164910334+anafontan@users.noreply.github.com,2025-12-02 08:24:14+00:00,"Show rename dialog for new files moved before saving (#18145)
+* Remove debug logging from DocumentWidget._onPathChanged
+* implement suggested solution
+---------
+Co-authored-by: ZhYGuoL <zguoliau@andrew.cmu.edu>
+Co-authored-by: ZhYGuoL <61338537+ZhYGuoL@users.noreply.github.com>",5,3,1
+636a4b04cb0597ea8fc4af8ce31828050d44a066,ANUJ KUMAR SINGH,151390316+MUFFANUJ@users.noreply.github.com,2025-12-02 06:20:51+00:00,"feat(completer): Add syntax highlighting for ghost text (#18073)
+* Add syntax highlighting for ghost text
+* add dependency
+* fix dependency ci diff
+* Update packages/completer/src/ghost.ts
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+* updated snapshot
+* add test and update docs for syntax highlighting
+* add galata test
+* fix word to match the suggestion
+* add snapshot
+* Rename ghost-text-with-syntax-highlighting.png to ghost-text-with-syntax-highlighting-linux.png
+* add opacity to ghostText color
+* match opacity to original color's opacity
+* Rename ghost-text-with-syntax-highlighting-linux.png to ghost-text-with-syntax-highlighting-jupyterlab-linux.png
+* updated snapshots
+* Update inline-completer.test.ts
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",109,11,11
+b8aa3bb430af4f7449fe575e839579e2549e7ae8,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-12-01 12:22:03+00:00,"Restore auto-resizing of the code console input prompts (#17819)
+* Auto-resize the code console input prompts
+* Add UI test
+* Handle moving the prompt cell with code in it
+* timeout
+* try to improve the resize logic
+* improve UX
+* fix jittering
+* integrity
+* more integrity fixes
+* fix promptCell
+* fix package.json
+* stabilize tests
+* snapshot update",400,13,9
+93e9bfdf6bef8acd27fe916bcc52f71f3e7543c0,Prajyot Porje,145373453+prajyot-porje@users.noreply.github.com,2025-11-30 12:48:20+00:00,"Fix: Safely handle missing args in fileeditor:change-font-size label provider (#18157)
+* fix(fileeditor): validate delta argument to avoid undefined access
+* style: fix formatting",5,7,1
+7a658a9b3b17c440b3722331bccd52aeace8a7ee,Lumír 'Frenzy' Balhar,lbalhar@redhat.com,2025-11-30 07:03:53+00:00,"Improve the error message provided when jupyterhub is missing (#18060)
+* Improve the error message provided when jupyterhub is missing
+Fixes: https://github.com/jupyterlab/jupyterlab/issues/18054
+* [pre-commit.ci] auto fixes from pre-commit.com hooks
+for more information, see https://pre-commit.ci
+* Update jupyterlab/labhubapp.py
+Co-authored-by: Miro Hrončok <miro@hroncok.cz>
+* Add a test for the improved error message
+---------
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+Co-authored-by: Miro Hrončok <miro@hroncok.cz>",27,1,2
+c1a8ed1f9cc50d7866f16e137315ad3294c2074c,Matthias Meschede,MMesch@users.noreply.github.com,2025-11-30 06:12:36+00:00,"Add plotting and visualization documentation (#13768) (#18094)
+- Add section on static plotting with IPython kernel
+- Clarify that no magic commands are needed for basic matplotlib
+- Document common Python visualization libraries
+- Add reference to R ggplot2 for other kernels
+- Addresses common user confusion about matplotlib setup
+Co-authored-by: Matthias Meschede <matthias.meschede@quantstack.net>",39,0,1
+195ea762d538cd2c9fb842d4c048dee9b46ece0d,Arjun Verma,arjxn.py@gmail.com,2025-11-27 02:30:43+00:00,Fix Notebook Debugger: Missing Current-Line Highlight (#18140),18,5,1
+7a5657937ddfb26a5c9287a0c24d947563809382,Jason Grout,jasongrout@users.noreply.github.com,2025-11-25 09:27:53+00:00,"Prevent some supply-chain attack vectors (#18142)
+* Disable yarn postinstall scripts in dependencies
+* Add 14-day cooldown for dependabot updates
+* Update staging check for .yarnrc->.yarnrc.yml filename change",7,2,5
+00f4f6e44e01e0c44375ecd03ca9e6ad0f9f9386,Agriya Khetarpal,74401230+agriyakhetarpal@users.noreply.github.com,2025-11-21 14:30:06+00:00,"`ToolbarButtonComponent` and `CommandToolbarButtonComponent`: add `AriaMenuButtonProps` to allow ARIA menu-button attributes (#18118)
+* Add `AriaMenuButtonProps`
+* Do not expose `AriaMenuButtonProps` type
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+* Percolate into `CommandToolbarButtonComponent` too
+* Add tests
+* Fix builds
+* Fix spurious closing parents in tests
+* Don't destructure props
+Co-Authored-By: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",102,4,2
+75c25d5f7c438de4850e0befa466f7b7a902c5bf,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-19 17:22:12+00:00,"Update announcement and installation instructions post 4.5.0 final release (#18125)
+* Update announcement banner to reflect that 4.5.0 is now released
+* Removed pre-release installation instructions for JupyterLab 4.5 RC",1,14,2
+7bc641464ecf60d9e2b640f3ca68a9e7ab289e57,Nicolas Brichet,32258950+brichet@users.noreply.github.com,2025-11-19 16:30:52+00:00,"Respect the `activate` option when opening document widgets (#18114)
+* Do not activate the document widget if explicitly requested
+* Add test on docmanager:open command
+* Cleaning",54,1,2
+a3e622669a5996d500cf9ac7b14f39c33d4a3719,martinRenou,martin.renou@gmail.com,2025-11-19 10:48:07+00:00,"Debugger: Handle the case for editor being null (#18124)
+* Debugger: Handle the case for editor being null
+* Prettier",8,1,1
+302d4ebff45adeef1763df03eaabf5f56dc3a2b9,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-11-19 10:19:23+00:00,Clean up old references to restructured text (#18123),2,4,2
+791aecc59e9266990060de7b8616bccbae16912f,krassowski,krassowski@users.noreply.github.com,2025-11-18 13:16:09+00:00,"[ci skip] Publish 4.5.0
+SHA256 hashes:
+jupyterlab-4.5.0-py3-none-any.whl: 88e157c75c1afff64c7dc4b801ec471450b922a4eae4305211ddd40da8201c8a
+jupyterlab-4.5.0.tar.gz: aec33d6d8f1225b495ee2cf20f0514f45e6df8e360bdd7ac9bace0b7ac5177ea
+jupyterlab-application-4.5.0.tgz: 3b33e6c221c8fd158049cbd68051bd46d32d83a31d98d660e68ab926cefbffdf
+jupyterlab-application-extension-4.5.0.tgz: 245c2c6a58b1b3d00793a040683b7a1755b7d7a8acff63e73ccfd9f217164f95
+jupyterlab-apputils-4.6.0.tgz: f2d84970ddbc1dae1bf7e2fa640d7d31106aefba7fbeefa0a844746ac5810f9b
+jupyterlab-apputils-extension-4.5.0.tgz: 20ab6b04c1109e639bf6b7610f6da2044e2b94d99400c07084f3ff1a13faf992
+jupyterlab-attachments-4.5.0.tgz: efb4864da5e4366f4f4fdcdcfdabd06e7359801c85d2a2e03b7fb31b69885264
+jupyterlab-audio-extension-4.5.0.tgz: e0b692529dd73f7192dc6d6f12b59aaf07f1e8102b21bf94f62cbe580a14aece
+jupyterlab-builder-4.5.0.tgz: 7d369128e79d0cc7f49c055246baf0dabb46ece13ff6a4bedfd4169141f0fcd6
+jupyterlab-buildutils-4.5.0.tgz: c813cde69221ca81aa9037d9da4af55f9038178358fb8102fc925a4f4611b603
+jupyterlab-cell-toolbar-4.5.0.tgz: 24738a01bd936a5441e7425a36e267f3c064284afd3a29c47fd4ae5526180ebb
+jupyterlab-cell-toolbar-extension-4.5.0.tgz: c9e1fa0ee7cec981226600e9afadab0e047e704b3a79f2d304100c18bbde74b0
+jupyterlab-cells-4.5.0.tgz: 4d4ab596c0bba2593c133eb282d93e639aff278b411624340a19d9f1a52793de
+jupyterlab-celltags-extension-4.5.0.tgz: dfdf1d885405b403bbdcb4e8bd18c28bbc7cd60a3ca6f0c9bbc9b205b99ef817
+jupyterlab-codeeditor-4.5.0.tgz: b8430566449666130f6721079a852349679cdfc43e99f64f8c2b8fb4faa4746e
+jupyterlab-codemirror-4.5.0.tgz: f97c25638373a4070f47f48069790013d4a06c91202c139be55cd85f47153347
+jupyterlab-codemirror-extension-4.5.0.tgz: 7def19cc3b298f51435ad500c4346610d1666ba76bffbbbabebdeace7d5ab95f
+jupyterlab-completer-4.5.0.tgz: 9725381227d09babbede81a2d44e3768316c2b2ca803b225dae00bff647aa4dc
+jupyterlab-completer-extension-4.5.0.tgz: 0ba946994a50a9ee3ba5d03e9513adad8fe8c564a90c81717cd01bcf49c8266b
+jupyterlab-console-4.5.0.tgz: 3b87d14665896477f8212d502cf0b44be41841a06ddd75da6e5599024d4f7b5b
+jupyterlab-console-extension-4.5.0.tgz: fc97e3c87df82074476cf7c2574641333b2875d37d1b26ff6c8f10d16c420577
+jupyterlab-coreutils-6.5.0.tgz: 1f89a7ddc6bcb3c22031c762124ad1abecce7dfcaee2fdb7f96a2469109561ec
+jupyterlab-csvviewer-4.5.0.tgz: cac734dad4277e46a9c7e0b856e3f2deb2ae12cc3087cf86d23e4828018ddc79
+jupyterlab-csvviewer-extension-4.5.0.tgz: 101765352291f7056606c964c3f5774d1d4de0b0cb6ab4da3f4661d7dc0538d6
+jupyterlab-debugger-4.5.0.tgz: b371a95ceba35bd3394c13f8f777a28c48e54885e7d5c3bff92b89c02fe575a8
+jupyterlab-debugger-extension-4.5.0.tgz: ba6b23199184d8c22822292bf31b53f480c4487631bb72c03c21ff44f043cd9e
+jupyterlab-docmanager-4.5.0.tgz: da8e17edb5940a51f9654924e350ae62a0e719d771207272682531789a135586
+jupyterlab-docmanager-extension-4.5.0.tgz: a911a6ba6aa6c91519fa8921d971c1ffddbad59db5d33da10be807b875ca0f4e
+jupyterlab-docregistry-4.5.0.tgz: a956cf77d9617e3ba3876bbb8474a17e7115bf0cdfb8a33239f14fdcc8c45d14
+jupyterlab-documentsearch-4.5.0.tgz: d38958a8d394f1cda08e9c3876f8e2431feded84023d1b114f529fd61efb12e0
+jupyterlab-documentsearch-extension-4.5.0.tgz: b3d251e26a57bc4a9df8f8637d03e132bfc03c7950adf33e89934c717857e215
+jupyterlab-extensionmanager-4.5.0.tgz: c636d433b99b8b62dc2db1f7582e64a20028ce8d2120a13b277846ac8d3574a7
+jupyterlab-extensionmanager-extension-4.5.0.tgz: d705874934cc186e386d4029b3a56e0781d5fa96401f47e0c9dff65514060b38
+jupyterlab-filebrowser-4.5.0.tgz: 690d9b2b413adfefb60a960313d1a15249a2d05887e9e81f60bd028dcd5bf034
+jupyterlab-filebrowser-extension-4.5.0.tgz: bcb97a7ec0d03aede63e85fc473003f57f904d9da34bc948c79001c2cff14775
+jupyterlab-fileeditor-4.5.0.tgz: f4621b7f4ce6ca9ebee764e9041f10bff9629ee126b0f82bfd10ef3e67545d4c
+jupyterlab-fileeditor-extension-4.5.0.tgz: b093556ceec25a78844827ea831dbbc500e1b3679b657bca7ebc790e147f76f5
+jupyterlab-galata-5.5.0.tgz: cb635c4b1d473c1fd739668e873d1e39dd9140fb2d98abaf2b0c01e3b67ed07c
+jupyterlab-help-extension-4.5.0.tgz: 9b48794509a013f9cd71e37f650b80627f7cc4d95ab4fce133e21ebed37b3725
+jupyterlab-htmlviewer-4.5.0.tgz: eb4af9ba44535284f57f70bcc8ea1e57cbdb5e9ab821d52c41b76d6d904b68a6
+jupyterlab-htmlviewer-extension-4.5.0.tgz: 91b9702606ec2493ffdfd980e7ae0fc8a1d17158fc884d6d0facb060e80bc05b
+jupyterlab-hub-extension-4.5.0.tgz: 9e2f5a8690c322e0f16e3abd382feaa31c673fe6a7f0cda13cc8752afd98f36d
+jupyterlab-imageviewer-4.5.0.tgz: da4f28df3ec3b9faadd2a132f9fe0a359abbe0eaf34ecfc6ee3eb497f58c7139
+jupyterlab-imageviewer-extension-4.5.0.tgz: 9e5e13788dc79634583c2dacd6e718a86dc360c53473f223ae87852d76ea936a
+jupyterlab-inspector-4.5.0.tgz: 78da33bd59c9171ba155784aa89fb01816183dadd4885e55fcf16a16ea4e7621
+jupyterlab-inspector-extension-4.5.0.tgz: 5bc72cb7d70b6a7bdd5b45f33eb6ed6e15db7cbb07518faf547ef02ab0347135
+jupyterlab-javascript-extension-4.5.0.tgz: 2fde98d12cb1c5a22203807ea9362fe8543d80f8cc0be5972d02ea7d5e134820
+jupyterlab-json-extension-4.5.0.tgz: cbdafeee5bf51869744559b929fac1d92294a34be3b129efdb2dea12faa4b57c
+jupyterlab-launcher-4.5.0.tgz: aa6ea75c82e688100ad5d321a659d117dcd04a601391ec98c1e27ceafcad90e5
+jupyterlab-launcher-extension-4.5.0.tgz: 0efb74c9e528ef24e7251f7cfc13f9d9b8c6fc4507981547b87caa93c6bc945e
+jupyterlab-logconsole-4.5.0.tgz: 31d6a5ffb49595d622fe2d2a9c77994c81ddea94e222830333163f0fd90b83d5
+jupyterlab-logconsole-extension-4.5.0.tgz: 4e9cf7473dcbb20b25580b56df69aa7b0cb36c7e8efea9c5738fd80a1eab9bfa
+jupyterlab-lsp-4.5.0.tgz: b98eaef903b33a5aa0f53ec58dc34e8dd5c436c0d825718405543738953f3b6b
+jupyterlab-lsp-extension-4.5.0.tgz: 240ed18b1e9e78cce6d33c28462d88b524a694dd1cb4bdb0b40083abc1aba538
+jupyterlab-mainmenu-4.5.0.tgz: 85cdb3d2bb6ef7b01055a87092a2df138900af5296416c5efec2f2b51c059eaf
+jupyterlab-mainmenu-extension-4.5.0.tgz: 40a2fadf4f8df93d7d1fb2cf5ade296a537459f96e5427ec110b2b9b53aace6d
+jupyterlab-markdownviewer-4.5.0.tgz: b9786225bf709bc50765c0f13890940f8fa9c3ee8c08db6384a3cffbe749f69f
+jupyterlab-markdownviewer-extension-4.5.0.tgz: 7dbd8086ed822437569b323ca2929e0b6f773ce594624af6d1469d1f179f336c
+jupyterlab-markedparser-extension-4.5.0.tgz: 9d79033c54b475be79dfb1eee01d9120653b34caf61eb2c8c3ee4ae080c97b50
+jupyterlab-mathjax-extension-4.5.0.tgz: 15a384534f7b31db26d3abed4719b6e47cc6da10d3351f562da4298773b3da0d
+jupyterlab-mermaid-4.5.0.tgz: 4b8b64ee08e91a95bfcc179511b19da939a48c049334ce4b3f5bd2d567df42f4
+jupyterlab-mermaid-extension-4.5.0.tgz: 6982440194f743885d1db1901f7ee39b4882cc8ad9a89546419878d43fe9ba98
+jupyterlab-metadataform-4.5.0.tgz: 6bb5314d968e5aec894d04361c466292f36f5962a63bbebfd132634eb59fd3eb
+jupyterlab-metadataform-extension-4.5.0.tgz: e9db76f328a29713837247a9692cda00276a6b2341acfa1ff6080e6f1d513949
+jupyterlab-metapackage-4.5.0.tgz: 908b409f89b55f004a6b5b53d2b816d7fee78757610a251c4a8ce6fbb924675a
+jupyterlab-nbconvert-css-4.5.0.tgz: 55a204f0b02023208ff8359d29d78a0c8d1ad060388d42531d2ad48a92b84607
+jupyterlab-nbformat-4.5.0.tgz: e0d97098c038633c6695b7b4289ee3812afb40d5c1deb4404bfeec39c957fcb4
+jupyterlab-notebook-4.5.0.tgz: 95342c3696ce40a3844eac36095d2ee5e00cb82d075e57a708971c36512cf465
+jupyterlab-notebook-extension-4.5.0.tgz: 63189cdd0760d5b41aef051b7354f1a3b6987452a6984381a08bb582502af4c3
+jupyterlab-observables-5.5.0.tgz: 8e2cf06e3177f12732ecbd4400b6a6ee9f7a5ab32504f60d33e53dd93910aa2a
+jupyterlab-outputarea-4.5.0.tgz: 478cfd934787f07bc22a71aaaf455ba030efaf03b0481b2a16cf08288a08b084
+jupyterlab-pdf-extension-4.5.0.tgz: e47aa6b22c537decfa6c52ba86541cfbde5984c0b7688c45f55e5f148a599478
+jupyterlab-pluginmanager-4.5.0.tgz: ed5145b1a084bb1d3940888a669f1b60a1b62388448751b84f601d99d935c816
+jupyterlab-pluginmanager-extension-4.5.0.tgz: 47cbf8c51df93a6a1209dde70a1d79f30352785ebcbed352fc868602b9fe6d7e
+jupyterlab-property-inspector-4.5.0.tgz: d34ad9d4251d0494198ebb0e41b9ddb1b6de6f8c7a5581fbbaf4d2d6fde1d996
+jupyterlab-rendermime-4.5.0.tgz: b0ec41a2ec011485619a21cbff2767f7d26ffa485d469eff8eabc5a996b4bdd5
+jupyterlab-rendermime-extension-4.5.0.tgz: 68513dda609a57c3fe7d9e63d5693f7836ef922d4b4a9bf1daf29ac9744680e5
+jupyterlab-rendermime-interfaces-3.13.0.tgz: 6498ce542086ed08aef4f770173ff7f5a7dd7bd63f6457f4e362ab02ef347d12
+jupyterlab-running-4.5.0.tgz: 09086e436b2b2c57745a71a4606cb722ef5f395df555d7a1d2b73c168f850b46
+jupyterlab-running-extension-4.5.0.tgz: d4074bfb379bf0752dab3a4de9f0bb2e59ba60cc1e90c796cd93ce9c7e7a69d3
+jupyterlab-services-7.5.0.tgz: 236b69e7bb5d6cd82c162a6b07bdfcf1e6d98864526f37b8d381e87f30588a5b
+jupyterlab-services-extension-4.5.0.tgz: 93d7f20db4a357faa920b7accfd9e29a025bdc14986a5b571f90ef3dd933f63b
+jupyterlab-settingeditor-4.5.0.tgz: 5071b0389686d8d699cf4e6d28168674c015626e241572f7555061bce32d8439
+jupyterlab-settingeditor-extension-4.5.0.tgz: e2944e00fd68d0457bca3b900008e39bc81100538f24af1bfadc593479ec6267
+jupyterlab-settingregistry-4.5.0.tgz: c3ad2e8fd9bee127fb7754623b0690780719e57c1523eacd95af2ea1109b1ad2
+jupyterlab-shortcuts-extension-5.3.0.tgz: e258eaa848d534738058ba20bbd8fd12594fa1559e429480e76322223c1c893b
+jupyterlab-statedb-4.5.0.tgz: e54636fe2d1e8a304525caeef3d03675b2da02461f1c9713336ffaa18dcd925f
+jupyterlab-statusbar-4.5.0.tgz: 63cb7243c304200c13902ed6dd43a9cf6495665440e20a3ea114d0089ee085ee
+jupyterlab-statusbar-extension-4.5.0.tgz: f1f29ae0594388429957b2d96d3aa4b275f71db8f3e8532df1c20bb0d7d2ac82
+jupyterlab-template-4.5.0.tgz: b1709f6394c7ae07272d0ab8d4f991ea7357fa0bb46886d9e7eace499fbbf22f
+jupyterlab-terminal-4.5.0.tgz: ef1382a5722c570d1512e8a979e77e54ed0e75ddcd861f2c33678e5cd8fa8773
+jupyterlab-terminal-extension-4.5.0.tgz: f8ac5f1f97f3bca66fe95fc0a08c121ef52d4f0d0d358eefd223a52018a8fea0
+jupyterlab-testing-4.5.0.tgz: b9194b7594dc68dd5d905c6dc7d812caa1cac2c8a6a7a0c8a3c29effd4f32bd4
+jupyterlab-testutils-4.5.0.tgz: f7c4c9acd03c1b778361fccd9831c24315164b5fdffe531b678193cacae5419a
+jupyterlab-theme-dark-extension-4.5.0.tgz: caa86029145cc56718c355bda629ecafba854ebe9eae27a04b90eb34a196dc84
+jupyterlab-theme-dark-high-contrast-extension-4.5.0.tgz: ffde387d2cff692c8286aaf106cfa52c8ee31f7b2cf6558ea9d201a517a85d32
+jupyterlab-theme-light-extension-4.5.0.tgz: 8b67dcd0183eb5f2bee200f8547a711ea9aa71ebe0ed4bc4cb6fbba3e32bf644
+jupyterlab-toc-6.5.0.tgz: 2c4d76ad0932ca1596c8bf5f690005d152c1ecdd3268bff09376680328deabc3
+jupyterlab-toc-extension-6.5.0.tgz: 7a2d31ccdda047c2b6e9caa8bf78e8d3f1e3ec1b46515dbcee5bc11adeafc7a2
+jupyterlab-tooltip-4.5.0.tgz: ed54089ddacf5851e07fab2fbdff842673c9b70a215a2698e026e9605b59cb19
+jupyterlab-tooltip-extension-4.5.0.tgz: 1780b4dfa7d953a9a97b37922ea00d0a0bc7b906d4a492ab90747306517709f8
+jupyterlab-translation-4.5.0.tgz: 82c111cdd0c94cbc6ebb379faab0dfa7ad73bc38c7c45833de83bfd2bc0fbb2d
+jupyterlab-translation-extension-4.5.0.tgz: 47dcdd62400b2d2a479b481544be93e9873cd6fe5cbca5a1f4a93c6b4fae0a0d
+jupyterlab-ui-components-4.5.0.tgz: 2b9035b56796181ef5f73be00838636950ec6f98cfe605ab33a7b68ac7249d9e
+jupyterlab-ui-components-extension-4.5.0.tgz: 91becca17309100b2104a4c85b9deeca92e407fa38165946bf9c1dab7e7e0976
+jupyterlab-vega5-extension-4.5.0.tgz: 5ded95f411a1066798a14b78ca3125e93dd5c08f135f2abfa207a8f9b7a382b6
+jupyterlab-video-extension-4.5.0.tgz: c4e8fc2462271f0c28e08e9e2156dd128b056c3fce37ac590c4a28060f5cdf9b
+jupyterlab-workspaces-4.5.0.tgz: b93497e93581bc68b9340ebc19e9724d74da68151f00d7bd89e573b5f2231fbc
+jupyterlab-workspaces-extension-4.5.0.tgz: b1cedcf5bb6f3a3723d94cf48246fdb1c595c72b9b669354b8dcba75011998e2",3990,3760,134
+05df0d2487691b9bbf9d5e606238702152c3c634,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-18 12:32:10+00:00,"Drop `altair` installation in release test; migrate from deprecated `vega_datasets` to `altair.datasets` (#18120)
+* Migrate from deprecated `vega_datasets` to `altair.datasets`
+* Can we drop altair from `release_test`?
+* Try bumping altair to 6.0 and dropping vega_datasets
+from optional group for docs screenshots
+* Update snapshot",5,6,6
+6e6744cd2355263d7f6548ba009502f1767dbae4,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-14 12:22:29+00:00,Update JupyterLab pre-release version to 4.5.0rc1 (#18111),1,1,1
+885b2963afdd5186b58e2c3b7e4f8544a9c918cc,krassowski,krassowski@users.noreply.github.com,2025-11-13 22:18:22+00:00,"[ci skip] Publish 4.5.0rc1
+SHA256 hashes:
+jupyterlab-4.5.0rc1-py3-none-any.whl: ec8f40dcf441ef4da74fb027a6389bd96d27ee6b7ee69f59f77f135ba5466819
+jupyterlab-4.5.0rc1.tar.gz: 60894a9ca23b55e8d89a3ddd08e2495e8794972f533c70e25be5d316e3186eef
+jupyterlab-application-4.5.0-rc.1.tgz: 096fa6b3d5e57c9d5b0190469f88cf4cf4b5d08d064243db8db8d9cdb7053c42
+jupyterlab-application-extension-4.5.0-rc.1.tgz: b46410c0e4212984b2c60fe1bc9fec0a10035c5c268cadf5034e36394896b09e
+jupyterlab-apputils-4.6.0-rc.1.tgz: 44ad011c247ff569fe7b0eb99b3ffe81f2e02dc759f614d0482e7704e88a0d15
+jupyterlab-apputils-extension-4.5.0-rc.1.tgz: e6a97b5789c5d4bf1ecf542e48d9ab16ee1500b99b87832605b2bba5b8c46699
+jupyterlab-attachments-4.5.0-rc.1.tgz: 0d5eaddc5a9eb4284f3144f69b0c59903dda94f421347b1678850544a9734ddc
+jupyterlab-audio-extension-4.5.0-rc.1.tgz: 7ae4e4c0b80cdaf98b536654095fc5c66757decbece3c036d2684820ee228681
+jupyterlab-builder-4.5.0-rc.1.tgz: bb285899bda07eb6e3edf7089a2ea4a3bda31c3d292ed36c0a04bc482026c565
+jupyterlab-buildutils-4.5.0-rc.1.tgz: 62fac364dcd236124a4bdc5ed90c5a552899ca5f13f6b9663529937356e84fc8
+jupyterlab-cell-toolbar-4.5.0-rc.1.tgz: 1d5f5cab365bb839418c507b38a0f2925ccdeb365caff0f7de26ad8257fb7107
+jupyterlab-cell-toolbar-extension-4.5.0-rc.1.tgz: 4c7b483bcbc35b07c1d197a77e71a741f83d3b57a0dc37042b2376dcebb8ae81
+jupyterlab-cells-4.5.0-rc.1.tgz: 79161dd75d149fa574916e1b1298c89637fed936c71ac79044dd686756c02299
+jupyterlab-celltags-extension-4.5.0-rc.1.tgz: c4c755e64940434de5a999a075b4887df5cbd7baa5e3e6657926a80f3bf4d083
+jupyterlab-codeeditor-4.5.0-rc.1.tgz: 388e7ccce9371dc9c75e0a427d55082dfacbecbb17f37b41f3f2537c612bce30
+jupyterlab-codemirror-4.5.0-rc.1.tgz: 6ef9af3650aa61e4b1a63d56f21e96c74217ce8e8074db66783e60d981ff169f
+jupyterlab-codemirror-extension-4.5.0-rc.1.tgz: 7b787d6d56cd5af0e7606f563aaadaad416a6b9178693c8e39a62383489055fe
+jupyterlab-completer-4.5.0-rc.1.tgz: 91a2cdc403b1e07fcb83608dfa085df05ffd3e1223970356fa56668a4a990b3c
+jupyterlab-completer-extension-4.5.0-rc.1.tgz: 9c2c881a2fa3c1ab5cc12421eb984c155e2834e68af0e0ae2dbc098dc21a615b
+jupyterlab-console-4.5.0-rc.1.tgz: c9832795e0ba995be97e36fd1849d6739dd220327c2c424ade9205b4000cd0e6
+jupyterlab-console-extension-4.5.0-rc.1.tgz: 2c0d6a8f7f15c4eb612a1facad592e60f92f47b8389bcb9d0cb2fdd73b2992d0
+jupyterlab-coreutils-6.5.0-rc.1.tgz: b47cf657ded057af75a152d3f3fe98e7c416f3aff5b8a3d729cf6f93d8ec0225
+jupyterlab-csvviewer-4.5.0-rc.1.tgz: e0d837406870b27471e85c60d3bc8bd82b5c4e55d0649e538dc1576fb13ab60c
+jupyterlab-csvviewer-extension-4.5.0-rc.1.tgz: c60319540816a472a83b32edc76d8dd6a9b672b7627410e55dec3e9ea2ca86f8
+jupyterlab-debugger-4.5.0-rc.1.tgz: 1cc7d7e11dff42629a568b23924f4f6270f1a73efa5e647a8e59bf8d34b360ca
+jupyterlab-debugger-extension-4.5.0-rc.1.tgz: f4fbda05e6f47c5707ffd24af97d6c963d698c72fcc877480cc691089bb4af3a
+jupyterlab-docmanager-4.5.0-rc.1.tgz: 9b1828b1db4e38be18007266fb4d9fd3d64d0685633a89bdc2b379c2d9d90ac1
+jupyterlab-docmanager-extension-4.5.0-rc.1.tgz: 233c6e7ebbb52ca33798f702e13cc02b6b421ffa1552c6e3457060d11071a5a0
+jupyterlab-docregistry-4.5.0-rc.1.tgz: 1eadf9b55344cbd92dda5befedeb33d3cad12f4177fcc676da0de4fa026113b0
+jupyterlab-documentsearch-4.5.0-rc.1.tgz: 40b5e170344eae5fc444d0772c6719aec7ef1cdd3a1d2d7c7320afe4f6cd5e9d
+jupyterlab-documentsearch-extension-4.5.0-rc.1.tgz: 6184ecb95007ea234cf38ffb87bec5ea326dbb6b6514fbb3eae5fea2e739523a
+jupyterlab-extensionmanager-4.5.0-rc.1.tgz: 009326bdbeeaed0b7f8535c91e751e81a2686f21631eb67a88ecfad59e6819c3
+jupyterlab-extensionmanager-extension-4.5.0-rc.1.tgz: fde153557b7b750d7dc52f6d2165e92489105231213463bd96f7595b182ede25
+jupyterlab-filebrowser-4.5.0-rc.1.tgz: 15be69936ccf4486e4e66d5c7112e93c0d854bacbee2aba73845e2a4793fb3ef
+jupyterlab-filebrowser-extension-4.5.0-rc.1.tgz: fbd3b64fe1128353ff60326e31ba8b508453da81fca0c856147770442bb20882
+jupyterlab-fileeditor-4.5.0-rc.1.tgz: 792903e39e5d87e439eb6b1b15dde09acaaae442a524f1e0341fba727fbf70a1
+jupyterlab-fileeditor-extension-4.5.0-rc.1.tgz: 1ff607da7add309d0a7833a11b52649987b623e35b5ca2681ba142ae59f574ec
+jupyterlab-galata-5.5.0-rc.1.tgz: 64066ad036e274df58bad0c9b7cfc25e632760101abf5b50bafc9dd6a2703a7d
+jupyterlab-help-extension-4.5.0-rc.1.tgz: 7111272d692afbd2683413a6f8cf0d2dd5aff1194d385f1767c73c01e58e24ce
+jupyterlab-htmlviewer-4.5.0-rc.1.tgz: 8ee33ccf0e30509985fd674279a30bb054610309b76224714cb4a9ff67934e4d
+jupyterlab-htmlviewer-extension-4.5.0-rc.1.tgz: 8dcb378f82cc34827a5af1a55b67faa4029da27797e0332c03b70f79ecec6c9f
+jupyterlab-hub-extension-4.5.0-rc.1.tgz: 20d8301d55f6c6615979049378dbc6993b2363977ae9fc6983d1e20f7317531e
+jupyterlab-imageviewer-4.5.0-rc.1.tgz: 589adc374c58e4fa738e556ea83f5049a71efff6a6b6519394d5a2a181a0cff6
+jupyterlab-imageviewer-extension-4.5.0-rc.1.tgz: 8cc78ac3f1689ba5d509d9c8452a8f5fbef9e4d3789ddfe7f72032545482bde0
+jupyterlab-inspector-4.5.0-rc.1.tgz: b43135ee8ddfa765778c10c871f9bc70577cd7be0b92606eeeaf454df49a4a91
+jupyterlab-inspector-extension-4.5.0-rc.1.tgz: d01d74b11c88561061e1bf1a5edb0b2573097cf74c84047d1a5222495b910d79
+jupyterlab-javascript-extension-4.5.0-rc.1.tgz: 87c34470d5cd7c54ac3c661c17ee298f22404a6427368ade6261c011cdfa7a9d
+jupyterlab-json-extension-4.5.0-rc.1.tgz: 95178f7b0dbea43f299c6fe6db350088d420c37c0d1ef4e8eb8248d2fae1a9e0
+jupyterlab-launcher-4.5.0-rc.1.tgz: 004b23fe96bbfa2e6723d76de372c7515bf2fe11da764460b876a954249707b6
+jupyterlab-launcher-extension-4.5.0-rc.1.tgz: dab549b3a8a2e824082ee7e24b8748bbe19f3966febf09352c3d050a52032a1e
+jupyterlab-logconsole-4.5.0-rc.1.tgz: 569b7673a40f81ce9ae72a139daa33cd2fa1bad0459ba7769157e4090b0b6dff
+jupyterlab-logconsole-extension-4.5.0-rc.1.tgz: e7770fe15b25827222eed58b2333479cbfd8f893fbd2df1f2368cc7e5baa8f49
+jupyterlab-lsp-4.5.0-rc.1.tgz: dd6d32fee65c0ab1c7f955504607df2cfbdadef9d36de21ad84b3d7449403042
+jupyterlab-lsp-extension-4.5.0-rc.1.tgz: 380816018ffe2446f061a7db7c266333f65603fe2c8fdb261888e8391eed0c76
+jupyterlab-mainmenu-4.5.0-rc.1.tgz: 754b0322d12de95fe025504ed554811ace13d08e079ed9206160c643b0bf2c15
+jupyterlab-mainmenu-extension-4.5.0-rc.1.tgz: 7370c6120363096fc0281c97249deb39fac1c914b4c24488660d93f22a8868cf
+jupyterlab-markdownviewer-4.5.0-rc.1.tgz: 409dcb1cd90f69949bbef5d316dee619f27ee628fad20fd2135d05984c73b4b6
+jupyterlab-markdownviewer-extension-4.5.0-rc.1.tgz: 7b54a1c00496bf1bd6227e0f1bd999e5f17a6b021cc308c9eda93f9d086cb985
+jupyterlab-markedparser-extension-4.5.0-rc.1.tgz: e403e15939acdf74184b75aa4e8dddb350ab6214922b6273344647809640ca03
+jupyterlab-mathjax-extension-4.5.0-rc.1.tgz: fe1f0ccc11814cc0330cf8906494eccde62b8ecab5ef993a85d786b81eaba0c1
+jupyterlab-mermaid-4.5.0-rc.1.tgz: b1e8b688bf8aa94ebf530fdc0b80f1fae5b24c2a5e2464424b53e1b07b92ba38
+jupyterlab-mermaid-extension-4.5.0-rc.1.tgz: f048a398ccac1939993287b7f52be45017188a84850015bff67473e4190189fb
+jupyterlab-metadataform-4.5.0-rc.1.tgz: c613c298fd3a0ece412051ca137169a29beb183e2551925a70de16568f4359fa
+jupyterlab-metadataform-extension-4.5.0-rc.1.tgz: a990b528ee9020af396dc2db13c490cd241a3d1f230722bc9c1e592c4fdf8156
+jupyterlab-metapackage-4.5.0-rc.1.tgz: dfc2cd57db4fb854c0cfb1d54a4e24f22926e265ae25e7a80c5ea28be2f4b1bf
+jupyterlab-nbconvert-css-4.5.0-rc.1.tgz: b09f8bfbbacbffc04c351f87e3c85cb7bf4c4d476aa3251dc87b476884bd6262
+jupyterlab-nbformat-4.5.0-rc.1.tgz: ab9ba18098d40e53a292be304ad93dbe3bf5f37b3a8cdb1aff544515a3ac1023
+jupyterlab-notebook-4.5.0-rc.1.tgz: b600f0cc5173c33dc222e8d13bfed8e5c54bc1944c236aec6c0c9f15b28a6280
+jupyterlab-notebook-extension-4.5.0-rc.1.tgz: 3f1351d116dea92d38553aa4c156a248622d13186534779908b5022c82f1063c
+jupyterlab-observables-5.5.0-rc.1.tgz: d8a512e18f952950a5425f3be8a392c6ee176df862f1e334d6716684475605dc
+jupyterlab-outputarea-4.5.0-rc.1.tgz: caae40b04b3ca74022c4c8de3faea6249f2f620c1f6d7e2f4698a4e8870c85e3
+jupyterlab-pdf-extension-4.5.0-rc.1.tgz: cca3aa360a34bca1366544a11a002f6409f8e76b0cf130d71c93cec65ee23021
+jupyterlab-pluginmanager-4.5.0-rc.1.tgz: 234f062f2be0e58e55424718c8c5724307279bd064b28ae4e79c85933024181d
+jupyterlab-pluginmanager-extension-4.5.0-rc.1.tgz: ea3f36f59f6faed92b8771a6c069db36203a0570a91bd85c8680394db3cd2ea9
+jupyterlab-property-inspector-4.5.0-rc.1.tgz: 0b30ca607c90993300361c30bd3577597c51d7886607bb7a2afa3b5385ddf4db
+jupyterlab-rendermime-4.5.0-rc.1.tgz: 0a0cc860519a4c92256f19591b9c162a492dd854a54de4db3d3c30a2275ba68c
+jupyterlab-rendermime-extension-4.5.0-rc.1.tgz: 9f328f4d314f734736845ae45cb2156d7a3c0242d5a511a2e729c3bc1a690862
+jupyterlab-rendermime-interfaces-3.13.0-rc.1.tgz: 2f579ccf4fa9ef59737e9edc996b06f1990e6c2069acf236a85f281fc1f29d19
+jupyterlab-running-4.5.0-rc.1.tgz: a84bd72c4cb2abc163add5e778c45a0e85bb2c6eb0a21c974f61085c321ee0b8
+jupyterlab-running-extension-4.5.0-rc.1.tgz: f688c965ed47df6c0660310ffaa114893f5560fa7d8b815b57fa951e0e521091
+jupyterlab-services-7.5.0-rc.1.tgz: 15bc5dadf6437bbf39b17429af386367f13df318144e60bf91026b20cd0e1ebe
+jupyterlab-services-extension-4.5.0-rc.1.tgz: 9ad7d60bf198490f11a67e331302f8afb62245e522ae726e4b0792afc69256f4
+jupyterlab-settingeditor-4.5.0-rc.1.tgz: ec4fcc1cb77a50e45eae4d9253ca1467b6057f24a9c063b2ded582188631aad8
+jupyterlab-settingeditor-extension-4.5.0-rc.1.tgz: 10242ee7da480a1ce1ec2181c692783796260be59ec8d3a4ae096fcab3965603
+jupyterlab-settingregistry-4.5.0-rc.1.tgz: 9ac7f27b85a332e10f1f6ce5cf983a16b8d373e637bccec902ce629aae6d9a78
+jupyterlab-shortcuts-extension-5.3.0-rc.1.tgz: 4a6e4e126e099c39697a29ad544397a3dbdd4aafa1416dcbc279c5f48b8c0bdc
+jupyterlab-statedb-4.5.0-rc.1.tgz: 7bcd128b641aeee3e7f45d20cbb85f7bbba0b9e8dfa05b023129e8c8dd9a445a
+jupyterlab-statusbar-4.5.0-rc.1.tgz: e1d9a1b9b732b8d92f3c4e1639fa88ded8976f06c3414b0eea0aafc5da3c33c9
+jupyterlab-statusbar-extension-4.5.0-rc.1.tgz: c104d100138284fe0020e1cc669f71467a8a78bca2acde14f7528a40e63eada3
+jupyterlab-template-4.5.0-rc.1.tgz: 82a48c33a89057577cbd595efdb742e4950db3dfd13e04833270bf8bf7aba0a0
+jupyterlab-terminal-4.5.0-rc.1.tgz: 9ff9699379c901e4894e3fb8b1599f7dc8d0dc60f259ded741aef64bf6aca1be
+jupyterlab-terminal-extension-4.5.0-rc.1.tgz: 625d9150c747ebdf8c8758be0c74ae43b9606e9223f87dc98ea2b3f82248c3a0
+jupyterlab-testing-4.5.0-rc.1.tgz: 78d9ec6157a1a0580ee3b4cca1072748eba100af4e364e4bd187b74e0e2d4f06
+jupyterlab-testutils-4.5.0-rc.1.tgz: 2a477e21feeef5f997e94a04512b8efda93747874da12f7214b40cc0466fd969
+jupyterlab-theme-dark-extension-4.5.0-rc.1.tgz: ba2b9744508eea4a5aa28f16582f6500cc4bf5c6ab10fe9290d84320aa458883
+jupyterlab-theme-dark-high-contrast-extension-4.5.0-rc.1.tgz: b9fa1e1d7b6184a518a337a96033afff479acd67a9d489bbc42a9e9f141c0732
+jupyterlab-theme-light-extension-4.5.0-rc.1.tgz: dd76e79632a014ed36225daa752e4f62c2635eef174b042e94da9d53a8966b8d
+jupyterlab-toc-6.5.0-rc.1.tgz: cc2ac1e4efff13d033c170df6575ca38d62fb76c17132d4503e42a5cd9080139
+jupyterlab-toc-extension-6.5.0-rc.1.tgz: b15ebf41cb3a774a1a59857990dadd96e1627b14bc0b8005a5adbaa4cedc8f1a
+jupyterlab-tooltip-4.5.0-rc.1.tgz: 8248a8d79e2b38366aeaadb397c8ff2bd8ec92daed8663730e4c2d012aba1e5d
+jupyterlab-tooltip-extension-4.5.0-rc.1.tgz: d6fb727bed83034f4032ad26eaf923413d728c9b5078137c2c22168b51fec577
+jupyterlab-translation-4.5.0-rc.1.tgz: b0c30ee5fad62068e69ba9bf4a5e25fe1fd0d8aef11868671c4b7c87f6b4d73c
+jupyterlab-translation-extension-4.5.0-rc.1.tgz: c1243e456120c87eed3d3889a73e37e66af52a37c118ec94752b201be2392c65
+jupyterlab-ui-components-4.5.0-rc.1.tgz: 42b830e448763580bcb359b8d965bc092ec0ee36a4653dfbe4cf871be3239b5d
+jupyterlab-ui-components-extension-4.5.0-rc.1.tgz: 4e2b82205201f1aee44f0955a90819e16efc9b98e01e8004353c06dd2393f3c4
+jupyterlab-vega5-extension-4.5.0-rc.1.tgz: f8c9f6a091b2bd032fce0712452fd215ca93ae9976ccbabf1a2acc5b605d9552
+jupyterlab-video-extension-4.5.0-rc.1.tgz: 7a53f83f866e33193fa9789e11ca441be7580f15b29165a16b2b48f9cd66a314
+jupyterlab-workspaces-4.5.0-rc.1.tgz: 44c13fcace41bea54f18e5a95228f89d91cccff06ed35bc3cbd71143ed25ed64
+jupyterlab-workspaces-extension-4.5.0-rc.1.tgz: 930ef6a4bd712c450532217fd2c5b36db43f36cee4931bcb8e7b2ee8ba265be0",4314,4282,134
+f1675bd277961ea24d369a90237d3d218df932b6,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-13 19:33:00+00:00,"Update lumino to `v2025.11.13` (#18108)
+* Update lumino to `v2025.11.13`
+* Integrity
+* Deduplicate
+* More deduplication",871,871,98
+99dee73e725e78af91a5caf7cb06511bbab09be8,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-11-13 18:12:58+00:00,Clean up references to Gitpod (#18107),0,76,5
+19d0f28338839e4bc6f6335f8ce27e230623e4ce,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-13 17:33:53+00:00,"Fix layout trashing when navigating notebook cell-by-cell (#18080)
+* Add an indirect test for layout trashing on notebook navigation
+* Optimize DOM modification timing to eliminate layout trashing
+* Fix typos
+* Expand comments on how the `edit` mode gets ensured in edge handler",105,3,3
+9a86e530ab53cf6fd922ba36309a7242dc227db1,Frank-Steiner,fstboard-github@bio.ifi.lmu.de,2025-11-13 17:02:39+00:00,"Update example for disabling `buildAvailable` (#18075)
+The json code doesn't work (i.e. not disable the update checks) unless changing LabApp to ServerApp
+Co-authored-by: krassowski <5832902+krassowski@users.noreply.github.com>",1,1,1
+6f688301418232f27314a2e784810ad6b639fe84,Meriem Ben Ismail,161816721+Meriem-BenIsmail@users.noreply.github.com,2025-11-13 15:26:37+00:00,"Use `IntersectionObserver` to disable containment for on-screen cells (#18091)
+* use intersection observer with content visibility
+* use same intersectionobserver when switching windowing mode.
+* dispose intersectionobserver
+* update snapshots
+* mermaid snapshots
+* make the contentvisibilityobserver private
+* update snapshots",65,9,53
+c4826af4a43f165a2ed578431e03ed9602d7588f,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-11-13 08:16:17+00:00,"Convert documentation to Markdown (#18044)
+* Convert docs to Markdown
+* fix links
+* fix formatting
+* Update docs/source/conf.py
+Co-authored-by: Jenny Wong <jnywong.pro@gmail.com>
+* Update docs/source/developer/contributing.md
+Co-authored-by: Jenny Wong <jnywong.pro@gmail.com>
+* Update docs/source/developer/contributing.md
+Co-authored-by: Jenny Wong <jnywong.pro@gmail.com>
+* Update docs/source/extension/extension_tutorial.md
+Co-authored-by: Jenny Wong <jnywong.pro@gmail.com>
+* fix some build issues
+* fix substitutions
+* Apply suggestions from code review
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+* lint
+* Apply suggestions from code review
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+---------
+Co-authored-by: Jenny Wong <jnywong.pro@gmail.com>
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",13474,13519,123
+c7218dac2767ac255dbca38f9eb669fedec9c512,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-13 05:10:21+00:00,"Make usage2 server startup/teardown test more robust (#18087)
+* Make usage2 server startup/teardown test more robust
+So that if running on a slowe machine it does not terminate too early
+and fail randomly
+* There is no `timeout` on mac",34,8,1
+c832df73b105c9f3fc215b8aec1180c8805e9c12,Florence Haudin,99649086+HaudinFlorence@users.noreply.github.com,2025-11-06 20:04:39+00:00,"Debugger: Fix breakpoints lost when closing modules (#18063)
+* Fix issue with breakpoints lost when a read-only editor opened with kernel sources is closed, by  removing filtering on breakpoints.
+* Update breakpoints id on kernel restart in _migrateBreakpoints only for dumped cells and keep the local path for modules.
+* Add a tmpPrefix attribute to IDebugger.State interface and use it to check whether the id should be updated in _migrateBreakpoints.
+* Update the part of the code replacing the prefix in the new id in _migrateBreakpoints.
+* Update condition in _migrationBreakpoints to avoid replacing the id if the old session prefix is the same as the current one. Move tmpPrefix to oldSession prefix. Update else condition comment in _migrateBreakpoints.
+* Update packages/debugger/src/tokens.ts
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+* Update oldSessionPrefix type to string or undefined and add a check if it is defined in the if condition of _migrateBreakpoints.
+* Properly migrating migrating breakpoints during sessions
+Missing migratin of the sources and dumping cells
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+Co-authored-by: martinRenou <martin.renou@gmail.com>",56,64,2
+2016ee9b61ebade659548fbb3c787b6a9b15fe29,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-06 10:35:48+00:00,"Separate verdaccio install and startup to fix flaky `release_test` CI job (#18082)
+* Separate verdaccion install and startup
+* Try to force version",10,1,1
+e78bc39c0bd02c2275574147fa96d641e8773776,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-11-06 00:29:22+00:00,Update announcement for JupyterLab 4.5.0 RC (#18074),1,1,1
+09411fab41ac68d9b3619ad487940bedb1597035,Arjun Verma,arjxn.py@gmail.com,2025-11-03 15:44:38+00:00,Hide “Paused in Debugger” overlay when session terminates (#18067),3,3,3
+c1b5f1973c8bad0fc3929e1ad0d211429ba283b2,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-10-31 16:30:51+00:00,Add plausible and logos to API docs (#18059),79,3,3
+beafa6bbb1e32a46ccd1ca22d269bc5f5bd93d63,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-10-31 10:51:30+00:00,"Mention JupyterLab 4.5.0 RC in the installation instructions (#18061)
+* Mention JupyterLab 4.5.0 RC in the installation instructions
+* [pre-commit.ci] auto fixes from pre-commit.com hooks
+for more information, see https://pre-commit.ci
+---------
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>",12,0,1
+a2e834910880388575c8d2c88aa2b5e6852bff42,krassowski,krassowski@users.noreply.github.com,2025-10-30 14:23:21+00:00,"[ci skip] Publish 4.5.0rc0
+SHA256 hashes:
+jupyterlab-4.5.0rc0-py3-none-any.whl: 89a22b0587499fb7524ea1c541fab4dd2f4030b9c05284f627b9b2176e2cff1e
+jupyterlab-4.5.0rc0.tar.gz: bddfc2501c9d68c0bd47f45519ff6f55e5310496a94be77f97d36dc6114c08e4
+jupyterlab-application-4.5.0-rc.0.tgz: 30f0d89405e73db6d61dae5207ff1c784273072bb6b4b75090966aa56bc866b9
+jupyterlab-application-extension-4.5.0-rc.0.tgz: a003f6e6a1f95c13dcdbda8181dbd7cd8ad7c0a346cc96dcaaa48f98adb3a627
+jupyterlab-apputils-4.6.0-rc.0.tgz: c2497f64332d65ef61a1be58b0e2d23b4d57d629c5b8ad56641cab9f75d3f1c3
+jupyterlab-apputils-extension-4.5.0-rc.0.tgz: 37ecafdb0061504b31bba765fcf5fd5802453ceedea3af969b9ebd6cd96dd3b9
+jupyterlab-attachments-4.5.0-rc.0.tgz: 43518037a1c9b1cc91e24fc49697eee459ff046fdb050dc06b5c0ddf43096e26
+jupyterlab-audio-extension-4.5.0-rc.0.tgz: 9e345278ddb8f7b7436f535287d8dc7bfb2a93cc89830343cb7fb913e3a830be
+jupyterlab-builder-4.5.0-rc.0.tgz: 99c10b473a7914c8cb5c318c8b72002ea64a38fe73a4dbdf52e712a55d89969f
+jupyterlab-buildutils-4.5.0-rc.0.tgz: 31849ef53c32d058d199158a11c7f147c045c6f82b6b367a5578ff435a0b1132
+jupyterlab-cell-toolbar-4.5.0-rc.0.tgz: 9b3d9ad7964c7b60db27fdeac6114ffa9f9f26d526c21a2f541158ae86b4b113
+jupyterlab-cell-toolbar-extension-4.5.0-rc.0.tgz: 4dcddf980433d730789c9b121fd8ec02d44e8cdd8a8a9a0fe989e7adf1d24a0b
+jupyterlab-cells-4.5.0-rc.0.tgz: 75ada5888fb4bfc05458a1d7f82b04b138d7ffdc9b2b72268763ad603f1e6901
+jupyterlab-celltags-extension-4.5.0-rc.0.tgz: 0841834e0404d6e1a03a5c1a68dd2172e40de72bcbc2ac7ac794685ee87d7242
+jupyterlab-codeeditor-4.5.0-rc.0.tgz: 4e8ee9ee82af3e88205240cc4ae0ff9e7fb7195f9468903ab1285a9a5b9b2b5a
+jupyterlab-codemirror-4.5.0-rc.0.tgz: 67b713e3e43d86a25bc52d0b501709fd0297cbd94fa839761b18fdd5cbde0448
+jupyterlab-codemirror-extension-4.5.0-rc.0.tgz: bd6f03272c798fed2ff39771289268bf7a8f81a9544147e8321353ebfb00c9b8
+jupyterlab-completer-4.5.0-rc.0.tgz: 8e541ba97b049561b5719585ac5764e7c50390f7bc70b1e085e7069fb1280f47
+jupyterlab-completer-extension-4.5.0-rc.0.tgz: 722a871d4c5d483f24b42ce4d1e1380007fc94feabe44fedd7456e8352c66388
+jupyterlab-console-4.5.0-rc.0.tgz: 6412c33c22f61aa6026e45bb37a735ec1b935097cf6cae2b363117807f3163af
+jupyterlab-console-extension-4.5.0-rc.0.tgz: cc1dc9747d4d7e4b1f3654dc24ba8fc573baadf23d5376df017a1b66e002f5a6
+jupyterlab-coreutils-6.5.0-rc.0.tgz: e01d229c8e97296e8bd11294cc59cd8ff399053a6fd97c3c0e67b66eb52e31f6
+jupyterlab-csvviewer-4.5.0-rc.0.tgz: a9ef8bb412b175a36db2ca0d20e7eb98965866be6fdc5531c5af5e6a39cd596e
+jupyterlab-csvviewer-extension-4.5.0-rc.0.tgz: 005e73e8e865b1f8c656430982bcde3c48b97a3e8f377f8200f8248d1cf28b4d
+jupyterlab-debugger-4.5.0-rc.0.tgz: d3b7106e8a61c6ec276d2e2e5567120d160fb172f90166b3dd6d3018a8766475
+jupyterlab-debugger-extension-4.5.0-rc.0.tgz: 82ac48383a5b8502b3e05040e42b8f1d07479e320840655cea317507d0383c14
+jupyterlab-docmanager-4.5.0-rc.0.tgz: 324dd70f15416e63ae002602550a46b2c7a2d7812ae0d891cdf62c28199f79ab
+jupyterlab-docmanager-extension-4.5.0-rc.0.tgz: 09a398277e2c56d014dab38261edd2a863fa691aa9a4854b1f1b7a7b6f494dce
+jupyterlab-docregistry-4.5.0-rc.0.tgz: eb12a574f1e4029e5e72f5d745b0e5cbc7168277340b6c0d68e2260d9e7d3654
+jupyterlab-documentsearch-4.5.0-rc.0.tgz: 4fffa25b82327ca87daf0abfe2b9fdfe33528d5db1a8be5ccebf7cca65c69e88
+jupyterlab-documentsearch-extension-4.5.0-rc.0.tgz: 8b1ce1bee5e80f2fd28c50ec31f68876fb5d3143a8f0dc1cf422c415458bca1b
+jupyterlab-extensionmanager-4.5.0-rc.0.tgz: 55868ecf8e2a348d258a7baf0b216c42890a795169dd4d420e2cf59b25d1afcb
+jupyterlab-extensionmanager-extension-4.5.0-rc.0.tgz: ab48b91c088ffdc0416cdb47abaaaa2249f40f8f4d6292f6bac91c0481bfdab6
+jupyterlab-filebrowser-4.5.0-rc.0.tgz: 05bc018b51de33bdc431a0fdfcfb781102d77d5aa3948949c1639ba4f0ebecb9
+jupyterlab-filebrowser-extension-4.5.0-rc.0.tgz: f28810034e04980257c7ebda361d5ed35a19e15da4b6db02f918a30df8673bf1
+jupyterlab-fileeditor-4.5.0-rc.0.tgz: 8b3b73adadaa900b0b84118d411cb8c99aed1ae286fcdd69f36c1ecf3d8f480a
+jupyterlab-fileeditor-extension-4.5.0-rc.0.tgz: ddb4460981c8ea8eb7dc302fddde205da28fc9bcc3c5aa4c0178af108ec81a59
+jupyterlab-galata-5.5.0-rc.0.tgz: b6ab6084876afbda3879ec62e88206466f3944b41cbe926cc2fb50e6a26195f9
+jupyterlab-help-extension-4.5.0-rc.0.tgz: 785bb205894e243663892202da58dbfd2b0ca146b2007592d087cd8e2b0e8a51
+jupyterlab-htmlviewer-4.5.0-rc.0.tgz: 190cccf6aef30e0dd0701b2a092136dd6d451a1c277c2f08b55dc024e7276a27
+jupyterlab-htmlviewer-extension-4.5.0-rc.0.tgz: a41fed0f6b5e366bab163f81d7727d339d43eab7a119b569f05a40f424c168a1
+jupyterlab-hub-extension-4.5.0-rc.0.tgz: 87a5810faf8ada84f922fde2ed99f3c89f167bd68a08060fb74055cc723dfcef
+jupyterlab-imageviewer-4.5.0-rc.0.tgz: 8b902173d92b05d34f485e30f3c5708f9a2d264f434d6fd88e463249a5a579fd
+jupyterlab-imageviewer-extension-4.5.0-rc.0.tgz: 0989fe166b4823d0e02fd14eef9ab7eba2925a7cbe9d0658123c5d8244d3a1bf
+jupyterlab-inspector-4.5.0-rc.0.tgz: b9618576c826d9e02b706d858570169aedae88ba1ea155afa78326b3ecc8b66e
+jupyterlab-inspector-extension-4.5.0-rc.0.tgz: a2726f65b05880640a49c4282bb1e5f6bfd8652981c5a50e299359623d868263
+jupyterlab-javascript-extension-4.5.0-rc.0.tgz: b7400e4025702b6f44f9fbf3549de88460b531bb8a2176261102577bc763fdb0
+jupyterlab-json-extension-4.5.0-rc.0.tgz: a833de80955db3d47c6f3eb32eb7b7d8338774ab8b2b3b29ccfbe3688c19921e
+jupyterlab-launcher-4.5.0-rc.0.tgz: 3c9b5f7a14782a74db6e0278fabb72b993f400f66e6f1afa3aa7fd875dee16d0
+jupyterlab-launcher-extension-4.5.0-rc.0.tgz: d74c693a2d0e1053a074d2878d8c0cf0092366349f98da36d9d3920dfbab32cf
+jupyterlab-logconsole-4.5.0-rc.0.tgz: d41d1bd59d7fc9282ac33c6c10c44fed62fb9a1c5039738e5b7329373c01292c
+jupyterlab-logconsole-extension-4.5.0-rc.0.tgz: 0187637e544b0e5684c3a413bb2ecafee2306c6a603fb7af8dd9000240640ada
+jupyterlab-lsp-4.5.0-rc.0.tgz: 0b8c98b9f9a51e4c2e7e9f0093eb69b2c8fdbedfbcd214d09389d99dea76eb1f
+jupyterlab-lsp-extension-4.5.0-rc.0.tgz: 615e92aa49471d9d9fdde4661d95ef127dd7f0ebb163f7e7db0d910b0515edeb
+jupyterlab-mainmenu-4.5.0-rc.0.tgz: 1ec5c067c2d506da5292cd0693b9b2bd87aadfc06adfc0005f6a5fb5905bf63a
+jupyterlab-mainmenu-extension-4.5.0-rc.0.tgz: cfc66c5133247fff45edb7085b37dddd2e307f94c688134e284078241cc569c4
+jupyterlab-markdownviewer-4.5.0-rc.0.tgz: 9972468b1b724e20f6a386fc81591aa15d1b74c50dba272827c2ae7ecb7c871d
+jupyterlab-markdownviewer-extension-4.5.0-rc.0.tgz: d739e0405acfb065bc9a1d108e483486a86272a69ae7bbd3777015be65b8c41e
+jupyterlab-markedparser-extension-4.5.0-rc.0.tgz: 1094e2b5b66aee18dfc033e7a9692075d992c284705ef9baa0de60b53de6d8aa
+jupyterlab-mathjax-extension-4.5.0-rc.0.tgz: d16555e0da11f39c050e74484f07cbdd9d47a8c55e6b2d08cfe53858660a61ad
+jupyterlab-mermaid-4.5.0-rc.0.tgz: a24865ad76a4e4950fe7a8b7a21b9913131de199ed2a1ca27e5fdbd7169ae043
+jupyterlab-mermaid-extension-4.5.0-rc.0.tgz: 34f545ae7af350c7bccc2107f19e73daca8aa144329b2cfef26cca6b0f4fbbbe
+jupyterlab-metadataform-4.5.0-rc.0.tgz: 771c5c285a622045e5e19c8bab68a562142343771a10ba148724094ab86b6db1
+jupyterlab-metadataform-extension-4.5.0-rc.0.tgz: 360ec77ce2fe8b0d73aa64872b8afdf12d5fb049b81f301051fbe8ea631b4b21
+jupyterlab-metapackage-4.5.0-rc.0.tgz: fce894c9b33df6e3a00178eda25f5a2d8934583edbcd2259ff270e978bb22bc9
+jupyterlab-nbconvert-css-4.5.0-rc.0.tgz: ad9df0e36c94e6918a4849faf0114b0720574dec9a9aa2649b5966bf7d8e5d02
+jupyterlab-nbformat-4.5.0-rc.0.tgz: 7489c80ac8d9ac97d777710811cdfc783ec18cb4f69f821303e5bad554bab558
+jupyterlab-notebook-4.5.0-rc.0.tgz: 4154df455b2cc8a7d9c92109f8d8a09c2bb4f7dc0a2aad101bafc4570f18f15b
+jupyterlab-notebook-extension-4.5.0-rc.0.tgz: ab3a347737c4c6abb54c23fbb1887516c991a493f73c2be5d4fcf8d280485fa9
+jupyterlab-observables-5.5.0-rc.0.tgz: 8ab434651f0c09265ce2e900b52058933c238c2b2c38c43addcb5e0020f3713c
+jupyterlab-outputarea-4.5.0-rc.0.tgz: 828f9a773b42e0b7516c13d7e0e075790b2a3be68800785926315cbafab56e78
+jupyterlab-pdf-extension-4.5.0-rc.0.tgz: c932dde62b33e319a7a3bfb187210afebbce8aa260b2864ae3a74c9d8b4f4b0c
+jupyterlab-pluginmanager-4.5.0-rc.0.tgz: beeb71aa4ecf801fe7681a24662901a1e5326580b2d5820be7c5630883214b99
+jupyterlab-pluginmanager-extension-4.5.0-rc.0.tgz: 331dee3d138d1d61e5bc36b19e0160789c30594d249bc46184b1fd9adcf3bcf5
+jupyterlab-property-inspector-4.5.0-rc.0.tgz: 6c131bea8f382d4792addeb7899c2087fe2661ba36ca196b816e9bccc5f87e68
+jupyterlab-rendermime-4.5.0-rc.0.tgz: 32c77e5d9256bdd2d28c88a3c4e23623bbd408d0ec4fb36e91a749c60bb4419b
+jupyterlab-rendermime-extension-4.5.0-rc.0.tgz: 1d0e8ed54246fb800606e89a5300c040832358c41cc9e2640871aced73ab1171
+jupyterlab-rendermime-interfaces-3.13.0-rc.0.tgz: 6f2f45f92d5f1894886ba11de73f8a002a09da0ea5bf5d2f3367a4dad5f3f66e
+jupyterlab-running-4.5.0-rc.0.tgz: 20a51281751e263a70276f7aff56d4f7454e93b47193aebc61531ed992e3bef4
+jupyterlab-running-extension-4.5.0-rc.0.tgz: c5f6fc0aa10fe029cead5830d82d5fe5ad03e0759be421085ec7aa1aaf7b9987
+jupyterlab-services-7.5.0-rc.0.tgz: 7b0526da4d5ec6bf4275b5f7dec0156d2afd43bc79c9026ace836d89f0bac68d
+jupyterlab-services-extension-4.5.0-rc.0.tgz: e327ade042c59049bba63e16388529b454095a4c42a35b54f01f92c4a6312a62
+jupyterlab-settingeditor-4.5.0-rc.0.tgz: 39783e91eed6f041e58daf2b930a6f94d7ff27235c6f3697be4e974b3078988f
+jupyterlab-settingeditor-extension-4.5.0-rc.0.tgz: bc36cb1e3c36a08dda00851c3e539647bb8db4a039beefdebf5e7797763c36d7
+jupyterlab-settingregistry-4.5.0-rc.0.tgz: 347319025bdc50ab8ac3f750f9065bbb132e367d0d7ed8308d254ad53d2f6588
+jupyterlab-shortcuts-extension-5.3.0-rc.0.tgz: ff0c32583cd00eb3d426e4d055aa3579d6b4e0033b39d8cf4dfb0cf5317ec7e2
+jupyterlab-statedb-4.5.0-rc.0.tgz: cfcb2c269637ac7ff6b236bb0e9c0368542fd88992371f615557713733cb4d77
+jupyterlab-statusbar-4.5.0-rc.0.tgz: 2ea8b0664d124f8e57c71c6f9c834bcd6b00bc0854f378a43505a24d2a7bfd41
+jupyterlab-statusbar-extension-4.5.0-rc.0.tgz: 02b4449d1b9e56bac3e072d1c5ff06597d40cf4baa8a321c41f95c11ea2d18ba
+jupyterlab-template-4.5.0-rc.0.tgz: 6d39b569f1d337fc3607f804ad158630651434122ea200ede52c4f2f325aee94
+jupyterlab-terminal-4.5.0-rc.0.tgz: c6f77fecfe8e1bb62a392389e3c2b106af43204ae8bbbd99fcdeed93a3968559
+jupyterlab-terminal-extension-4.5.0-rc.0.tgz: ea48edaa9ae5a7e10924cfff5abd8796f48a5440f63a70ccef8e881d86ed4c71
+jupyterlab-testing-4.5.0-rc.0.tgz: 4ee8c55019a3c117e52af5044718533f537f789ddf7b8a8874fb612512bbd28c
+jupyterlab-testutils-4.5.0-rc.0.tgz: 01a2482c419547c1e566c8b59cc0d0d7fe5136ee8ec0a1dc12b7f0afcd09d516
+jupyterlab-theme-dark-extension-4.5.0-rc.0.tgz: b873eb6558732568413524a4022015769537294c29f4f369f644a80b70745f5e
+jupyterlab-theme-dark-high-contrast-extension-4.5.0-rc.0.tgz: ff1a0a0920a11e846816efbd74549dbb79b60b6ed5615b1e7ed9334cdb900c37
+jupyterlab-theme-light-extension-4.5.0-rc.0.tgz: 1d863f7f6fa6c6741e17ad0ca7d3f20e4858347439cafae3ed65f6c113852d56
+jupyterlab-toc-6.5.0-rc.0.tgz: 4421d2b0c3c95300a27d613e339443b4c4ef0aa426375b6dec4fbeb17c9e1f2f
+jupyterlab-toc-extension-6.5.0-rc.0.tgz: 7bc4bdac42362beb2f6c249d6ed06f7f84f64271d96fbf36216004621d70b4f4
+jupyterlab-tooltip-4.5.0-rc.0.tgz: a75bcc9f4dfbf7f01fc38358269748e263786670dfa5306600943043db05339f
+jupyterlab-tooltip-extension-4.5.0-rc.0.tgz: b9abc20d9d05c2cb8866b27775e585fd4b558a815fd5da6b53d70fb3c6e29ec8
+jupyterlab-translation-4.5.0-rc.0.tgz: 48513eebe229c027b90b4ccf4cd0d89c9366986aaa4f09b410739bc439222a51
+jupyterlab-translation-extension-4.5.0-rc.0.tgz: 12e66c2e5a91888c50edaa798444a06aa6412eed4b2ec9ff1b556f6c025e2958
+jupyterlab-ui-components-4.5.0-rc.0.tgz: b7a0527a8efee793a4dd8ad28d254b051810372f9c65bb77dddffd52551333ae
+jupyterlab-ui-components-extension-4.5.0-rc.0.tgz: 2ec57e0255cb401ba8d818e7944a1177acfb7b7c6f7fb9de786780a4d9291e4a
+jupyterlab-vega5-extension-4.5.0-rc.0.tgz: a74db94b1433bd69cae287d96c8abfaa0d117cb836a9b28573e442a3064a8c4f
+jupyterlab-video-extension-4.5.0-rc.0.tgz: 470cda85e8b5cdeee76944ce5a52a6e5edf3a0c540ab4e08d427b2142d23fe08
+jupyterlab-workspaces-4.5.0-rc.0.tgz: c2a08524d7b14c4ce2fac1ce1718b3f8379f83120f862188c850a211da54c58a
+jupyterlab-workspaces-extension-4.5.0-rc.0.tgz: 8a5c7c960cb97f6a093b0250869390c6dea639f8dee98264d67770b3d21f4998",3888,3840,134
+7f9ee36c7c27e96c1f7ffe9979dcac8ac7f374e6,Arjun Verma,arjxn.py@gmail.com,2025-10-30 13:56:57+00:00,"Introduce `DebuggerDisplayRegistry` to provide context-aware display names for debugger panels (#18043)
+* Add a new service `DebuggerDisplayRegistry`
+* add `consoleDisplayProvider`
+* fix
+* remove logs
+* integrity and prettier
+* do not pass trackers anymore
+* fix
+* do not pass trackers anymore
+* update test
+* fix test
+* rename
+* use `IDebuggerDisplayRegistry`
+* Add description for newly added plugins
+* document methods of display registry
+* Apply suggestions from code review
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+* fix
+* review comments
+* Package integrity updates
+* Update Playwright Snapshots
+* Revert flaky snapshot updates
+* Reduce diff, improve backward compatibility
+* Add missing implements, add missing docstring, remove lint
+* Integrity update
+* Fix missing description
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",312,251,20
+99d9789226b8b657d678659dad0149ee1fed036f,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-29 17:58:02+00:00,"Add jump to executing/executed cell button (#16880)
+* Add feature to scroll to currently executing cell on status circle click
+* [pre-commit.ci] auto fixes from pre-commit.com hooks
+for more information, see https://pre-commit.ci
+* fix-lint
+* refactor-scroll-to-cell-button
+* add-test-for-scroll-to-cell
+* force-record-timing-to-be-true
+* fix-test
+* fix-lint
+* apply-suggestions
+---------
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>",184,12,7
+b9f7d4dd8000ee8f59b28002af203315b43adc94,Jason Grout,jasongrout@users.noreply.github.com,2025-10-29 16:04:22+00:00,"Add plausible.io stats to the jupyterlab docs (#18041)
+* Add plausible.io stats to the jupyterlab docs
+* Track hashes to see where people are linking to the docs
+* Update privacy policy page
+* Make plausible privacy section its own thing, leaving the existing github pages policy.
+This reverts commit 4419438dcef1bdb72540ff43d2148f34d25b8f85.
+* Update last modified date in privacy policies
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",21,1,2
+3ff8325110b42d98535bcf4764445d373c735e24,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-29 10:05:47+00:00,"Fix kernel status display in status bar (#18047)
+* fix-status-bar-display
+* fix-cleanup-in-debugger-tests
+* make-tests-robust
+* retry-turning-on-debugger",65,2,5
+f86a019f35512baeaf13da133e328b5520063391,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-10-29 09:38:02+00:00,Update PyPI Downloads badge in `README.md` (#18052),1,1,1
+b7fbac3c0b7046f594ab1f85d9e45999240dc6c9,SkapiN,skapinthefourb@gmail.com,2025-10-28 17:40:45+00:00,"Fix `allow-same-origin` exception handling in sandbox when changing trust status (#18049)
+Co-authored-by: Florian Boudinet <florian.boudinet@eshard.com>",8,3,1
+24ea3162318ced92ea522a6ae11d3670761eac78,Greg Mooney,gregory.mooney@quantstack.net,2025-10-28 12:52:40+00:00,"Keep debugger state though kernel restarts (#17972)
+* Its something
+* restore breakpoints when restoring state
+* Extract path migration
+* Clean up
+* Move restoreState in handler
+* Refactor breakpoint merging
+* Remove leftovers
+* Use the right function
+* Make migrateBreakpoints private
+* Add test for breakpoint preservation",112,13,3
+186f430168c7a9c5185e8a7d3dbd2cd526937b85,Nicholas Bollweg,nick.bollweg@gmail.com,2025-10-28 11:02:57+00:00,"Update to mermaid 11.12.1 (#18046)
+* bump mermaid 11.12.1
+* update screens
+* more screen updates, add some threshold overloads
+* revert bad snapshot
+* Update snapshots
+---------
+Co-authored-by: krassowski <5832902+krassowski@users.noreply.github.com>",107,94,18
+2d6dd6692d9cd7b39282959c06198c3d9b12daa3,Robert Strauss,robert.strauss@protonmail.com,2025-10-28 09:55:28+00:00,"Don't open default editor if a different kind of editor is already open (#18034)
+* Don't open default editor if a different kind of editor is already open
+Added tests to confirm new behavior.
+Previously, calling openOrReveal without a `widgetName` argument makes it open the default editor. This is usually OK, except when a different editor is already open. For example, if editing a notebook `.ipynb` with the JSON editor, reloading the browser will trigger a CommandIDs.openPath without a `widgetName` specified, leading to a new NotebookPanel widget opened, in addition to the original JSON editor. (At: https://github.com/jupyterlab/jupyterlab/blob/f37154e23ae423bfb77d6e6b7aee33eb087f7fcf/packages/filebrowser-extension/src/index.ts#L1988)
+Now, by using `null` in `findWidget` it will try to find *any* already open widget editing the file, in preference order, so reloading no longer duplicates the non-default editor with a new default editor.
+* Added test for new DocManager.openOrReveal behavior for non-default-type editors.
+* prettier syntax
+---------
+Co-authored-by: Robert Strauss (RustyBook2) <robertstrauss@pm.me>
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",161,3,2
+889d09360e8840c14900d640408cf76a0bf85893,Jeremy Tuloup,jeremy.tuloup@gmail.com,2025-10-27 10:26:15+00:00,Document how to disable the file upload button (#18040),71,1,1
+aa8f1a881739422d311ea7d9b17a448da4e562d1,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-10-27 10:22:22+00:00,"Revert ""Fix kernel status display in status bar (#17894)"" (#18038)
+This reverts commit e60f23690316dad691e271fb308333d2bd0c0498.",1,49,3
+35e1551dbd31104d76834848ce3c620a82921839,martinRenou,martin.renou@gmail.com,2025-10-24 18:38:21+00:00,"Introduce new token for the default `IContentProvider` (#18027)
+* Introduce new token for the default IContentProvider class
+* Iterate
+* Remove ""class"" mention from the `id` and `description`
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",49,5,3
+f37154e23ae423bfb77d6e6b7aee33eb087f7fcf,Ankita upadhaya,114278651+Ankitaupadhaya@users.noreply.github.com,2025-10-23 20:09:48+00:00,"Make file browser optional in file editor extension (#17922)
+* Make file browser optional in file editor extension
+* [pre-commit.ci] auto fixes from pre-commit.com hooks
+for more information, see https://pre-commit.ci
+* Apply suggestions from code review
+* Update typing
+---------
+Co-authored-by: pre-commit-ci[bot] <66853113+pre-commit-ci[bot]@users.noreply.github.com>
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",5,5,2
+a126e6b5ddea0e8318b8e5a29175b805a063ed80,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-10-23 18:29:49+00:00,"Fix changelog URLs (#18031)
+* Fix changelog URLs
+* Fix link to audio/video
+* Fix one more link",5,5,1
+e60f23690316dad691e271fb308333d2bd0c0498,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-23 14:16:21+00:00,"Fix kernel status display in status bar (#17894)
+* add-test-for-kernel-status
+* fix-kernel-status-display
+* fix-promise-handling
+* ignore-debug-request-status
+* use-page-config-for-untracked-msg-types
+* bump-jupyterlab-server",49,1,3
+d0efddc366f21752a96b472e4fb1f8dc574d6fd8,Meriem Ben Ismail,161816721+Meriem-BenIsmail@users.noreply.github.com,2025-10-23 13:17:54+00:00,"Optimize `content-visibility` application (#18013)
+* optimize content visibility application
+* proposed changes
+* direct cell descendants",39,47,2
+e27228d4cd7bb1f19a4c7983f77ba2381159c5e9,Rosio,rosio_reyes@yahoo.com,2025-10-23 12:47:58+00:00,"User-facing changelog for JupyterLab 4.5 (#17967)
+* outline for changelog
+* text descriptions for sections
+* add terminal, filebrowser and debugger enhancements
+* include images
+* Update links to images
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",152,29,6
+1f4a71ddbb6c3d47a5a809d5c9a219b34f3a7852,Arjun Verma,arjxn.py@gmail.com,2025-10-23 09:40:49+00:00,"Fix debugger initialization for notebooks on reload (#18028)
+* add log
+* initialize notebook debugger correctly on reload
+* update
+* remove log",1,0,1
+1abbdf39fb204e47941e8d8021d85366a0ecece9,Michał Krassowski,5832902+krassowski@users.noreply.github.com,2025-10-22 16:13:32+00:00,Only show hidden part of the path in the tooltip of ellipsis (#18026),2,1,1
+aa3418b6676489b44fb3d9431cf155f11bb3f664,Andrii Ieroshenko,ieroshenkoa@gmail.com,2025-10-22 15:37:10+00:00,"Update `Show more outputs` button design (#18021)
+* update  button design / css
+* use `document.createElement()` instead of `insertAdjacentHTML` to fix CodeQL security warning; use`width: 100%` for a button
+* add translation wrappers
+* update selector from 'a' to 'button'
+* Update packages/outputarea/style/base.css
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>
+---------
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",54,30,3
+06012a8f864e676e40c06a1f1eaced4415bba45b,Robert Strauss,robert.strauss@protonmail.com,2025-10-22 11:33:15+00:00,"Fix `ObservableList.removeValue` behaviour: if item isn't found, don't just remove the last item! (#18019)
+* If item isn't found, don't just remove the last item!
+ArrayExt.findFirstIndex will return -1 if the value is not in the array. Without this check, this.remove with index=-1 will splice off the last item from the array, which is undesirable since we weren't trying to remove this item (it doesn't match, else the index would have given this.length - 1).
+* Added test for fixed removeValue behavior
+A test verifying the final element isn't removed when removeValue is called with a nonexistent item.",3,1,2
+21f9c73298d7a450dba9927d404c87aae3011f7a,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-17 21:00:21+00:00,Fix breadcrumb drag-and-drop issues (#18014),18,8,1
+240cfa009db6d99457cc1d7e3acc4c891637d690,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-17 15:39:36+00:00,Fix flaky `Drag file from nested directory to parent via breadcrumb` test (#18015),4,0,1
+c836a03e8ee2ecc17da83c904d2fe93470dfa8fa,krassowski,krassowski@users.noreply.github.com,2025-10-16 18:33:21+00:00,"[ci skip] Publish 4.5.0b1
+SHA256 hashes:
+jupyterlab-4.5.0b1-py3-none-any.whl: 20eeb352a88633d2e180217f0be5a42865f4016be301fe4a6b6cce311221d197
+jupyterlab-4.5.0b1.tar.gz: 98345a3d7e57b216b58e15b89f3a676f664a6bc738f87949ee3cca04c06243cf
+jupyterlab-application-4.5.0-beta.1.tgz: c688c7653823ae2ca2ce4299e08e369e00f3b90e8744c0a4349ff87ae2ea9b30
+jupyterlab-application-extension-4.5.0-beta.1.tgz: 7a24bcc75b8e891830eb84ab5198878d4303dd4e520addf8d8dd9b9fe2474c5b
+jupyterlab-apputils-4.6.0-beta.1.tgz: 22761578eae310481a85915553636cfd8ffa64b22eb908f90e5f1d5f8edf77cc
+jupyterlab-apputils-extension-4.5.0-beta.1.tgz: 1aa4f5fd26c5cde8fb52a71051dba184ab6f2d98f4c0b6c295caec2aa3435b38
+jupyterlab-attachments-4.5.0-beta.1.tgz: b9eee48485928e44e91589c40417cc69ffdcab86e4f350b48803330f391b2518
+jupyterlab-audio-extension-4.5.0-beta.1.tgz: fbcf330eb731eaee762b1fa0346f8e57253e086754eb1e462e46e4c6084fc566
+jupyterlab-builder-4.5.0-beta.1.tgz: 2e7591da563f1be04e557921a70b9a73d7f654a4722a39d4c5195d92683e8308
+jupyterlab-buildutils-4.5.0-beta.1.tgz: dc550a35d58bf6122925243ea8dc412d148eea9235ea437c0b6527f1060a64ba
+jupyterlab-cell-toolbar-4.5.0-beta.1.tgz: 85fd51c9723694933fa8d24813b7bd9940435dca20c47aee47cf3e654e7c6d0b
+jupyterlab-cell-toolbar-extension-4.5.0-beta.1.tgz: 8fa3585e503a887f1184e7218c94bd55becade2b9e8bf76995d1c35387411a57
+jupyterlab-cells-4.5.0-beta.1.tgz: 67068d9dc08396af87309150cd4b33422a100fc47630aca06a2c58156e5f4452
+jupyterlab-celltags-extension-4.5.0-beta.1.tgz: c5f83959ff74a49169991fb3754f4973d50378ded65d9bdb9bf11f68a712aabe
+jupyterlab-codeeditor-4.5.0-beta.1.tgz: 50c3a03deb8baeebd828ec8ba8bea962f3445f48ff90db2c0c94ed92558659dd
+jupyterlab-codemirror-4.5.0-beta.1.tgz: 4d1e7e5525515784354f51bf80bcb2951ba04c970dd8e041c0bdc1bc7549d110
+jupyterlab-codemirror-extension-4.5.0-beta.1.tgz: 0096a54bf3b911f6c13dd4cbaffcf6829c14d5a94f12e2d2ef92f675ef3b3fe7
+jupyterlab-completer-4.5.0-beta.1.tgz: 128769f3a8b50c7b693ea193f2e580dff1cfac1d1556a88ba24c2dbb85d5bda9
+jupyterlab-completer-extension-4.5.0-beta.1.tgz: 1498bc169c5b9eacf218d6f277decbd88c59f5ef8079a12b8d1ccaf6b2fa904c
+jupyterlab-console-4.5.0-beta.1.tgz: c74a4100ca06a4c07da24e10f917070e4f9ad8b16aed2c08d005f2c8cce48efe
+jupyterlab-console-extension-4.5.0-beta.1.tgz: bc85fc8807586628928fe3be988bbe9adc35151ccc15b7c6a7fc450d28b8000f
+jupyterlab-coreutils-6.5.0-beta.1.tgz: 1110802cbe658ca214bc053f78220fcdbb46fcbb85cd159cb49224a83d53ba4c
+jupyterlab-csvviewer-4.5.0-beta.1.tgz: 9806398ac7da62469935134f792c8c31075d06103241d2006fca81580b83f8f8
+jupyterlab-csvviewer-extension-4.5.0-beta.1.tgz: b46c61fa465d40af9b32ca29d10c8f5b90bcce544b3ad34e93975e9b6475b017
+jupyterlab-debugger-4.5.0-beta.1.tgz: 21f3fa91e10404da10f069187109403eee3a3f751fdf0f3aaf69d0b3072d223b
+jupyterlab-debugger-extension-4.5.0-beta.1.tgz: 3179d0d5e419287532b67b0643592e3fd7416289f29389db7ec94a0da8d7bc8c
+jupyterlab-docmanager-4.5.0-beta.1.tgz: b36a4c88d2ec5ab8e87e305f3cb59928575385f179ef4a4db33648576a402d3e
+jupyterlab-docmanager-extension-4.5.0-beta.1.tgz: 756c92843b9e0855823fccf712b723af56ac77a09da1d27f501fd7e2550cfc98
+jupyterlab-docregistry-4.5.0-beta.1.tgz: e1e8bb2c2f13b6217e1b8a4c0e6cecb0a71591ad9dff47a97aae7fc61e123b24
+jupyterlab-documentsearch-4.5.0-beta.1.tgz: 43a848cee831ab856023381a336b4506bd462ad2dbe0622d9da9c1a611321ad2
+jupyterlab-documentsearch-extension-4.5.0-beta.1.tgz: bcb10b2247edfbd172dfff5ff67067063b6eba166b4f45d9e0d081a5f8026875
+jupyterlab-extensionmanager-4.5.0-beta.1.tgz: 5816b2990fa1a35c76ee925a1bc9eeadcd29223e97fb53ab59841e9e2c8db5b7
+jupyterlab-extensionmanager-extension-4.5.0-beta.1.tgz: 1fcb9e86e5f831dc36101a22af90d6133ab54e57b21dc5f55188e67e8acd41a4
+jupyterlab-filebrowser-4.5.0-beta.1.tgz: 917e5eddc834ba9813ec69160513a8437f8c9fdaa92eb4925c822af90582806f
+jupyterlab-filebrowser-extension-4.5.0-beta.1.tgz: a0b86b0d6f4484b80e61b644c6175bf7b55d6ff8eef55602cd0296cdb5b962a5
+jupyterlab-fileeditor-4.5.0-beta.1.tgz: a40f8197470859893ca6a896c9ea55b9b1cef0d8feed558fc2277df37ca4be30
+jupyterlab-fileeditor-extension-4.5.0-beta.1.tgz: 1003f5181fbe5a318651ac11eacbce1b6426bcf05ea22fa4086b44160dfe7eed
+jupyterlab-galata-5.5.0-beta.1.tgz: 13eaed47d6f1df40e74e1163794f91ca8edbcf9eb3defeb7a357585b1e28ad3a
+jupyterlab-help-extension-4.5.0-beta.1.tgz: d141578d850157142a45045fa79bd0fd3c7221bd5c2e2d7a6ea6d08bdc368ccd
+jupyterlab-htmlviewer-4.5.0-beta.1.tgz: c4eef2b633c1cc517ec56cdd6dd979c025f7b13f8d0c11d3bce3064089a1df86
+jupyterlab-htmlviewer-extension-4.5.0-beta.1.tgz: bf65e53f5e1bbeb0c62d7d48e9d81dc5f792dc0ef21c11a6223f4fdae11522f1
+jupyterlab-hub-extension-4.5.0-beta.1.tgz: 3ccb5aa10278e057c3b1c065ad878c1089b077253226d36d2bb58d05a6afcea8
+jupyterlab-imageviewer-4.5.0-beta.1.tgz: 95dbe71e65ac09c94462bb521d85cd3f19582def9769cf8bc602b6192dded028
+jupyterlab-imageviewer-extension-4.5.0-beta.1.tgz: fcdfda28a789cffd21ad16c0d48fabca10493fd5c2ec6ce2c97539199d35d1ed
+jupyterlab-inspector-4.5.0-beta.1.tgz: 50b997cb95b46c0376653afddc3b9755cbd99819f8adafe6f9e8e2122944b3ca
+jupyterlab-inspector-extension-4.5.0-beta.1.tgz: 1dc91a6072d8a68beb7f0f738056685e7003b87e2c50d536b3258625546a4487
+jupyterlab-javascript-extension-4.5.0-beta.1.tgz: f371f9883339219f9041aac7b75d638cc18c63ac7af7e6724295c31efd22bc72
+jupyterlab-json-extension-4.5.0-beta.1.tgz: 0638f381c7328566f0781048733444c55181cdfd82cae7d08dd301ca4f00b823
+jupyterlab-launcher-4.5.0-beta.1.tgz: 1299c20c57374a805d8b229b77dda0d49a16bec875892c6169a3d9e914313527
+jupyterlab-launcher-extension-4.5.0-beta.1.tgz: d050368586c15d15d28fd5afd8f05717e0882f2ab16fb20c389229b6d317fdad
+jupyterlab-logconsole-4.5.0-beta.1.tgz: 8a9442de167cb710dc09f639ca47e368a4f8e7b910c9ad36d0a883a89e77fb2e
+jupyterlab-logconsole-extension-4.5.0-beta.1.tgz: 5b2945c5b7992e62aa732b45a9646780a2268fe9fd46d3817f85b9ac39cdd37f
+jupyterlab-lsp-4.5.0-beta.1.tgz: 59c7fb9adec7d758455af344871c48a9f8c6dab1b1f108c9ece5730c9858f7ee
+jupyterlab-lsp-extension-4.5.0-beta.1.tgz: 145d4bdbb551a81c6c585939d1b0e76a55c5c8971079d9c648db93d67e94a892
+jupyterlab-mainmenu-4.5.0-beta.1.tgz: 35d218eeec576423262a72a294c6e37705b7354547afbff593e1438746c4fc21
+jupyterlab-mainmenu-extension-4.5.0-beta.1.tgz: 81e49cd881cdf1256f06903bcddddc6c6ff01a3ab48006ccc9e6e60818205c68
+jupyterlab-markdownviewer-4.5.0-beta.1.tgz: 51a11ff731856d14d2b40b13c8bd4e10348ac3635a9cebe301f29b61f0279ca7
+jupyterlab-markdownviewer-extension-4.5.0-beta.1.tgz: b9b671d704e91c08d33e135f52718771e3112accdd4060be2c07cd5200952add
+jupyterlab-markedparser-extension-4.5.0-beta.1.tgz: d42035e2c6bc3e419f713d2dac2da9289a731ad385030470a92cfcd3ae24f99f
+jupyterlab-mathjax-extension-4.5.0-beta.1.tgz: 5626c8b4d6dcde4c8c4ab50b9f55a50310ceb8618394cbea3b083f245814456c
+jupyterlab-mermaid-4.5.0-beta.1.tgz: 0cd79256fd99846b61b1d1ebca8bcc5f7e768af94aebef6d7b48f892cdf698fb
+jupyterlab-mermaid-extension-4.5.0-beta.1.tgz: 259eab03d2e6ee0d8cdcce18b8667689b6dd7c15fad43a05ed8924d09a86b236
+jupyterlab-metadataform-4.5.0-beta.1.tgz: c7f2132c17f314a5160ae611342a7a8dbb1c3ff329d3b5b46f96f2eef6bccc84
+jupyterlab-metadataform-extension-4.5.0-beta.1.tgz: 6961aa7f649b3bf22063c8491661f5c41554ce8e733ae2bed9908c43400e5a98
+jupyterlab-metapackage-4.5.0-beta.1.tgz: a22bc0bf21645e636b9bde9f1233989a697adcd22b28e55920a6bc0458c23ad9
+jupyterlab-nbconvert-css-4.5.0-beta.1.tgz: f28c2e498328af2912f160d36b27acbd077d54ddc4cf9b1d07ad214acbda9482
+jupyterlab-nbformat-4.5.0-beta.1.tgz: 368fc732ab2c8a0a0616d6979379f5d8ce71def2bb4d23994a2e50a31201c1db
+jupyterlab-notebook-4.5.0-beta.1.tgz: d37a2c562242f0c3ff75e6c381033576423a22d4999932e02912f9f0f6c041be
+jupyterlab-notebook-extension-4.5.0-beta.1.tgz: 13261413258fdc99023f3e95eaaf6064bdf8e6ad8d2a5809101f02f208eb5b0e
+jupyterlab-observables-5.5.0-beta.1.tgz: d46d99b8192660f76d79279e1faea5a4f2d90eeb64adf7d3a3171dfc67bfe68a
+jupyterlab-outputarea-4.5.0-beta.1.tgz: a2d3db3c1830fb3b524da5087cc6b01987198a58d35b7932d04cb960c7b687a4
+jupyterlab-pdf-extension-4.5.0-beta.1.tgz: 9adaebddf9089b96b87aab609a52cde4a139d5487270f3605e86fcce7065bad2
+jupyterlab-pluginmanager-4.5.0-beta.1.tgz: cecbc126196da0b94253e4bcd3967033eae3f9deac7fd0eae1f871b2eda560a5
+jupyterlab-pluginmanager-extension-4.5.0-beta.1.tgz: 02ba1ceaef390fdf8f142cd7a90005f852d85b554f28d385a3b70e9f002f9b53
+jupyterlab-property-inspector-4.5.0-beta.1.tgz: fa7cccaa91c1d4c8c0f7a218a2a1af6b38909dfb8a577334144c8e6e592a28ad
+jupyterlab-rendermime-4.5.0-beta.1.tgz: 44efcd3d7f33617ebfaf25233b7aece2e84b177ca9860bb30a65dbb8bbdccbe8
+jupyterlab-rendermime-extension-4.5.0-beta.1.tgz: 3b991320f67e0f1e27439d7b5d47989821e14bc317d603e43899d1182bd17a96
+jupyterlab-rendermime-interfaces-3.13.0-beta.1.tgz: 65986863290adddf3e4e5bf52f1544cc4b54f086584a56b459036a16772bf91e
+jupyterlab-running-4.5.0-beta.1.tgz: 50fbfc3cd230b93b29b5de044dc0a94a2b7378f238b11e81a8d11b85388471d6
+jupyterlab-running-extension-4.5.0-beta.1.tgz: 5e6ab676d281173a4068cb79b6936231eaa142f1d9e12be9fd487e653a32e4a6
+jupyterlab-services-7.5.0-beta.1.tgz: 9cb7f196cb8a3b1fd855b9c29b1beca97226e6efba26830d00042dff737a67ce
+jupyterlab-services-extension-4.5.0-beta.1.tgz: 733f07859be98eb06db6a1fd0fa074aedd204d6211f1dab45f36ac0691383bbf
+jupyterlab-settingeditor-4.5.0-beta.1.tgz: bed59586024dc168ca6c6e253b9d825a504d75517293637d998b2c26e390c72e
+jupyterlab-settingeditor-extension-4.5.0-beta.1.tgz: 9ae088994d42499dbaefb60f1dbeef5d3384204a6893920f1dd7fbba180142d8
+jupyterlab-settingregistry-4.5.0-beta.1.tgz: 1e24e77ccc4a66bd3411a97bafe8bf4986058aaf0b44c385c34b0c7cd603d730
+jupyterlab-shortcuts-extension-5.3.0-beta.1.tgz: bee252cae077f7714623b36194ba0d40d49878bc744e6f8b525e853a70d9c493
+jupyterlab-statedb-4.5.0-beta.1.tgz: 3f05e90a4ff390c2a8830c3454d4ab9cd1603c10f81160fd4de2a09be1d85d41
+jupyterlab-statusbar-4.5.0-beta.1.tgz: d02478645dd4f54938f288a39a2505f4b05e691ffd6de3f1c59e3a430abc8ff4
+jupyterlab-statusbar-extension-4.5.0-beta.1.tgz: c50ba691c0e62d476adf273e9a5513e6d968fe750a38799e6ea0f7e0423bb45d
+jupyterlab-template-4.5.0-beta.1.tgz: 6c1879082bcfc2b48d13e69ce64956d949b2a8e549c108410774b2535fda7517
+jupyterlab-terminal-4.5.0-beta.1.tgz: e7bbf5443ace14021481696ba8e482a0f3d69626b550a452a65562dbb6666d57
+jupyterlab-terminal-extension-4.5.0-beta.1.tgz: ca13c68c7854fdc50cfbd8a4140031c6f2f3ea13e145202fb6788dc014cf4181
+jupyterlab-testing-4.5.0-beta.1.tgz: e6e9872a9080021e49390ebca1b7bd2018d2a32ed5f625b8784fb9d3a9c25eac
+jupyterlab-testutils-4.5.0-beta.1.tgz: 68f62d226e86862643695da0bbba256748f916d5975dcba6ab50bdd538c1f135
+jupyterlab-theme-dark-extension-4.5.0-beta.1.tgz: 60483f3b55cf254ccc975f51279c648575871d4e0d7b289ad1c1af45d74c929d
+jupyterlab-theme-dark-high-contrast-extension-4.5.0-beta.1.tgz: c751c88538cc23a6380f83ddfc178218c7463fb0c4806fcbd2c2556fa4c42edd
+jupyterlab-theme-light-extension-4.5.0-beta.1.tgz: 6a60c6639964ad6f5c05dd3d7225cd245d4d51878def097209c36d5eecedd2b9
+jupyterlab-toc-6.5.0-beta.1.tgz: d1981a8465861a4364c4c64b074836049d35096a40a9d7a755fdb26dbf3ba41f
+jupyterlab-toc-extension-6.5.0-beta.1.tgz: 740eb635fa5b51b0d78cb2dd6ff89cb912a4ff4ad63f96e22ee37e635d3f039c
+jupyterlab-tooltip-4.5.0-beta.1.tgz: cbbead6c9c8c99f266ca0fac7a14a2e9c0008fac4fb44b5e0eaa1cfbf4da201e
+jupyterlab-tooltip-extension-4.5.0-beta.1.tgz: 56f0e05f92298f7334114ad8dd1f721e3e31aa4c9d274565dfa8e2b245629588
+jupyterlab-translation-4.5.0-beta.1.tgz: d85a1981c917fa11df7214b619a9235da16903be687b5146e3db0258223f2adc
+jupyterlab-translation-extension-4.5.0-beta.1.tgz: 1864f5d2ba32a7bf193deefa86aaf8fafdce5320249209ea50ac808944f7e9ed
+jupyterlab-ui-components-4.5.0-beta.1.tgz: 5027a859a8c5b24a927a18efb801d41e6909cc7bc7e4fa4ddbddad3165fa033b
+jupyterlab-ui-components-extension-4.5.0-beta.1.tgz: 6013468314115b122c40c9a5b5f0efd3a3eca9ea2f09eae31bc50a06be5f1bb6
+jupyterlab-vega5-extension-4.5.0-beta.1.tgz: 6a4611957c01a45167b6e6efc546c995c2d17a031d0a47aff871e985bf4bcfc6
+jupyterlab-video-extension-4.5.0-beta.1.tgz: 61ffe8fb9b68168ad755ec9f3712312463ce1229725b144b65bef04e08a4927e
+jupyterlab-workspaces-4.5.0-beta.1.tgz: b2608bba84e8c0486fa07498ffcfcc9b3bdd5c4ffac0499b0a0f169c72531bac
+jupyterlab-workspaces-extension-4.5.0-beta.1.tgz: 7fcb58936e64cb69f80e412df5db6d1f123c2807383b46f926f8f5840529ac6e",3793,3745,134
+d494a58d21ed42447e89ad318f1301593e22f121,Arjun Verma,arjxn.py@gmail.com,2025-10-16 18:08:45+00:00,"Show execution count in breakpoints, callstack, and sources panels while debugging in console (#18003)
+* Try to show cellindex on console while debugging
+* Automatic application of license header
+* rename
+* fix
+* callstack
+* sources panel
+* undo sources
+* Update expectation
+* Update Playwright Snapshots
+* Revert snapshot changes
+* Remove console log
+---------
+Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+Co-authored-by: Michał Krassowski <5832902+krassowski@users.noreply.github.com>",103,6,8
+0dac167e414bc73d389b0611212d5606e045f245,Vishnutheep B,vishnutheep@gmail.com,2025-10-16 17:27:17+00:00,"Fix highlighting search on output cells and previous match skips  (#17797)
+* Fix search on output cells
+* Fix match navigation logic in search provider
+* Update searchProvider.ts
+* Fix match navigation logic in search provider
+* update unit tests
+* Fix css on search output cells
+* Added tests to validate search functionality in cell outputs
+* Fixing codeQL error - regex",149,1,5
 4ed06b459df3f4c771305bb3d07f99eff4720c7b,Darshan Poudel,pranishpoudel10@gmail.com,2025-10-16 15:33:02+00:00,"Make DocumentManager dialogs customizable (#17961)
 * make-doc-manager-dialogs-customizable
 * add-doc-comment

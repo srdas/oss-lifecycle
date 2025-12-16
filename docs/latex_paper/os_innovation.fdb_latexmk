@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex os_innovation"] 1765844157 "os_innovation.aux" "os_innovation.bbl" "os_innovation" 1765844160 0
+["bibtex os_innovation"] 1765844938 "os_innovation.aux" "os_innovation.bbl" "os_innovation" 1765845003 0
   "./OpenSource.bib" 1765844138 54295 71951dc23f9e19b74a1d8ec3166006b6 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/chicago/chicago.bst" 1198629289 37416 2ae04276c51f11eda70770f4081293b7 ""
-  "os_innovation.aux" 1765844159 11024 aac8c785061b1c3fb2e1254ee1efcbec "pdflatex"
+  "os_innovation.aux" 1765845003 11024 a1bfe5088af59983b69ead4e72c252ee "pdflatex"
   (generated)
   "os_innovation.bbl"
   "os_innovation.blg"
   (rewritten before read)
-["pdflatex"] 1765844158 "/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation.tex" "os_innovation.pdf" "os_innovation" 1765844160 0
-  "/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation.tex" 1765844152 51051 9b080f07650e99ebed051850e02847bb ""
+["pdflatex"] 1765845001 "/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation.tex" "os_innovation.pdf" "os_innovation" 1765845003 0
+  "/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation.tex" 1765845001 51509 7d9c5723f3084634bd8b5670b0f0980b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -129,9 +129,9 @@
   "figures/pytorch-pytorch_compare_forecasts.png" 1765843979 81741 d72ac1df67d8684e9c585ac7448ee648 ""
   "figures/ray-project-ray_compare_forecasts.png" 1765843989 75399 8930f841bff3a229deddf0ca2aac363a ""
   "figures/tensorflow-tensorflow_compare_forecasts.png" 1765844000 88791 0f610b02b5cc1811400be5874a36f21a ""
-  "os_innovation.aux" 1765844159 11024 aac8c785061b1c3fb2e1254ee1efcbec "pdflatex"
-  "os_innovation.bbl" 1765844158 5868 6a973888efd7bf762810784700f67d64 "bibtex os_innovation"
-  "os_innovation.tex" 1765844152 51051 9b080f07650e99ebed051850e02847bb ""
+  "os_innovation.aux" 1765845003 11024 a1bfe5088af59983b69ead4e72c252ee "pdflatex"
+  "os_innovation.bbl" 1765844938 5868 6a973888efd7bf762810784700f67d64 "bibtex os_innovation"
+  "os_innovation.tex" 1765845001 51509 7d9c5723f3084634bd8b5670b0f0980b ""
   (generated)
   "os_innovation.aux"
   "os_innovation.log"

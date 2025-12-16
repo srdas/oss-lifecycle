@@ -124,11 +124,13 @@ This is a simple model where $L$ is modeled as an exponential growth process ind
 \section{An engagement model for the number of developers}
 \label{sec:dev_engagement}
 
-We model the number of developers engaging with an open-source project using the \cite{bass_new_1969} and \cite{bass_why_1994} models, which are used for product life cycles. This approach has so far not been applied to software project life cycles. The main idea of the model is that the engagement rate of a project comes from two sources: 
+We model the number of developers per month engaging with a project  using the \cite{bass_new_1969} and \cite{bass_why_1994} models, which are used for product life cycles. This approach has so far not been applied to software project life cycles. The main idea of the model is that the developer engagement rate per month of a project comes from two sources: 
 \begin{enumerate}
-\item The propensity of developers to work on the software project because it is apt for their use case or from other motivations, independent of the other contributors propensity to engage.
-\item The additional propensity to work on the software because others have adopted or engaged with the project. Hence, at some point in the life cycle of a good open-source software project, social contagion, i.e., the influence of the early contributors becomes sufficiently strong so as to drive many others to work on developing the software as well. This is a network effect.
+\item The propensity of developers to work on the software project in any month because it is apt for their use case or from other motivations, independent of the other contributors propensity to engage in any month.
+\item The additional propensity to work on the software in any month because others have adopted or engaged with the project. Hence, at some point in the life cycle of a good open-source software project, social contagion, i.e., the influence of the early contributors becomes sufficiently strong so as to drive many others to work on developing the software as well. This is a network effect.
 \end{enumerate}
+
+We note that this definition of engagement deviates from the original specification in product adaption models where adoption is assumed to happen just once in a person's lifetime, whereas in our model, we are more interested in modeling repeated engagement of any developer. Therefore, we define engagement (or re-engagement) propensity {\em per month} using the standard Bass model equation below.
 
 Once a project is underway and has seen some traction, engagement statistics may be used to develop a forecast of future engagement. A sketch of the model is presented here. 
 

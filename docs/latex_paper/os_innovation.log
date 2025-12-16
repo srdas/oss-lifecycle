@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  15 DEC 2025 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  15 DEC 2025 16:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -392,20 +392,20 @@ Missing character: There is no “ in font ptmr7t!
 <figures/pandas-dev-pandas_fit_contributors.png, id=36, 462.528pt x 346.896pt>
 File: figures/pandas-dev-pandas_fit_contributors.png Graphic file (type png)
 <use figures/pandas-dev-pandas_fit_contributors.png>
-Package pdftex.def Info: figures/pandas-dev-pandas_fit_contributors.png  used on input line 196.
+Package pdftex.def Info: figures/pandas-dev-pandas_fit_contributors.png  used on input line 198.
 (pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
 
-Overfull \hbox (2.39117pt too wide) in paragraph at lines 196--197
+Overfull \hbox (2.39117pt too wide) in paragraph at lines 198--199
  [][] 
  []
 
 <figures/pandas-dev-pandas_innovation_fit.png, id=38, 462.528pt x 346.896pt>
 File: figures/pandas-dev-pandas_innovation_fit.png Graphic file (type png)
 <use figures/pandas-dev-pandas_innovation_fit.png>
-Package pdftex.def Info: figures/pandas-dev-pandas_innovation_fit.png  used on input line 214.
+Package pdftex.def Info: figures/pandas-dev-pandas_innovation_fit.png  used on input line 216.
 (pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
 
-Overfull \hbox (2.39117pt too wide) in paragraph at lines 214--216
+Overfull \hbox (2.39117pt too wide) in paragraph at lines 216--218
  [][] 
  []
 
@@ -413,75 +413,78 @@ Overfull \hbox (2.39117pt too wide) in paragraph at lines 214--216
 <figures/pandas-dev-pandas_forecasts.png, id=45, 1321.93875pt x 434.62375pt>
 File: figures/pandas-dev-pandas_forecasts.png Graphic file (type png)
 <use figures/pandas-dev-pandas_forecasts.png>
-Package pdftex.def Info: figures/pandas-dev-pandas_forecasts.png  used on input line 250.
+Package pdftex.def Info: figures/pandas-dev-pandas_forecasts.png  used on input line 252.
 (pdftex.def)             Requested size: 502.34195pt x 165.15874pt.
 <figures/all_project_lifecycles.png, id=46, 1237.62375pt x 543.02875pt>
 File: figures/all_project_lifecycles.png Graphic file (type png)
 <use figures/all_project_lifecycles.png>
-Package pdftex.def Info: figures/all_project_lifecycles.png  used on input line 299.
+Package pdftex.def Info: figures/all_project_lifecycles.png  used on input line 301.
 (pdftex.def)             Requested size: 495.04074pt x 217.20764pt.
 <figures/dask-dask_compare_forecasts.png, id=47, 1084.05pt x 361.35pt>
 File: figures/dask-dask_compare_forecasts.png Graphic file (type png)
 <use figures/dask-dask_compare_forecasts.png>
-Package pdftex.def Info: figures/dask-dask_compare_forecasts.png  used on input line 308.
+Package pdftex.def Info: figures/dask-dask_compare_forecasts.png  used on input line 310.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/huggingface-transformers_compare_forecasts.png, id=48, 1084.05pt x 361.35pt>
 File: figures/huggingface-transformers_compare_forecasts.png Graphic file (type png)
 <use figures/huggingface-transformers_compare_forecasts.png>
-Package pdftex.def Info: figures/huggingface-transformers_compare_forecasts.png  used on input line 309.
+Package pdftex.def Info: figures/huggingface-transformers_compare_forecasts.png  used on input line 311.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/jupyterlab-jupyterlab_compare_forecasts.png, id=49, 1084.05pt x 361.35pt>
 File: figures/jupyterlab-jupyterlab_compare_forecasts.png Graphic file (type png)
 <use figures/jupyterlab-jupyterlab_compare_forecasts.png>
-Package pdftex.def Info: figures/jupyterlab-jupyterlab_compare_forecasts.png  used on input line 310.
+Package pdftex.def Info: figures/jupyterlab-jupyterlab_compare_forecasts.png  used on input line 312.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/kubernetes-kubernetes_compare_forecasts.png, id=50, 1084.05pt x 361.35pt>
 File: figures/kubernetes-kubernetes_compare_forecasts.png Graphic file (type png)
 <use figures/kubernetes-kubernetes_compare_forecasts.png>
-Package pdftex.def Info: figures/kubernetes-kubernetes_compare_forecasts.png  used on input line 311.
+Package pdftex.def Info: figures/kubernetes-kubernetes_compare_forecasts.png  used on input line 313.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/langchain-ai-langchain_compare_forecasts.png, id=51, 1084.05pt x 361.35pt>
 File: figures/langchain-ai-langchain_compare_forecasts.png Graphic file (type png)
 <use figures/langchain-ai-langchain_compare_forecasts.png>
-Package pdftex.def Info: figures/langchain-ai-langchain_compare_forecasts.png  used on input line 312.
+Package pdftex.def Info: figures/langchain-ai-langchain_compare_forecasts.png  used on input line 314.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 
 
-LaTeX Warning: Float too large for page by 3.92044pt on input line 314.
+LaTeX Warning: Float too large for page by 3.92044pt on input line 316.
 
 <figures/numpy-numpy_compare_forecasts.png, id=52, 1084.05pt x 361.35pt>
 File: figures/numpy-numpy_compare_forecasts.png Graphic file (type png)
 <use figures/numpy-numpy_compare_forecasts.png>
-Package pdftex.def Info: figures/numpy-numpy_compare_forecasts.png  used on input line 319.
+Package pdftex.def Info: figures/numpy-numpy_compare_forecasts.png  used on input line 321.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/pandas-dev-pandas_compare_forecasts.png, id=53, 1084.05pt x 361.35pt>
 File: figures/pandas-dev-pandas_compare_forecasts.png Graphic file (type png)
 <use figures/pandas-dev-pandas_compare_forecasts.png>
-Package pdftex.def Info: figures/pandas-dev-pandas_compare_forecasts.png  used on input line 320.
+Package pdftex.def Info: figures/pandas-dev-pandas_compare_forecasts.png  used on input line 322.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/pytorch-pytorch_compare_forecasts.png, id=54, 1084.05pt x 361.35pt>
 File: figures/pytorch-pytorch_compare_forecasts.png Graphic file (type png)
 <use figures/pytorch-pytorch_compare_forecasts.png>
-Package pdftex.def Info: figures/pytorch-pytorch_compare_forecasts.png  used on input line 321.
+Package pdftex.def Info: figures/pytorch-pytorch_compare_forecasts.png  used on input line 323.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/ray-project-ray_compare_forecasts.png, id=55, 1084.05pt x 361.35pt>
 File: figures/ray-project-ray_compare_forecasts.png Graphic file (type png)
 <use figures/ray-project-ray_compare_forecasts.png>
-Package pdftex.def Info: figures/ray-project-ray_compare_forecasts.png  used on input line 322.
+Package pdftex.def Info: figures/ray-project-ray_compare_forecasts.png  used on input line 324.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 <figures/tensorflow-tensorflow_compare_forecasts.png, id=56, 1084.05pt x 361.35pt>
 File: figures/tensorflow-tensorflow_compare_forecasts.png Graphic file (type png)
 <use figures/tensorflow-tensorflow_compare_forecasts.png>
-Package pdftex.def Info: figures/tensorflow-tensorflow_compare_forecasts.png  used on input line 323.
+Package pdftex.def Info: figures/tensorflow-tensorflow_compare_forecasts.png  used on input line 325.
 (pdftex.def)             Requested size: 379.42319pt x 126.4744pt.
 
-LaTeX Warning: Float too large for page by 3.92044pt on input line 325.
+LaTeX Warning: Float too large for page by 3.92044pt on input line 327.
 
-[5]
+
+Underfull \vbox (badness 2762) has occurred while \output is active []
+
+ [5]
 
 LaTeX Font Warning: Font shape `TS1/ptm/m/sc' undefined
 (Font)              using `TS1/ptm/m/n' instead
-(Font)              for symbol `textdollar' on input line 353.
+(Font)              for symbol `textdollar' on input line 355.
 
 [6 <./figures/pandas-dev-pandas_forecasts.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -490,20 +493,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/downloads_per_change.png, id=86, 787.94376pt x 586.19pt>
 File: figures/downloads_per_change.png Graphic file (type png)
 <use figures/downloads_per_change.png>
-Package pdftex.def Info: figures/downloads_per_change.png  used on input line 391.
+Package pdftex.def Info: figures/downloads_per_change.png  used on input line 393.
 (pdftex.def)             Requested size: 315.17192pt x 234.47185pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--429
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
 [][][]$\OT1/ptm/m/n/8 https : / / softwareengineering . stackexchange . com / questions / 40100 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--429
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
 [][][]$\OT1/ptm/m/n/8 https : / / stackover^^Mow . com / questions / 966800 /
  []
 
 
-Overfull \hbox (3.16576pt too wide) in paragraph at lines 429--429
+Overfull \hbox (3.16576pt too wide) in paragraph at lines 431--431
 \OT1/ptm/m/n/8 mythical-[]man-[]month-[]10-[]lines-[]per-[]developer-[]day-[]how-[]close-[]on-[]large-[]projects$| 
  []
 
@@ -521,7 +524,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11 <./figures/downloads_per_change.png>])
-Overfull \hbox (2.2469pt too wide) in alignment at lines 501--504
+Overfull \hbox (2.2469pt too wide) in alignment at lines 503--506
  [][][] []
  []
 
@@ -547,13 +550,13 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  5315 strings out of 476025
  86064 string characters out of 5790017
- 1888388 words of memory out of 5000000
+ 1887388 words of memory out of 5000000
  25672 multiletter control sequences out of 15000+600000
  556081 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,11n,62p,1632b,296s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on os_innovation.pdf (12 pages, 1623776 bytes).
+Output written on os_innovation.pdf (12 pages, 1624163 bytes).
 PDF statistics:
  198 PDF objects out of 1000 (max. 8388607)
  102 compressed objects within 2 object streams

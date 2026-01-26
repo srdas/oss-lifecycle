@@ -43,6 +43,26 @@ def fitBass(df, repo_string, do_plot=True):
     b0 = model.intercept_
     b1 = model.coef_[0]
     b2 = model.coef_[1]
+    
+    y_pred = model.predict(X)
+    residuals = y - y_pred
+    n = len(df)
+    k = 2
+    mse = np.sum(residuals**2) / (n - k - 1)
+    
+    X_with_intercept = np.column_stack([np.ones(n), X])
+    cov_matrix = mse * np.linalg.inv(X_with_intercept.T @ X_with_intercept)
+    
+    se_b0 = np.sqrt(cov_matrix[0, 0])
+    se_b1 = np.sqrt(cov_matrix[1, 1])
+    se_b2 = np.sqrt(cov_matrix[2, 2])
+    
+    r_squared = model.score(X, y)
+    
+    print(f"R² = {r_squared:.6f}")
+    print(f"b0 = {b0:.6f} ± {se_b0:.6f} | t-stat = {b0/se_b0:.4f}")
+    print(f"b1 = {b1:.6f} ± {se_b1:.6f} | t-stat = {b1/se_b1:.4f}")
+    print(f"b2 = {b2:.6e} ± {se_b2:.6e} | t-stat = {b2/se_b2:.4f}")
 
     m1 = (-b1 + np.sqrt(b1**2 - 4*b2*b0))/(2*b2)
     m2 = (-b1 - np.sqrt(b1**2 - 4*b2*b0))/(2*b2)

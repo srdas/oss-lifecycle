@@ -6,11 +6,31 @@ Code to collect all commits and related information for a list of repos
 import os
 
 repo_list = [
-             "langchain-ai/langchain-aws",
-             "jupyterlab/jupyter-ai",
-             "jupyter-server/jupyter-scheduler",
-            ]
+    "dask/dask",
+    "huggingface/transformers",
+    "ipython/ipython",
+    "jax-ml/jax",
+    "jupyter-server/jupyter-scheduler",
+    "jupyterlab/jupyter-ai",
+    "jupyterlab/jupyterlab",
+    "kubeflow/kubeflow",
+    "kubernetes/kubernetes",
+    "kubernetes-sigs/kueue",
+    "langchain-ai/langchain-aws",
+    "langchain-ai/langchain-google",
+    "langchain-ai/langchain",
+    "microsoft/DeepSpeed",
+    "mlflow/mlflow",
+    "numpy/numpy",
+    "pandas-dev/pandas",
+    "pytorch/pytorch",
+    "ray-project/ray",
+    "run-llama/llama_index",
+    "scikit-learn/scikit-learn",
+    "tensorflow/tensorflow",
+    "vllm-project/vllm",
+]
 
 for repo in repo_list:
-    os.system('python oss_lifecycle/github_gather.py ' + repo)
+    os.system('python -m oss_lifecycle.github_gather ' + repo)
     print(repo, '..Done')

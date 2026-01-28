@@ -3,6 +3,7 @@
 1. `model_forecasts.ipynb` : generates Tables I and III, Figures 4, 5, 6.
 2. `developer_stats.ipynb` : generates Table II and Figures 5, 6, 7. 
 3. `pypi_stats.ipynb` : generates Figure 8. 
+4. `quadratic_fit.ipynb` : generates Figure 1. 
 
 Other results:
 

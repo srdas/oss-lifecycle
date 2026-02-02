@@ -32,5 +32,7 @@ repo_list = [
 ]
 
 for repo in repo_list:
-    os.system('python -m oss_lifecycle.github_gather ' + repo)
+    print(f"Repo = {repo}")
+    # os.system('python -m oss_lifecycle.github_gather ' + repo)
+    os.system('python -m oss_lifecycle.github_gather_old ' + repo)
     print(repo, '..Done')

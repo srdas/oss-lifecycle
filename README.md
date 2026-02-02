@@ -26,7 +26,7 @@ python
 
 There are just three steps to use this package to analyze any GitHub repository:
 
-**Step 1**: Gather the commit history for any `<owner>/<repo>`, we will use `jupyterlab/jupyter-ai` as an example. This can take some time if the repo is very large. There are two versions `github_gather.py` which is a fast version but has some instability as it uses `grep` to extract the information and sometimes the commits contain difficult to parse content. However, it is a lot faster than the robust version titled `github_gather_old.py` that should be used for simple data gathering but it can take 50x times the run time. If you wish to use this older stable version then replace the `github_gather` in the CLI with `github_gather_old`. 
+**Step 1**: Gather the commit history for any `<owner>/<repo>`, we will use `jupyterlab/jupyter-ai` as an example. This can take some time if the repo is very large. There are two versions `github_gather.py` which is a fast version but has some instability as it uses `regex` to extract the information and sometimes the commits contain difficult to parse content. However, it is a lot faster than the robust version titled `github_gather_old.py` that should be used for simple data gathering but it can take 50x times the run time. If you wish to use this older stable version then replace the `github_gather` in the CLI with `github_gather_old`. 
 
 ```python
 from oss_lifecycle import github_gather

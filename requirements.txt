@@ -1,6 +1,6 @@
 flask
 flask-cors
-pandas
+pandas==2.2.3
 numpy
 matplotlib
 scikit-learn

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 from scipy.optimize import curve_fit, minimize
 from scipy.integrate import solve_ivp
-from fit_bass import bass, fitBass, forecastL
+from .fit_bass import bass, fitBass, forecastL
 
 
 def polyfit_innovation_timeseries(df, repo_string):

@@ -39,7 +39,7 @@ button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #218838;
 }
 
 .results-container {
@@ -80,7 +80,7 @@ button:hover {
     display: inline-block;
     margin: 10px 0;
     padding: 8px 15px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -88,7 +88,7 @@ button:hover {
 }
 
 .download-image-btn:hover {
-    background-color: #0056b3;
+    background-color: #218838;
 }
 
 .image-container {

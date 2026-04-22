@@ -1,0 +1,100 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Bals}{Bals}{2024}]{bals_2024_2024}
+Bals, F. (2024).
+\newblock 2024 {Open} {Source} {Security} and {Risk} {Analysis} {Report} ({OSSRA}) {\textbar} {Synopsys}.
+\newblock Technical report, Blackduck, Inc.
+
+\bibitem[\protect\citeauthoryear{Bass}{Bass}{1969}]{bass_new_1969}
+Bass, F.~M. (1969).
+\newblock A {New} {Product} {Growth} for {Model} {Consumer} {Durables}.
+\newblock {\em Management Science\/}~{\em 15\/}(5), 215--227.
+\newblock Publisher: INFORMS.
+
+\bibitem[\protect\citeauthoryear{Bass, Krishnan, and Jain}{Bass et~al.}{1994}]{bass_why_1994}
+Bass, F.~M., T.~V. Krishnan, and D.~C. Jain (1994).
+\newblock Why the {Bass} {Model} {Fits} without {Decision} {Variables}.
+\newblock {\em Marketing Science\/}~{\em 13\/}(3), 203--223.
+\newblock Publisher: INFORMS.
+
+\bibitem[\protect\citeauthoryear{Blind, Pätsch, Muto, Böhm, Schubert, Grzegorzewska, and Katz}{Blind et~al.}{2021}]{blind_impact_2021}
+Blind, K., S.~Pätsch, S.~Muto, M.~Böhm, T.~Schubert, P.~Grzegorzewska, and A.~Katz (2021).
+\newblock {\em The impact of open source software and hardware on technological independence, competitiveness and innovation in the {EU} economy: final study report}.
+\newblock Publications Office of the European Union.
+
+\bibitem[\protect\citeauthoryear{Blind and Schubert}{Blind and Schubert}{2024}]{blind_estimating_2024}
+Blind, K. and T.~Schubert (2024, April).
+\newblock Estimating the {GDP} effect of {Open} {Source}  {Software} and its complementarities with {R}\&{D} and patents: evidence and policy implications.
+\newblock {\em The Journal of Technology Transfer\/}~{\em 49\/}(2), 466--491.
+
+\bibitem[\protect\citeauthoryear{Champion and Hill}{Champion and Hill}{2021}]{champion_underproduction_2021}
+Champion, K. and B.~M. Hill (2021, March).
+\newblock Underproduction: {An} {Approach} for {Measuring} {Risk} in {Open} {Source} {Software}.
+\newblock In {\em 2021 {IEEE} {International} {Conference} on {Software} {Analysis}, {Evolution} and {Reengineering} ({SANER})}, pp.\  388--399.
+\newblock arXiv:2103.00352 [cs].
+
+\bibitem[\protect\citeauthoryear{Chesbrough}{Chesbrough}{2023}]{chesbrough_measuring_2023}
+Chesbrough, H. (2023, March).
+\newblock Measuring the {Economic} {Value} of {Open} {Source}: {A} {Survey} and a {Preliminary} {Analysis}.
+\newblock Technical report, The Linux Foundation.
+
+\bibitem[\protect\citeauthoryear{Dey, Fitzgerald, and Daniel}{Dey et~al.}{2024}]{dey_cross_2024}
+Dey, T., B.~Fitzgerald, and S.~Daniel (2024, September).
+\newblock {CROSS}: {A} {Contributor}-{Project} {Interaction} {Lifecycle} {Model} for {Open} {Source} {Software}.
+\newblock arXiv:2409.08267 [cs].
+
+\bibitem[\protect\citeauthoryear{Droesch, Karp, Sterman, and Kurzweil}{Droesch et~al.}{2020}]{droesch_measuring_2020}
+Droesch, M., A.~Karp, A.~Sterman, and E.~Kurzweil (2020, October).
+\newblock Measuring the engagement of an open source software community, https://www.bvp.com/atlas/measuring-the-engagement-of-an-open-source-software-community.
+
+\bibitem[\protect\citeauthoryear{Gaughan, Champion, and Hwang}{Gaughan et~al.}{2024}]{gaughan_engineering_2024}
+Gaughan, M., K.~Champion, and S.~Hwang (2024, April).
+\newblock Engineering {Formality} and {Software} {Risk} in {Debian} {Python} {Packages}.
+\newblock arXiv:2403.05728 [cs].
+
+\bibitem[\protect\citeauthoryear{Hoffmann, Nagle, and Zhou}{Hoffmann et~al.}{2024}]{hoffmann_value_2024}
+Hoffmann, M., F.~Nagle, and Y.~Zhou (2024).
+\newblock The {Value} of {Open} {Source} {Software}.
+\newblock {\em SSRN Electronic Journal\/}.
+
+\bibitem[\protect\citeauthoryear{Horowitz, Madachy, Reifer, Steece, and Clark}{Horowitz et~al.}{2001}]{horowitz_software_2001}
+Horowitz, E., R.~Madachy, D.~Reifer, B.~Steece, and B.~K. Clark (2001, January).
+\newblock {\em Software {Cost} {Estimation} {With} {Cocomo} {II}\/} (HAR/CDR edition, Editor: Barry W. Boehm ed.).
+\newblock Upper Saddle River, NJ: Prentice Hall.
+
+\bibitem[\protect\citeauthoryear{Peterson}{Peterson}{2018}]{peterson_how_2018}
+Peterson, C. (2018).
+\newblock How {I} coined the term 'open source' {\textbar} {Opensource}.com.
+
+\bibitem[\protect\citeauthoryear{Robbins, Korkmaz, Guci, Calderón, and Kramer}{Robbins et~al.}{2021}]{robbins_first_2021}
+Robbins, C.~A., G.~Korkmaz, L.~Guci, J.~B.~S. Calderón, and B.~L. Kramer (2021).
+\newblock A {First} {Look} at {Open} {Source} {Software} {Investment} in the {United} {States} and in {Other} {Countries}, 2009-2019.
+\newblock In {\em {IARIW}-{ESCoE} {Conference} “{Measuring} {Intangible} {Assets} and {Their} {Contribution} to {Growth}”}, London.
+
+\bibitem[\protect\citeauthoryear{Romer}{Romer}{1986}]{romer_increasing_1986}
+Romer, P.~M. (1986).
+\newblock Increasing {Returns} and {Long}-{Run} {Growth}.
+\newblock {\em Journal of Political Economy\/}~{\em 94\/}(5), 1002--1037.
+\newblock Publisher: University of Chicago Press.
+
+\bibitem[\protect\citeauthoryear{Romer}{Romer}{1990}]{romer_endogenous_1990}
+Romer, P.~M. (1990).
+\newblock Endogenous {Technological} {Change}.
+\newblock {\em Journal of Political Economy\/}~{\em 98\/}(5), S71--S102.
+\newblock Publisher: University of Chicago Press.
+
+\bibitem[\protect\citeauthoryear{Romer}{Romer}{1994}]{romer_origins_1994}
+Romer, P.~M. (1994).
+\newblock The {Origins} of {Endogenous} {Growth}.
+\newblock {\em The Journal of Economic Perspectives\/}~{\em 8\/}(1), 3--22.
+\newblock Publisher: American Economic Association.
+
+\bibitem[\protect\citeauthoryear{Wladawsky-Berger}{Wladawsky-Berger}{2022}]{wladawsky-berger_impact_2022}
+Wladawsky-Berger, I. (2022, March).
+\newblock The {Impact} of {Open} {Source} on the {EU} {Economy}.
+
+\bibitem[\protect\citeauthoryear{Wladawsky-Berger}{Wladawsky-Berger}{2024}]{wladawsky-berger_whats_2024}
+Wladawsky-Berger, I. (2024, April).
+\newblock What’s the {Value} of {Open} {Source} {Software} {Based} on {Actual} {Usage} {Data}?
+
+\end{thebibliography}

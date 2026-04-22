@@ -1,0 +1,559 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  22 APR 2026 12:57
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation_2026.tex
+(/Users/sanjivda/GitHub/oss-lifecycle/docs/latex_paper/os_innovation_2026.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-22> (./IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen140
+\@IEEEtrantmpdimenB=\dimen141
+\@IEEEtrantmpdimenC=\dimen142
+\@IEEEtrantmpcountA=\count185
+\@IEEEtrantmpcountB=\count186
+\@IEEEtrantmpcountC=\count187
+\@IEEEtrantmptoksA=\toks16
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 503.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+\@IEEEnormalsizeunitybaselineskip=\dimen143
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen144
+\CLASSINFOnormalsizeunitybaselineskip=\dimen145
+\IEEEnormaljot=\dimen146
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+\IEEEquantizedlength=\dimen147
+\IEEEquantizedlengthdiff=\dimen148
+\IEEEquantizedtextheightdiff=\dimen149
+\IEEEilabelindentA=\dimen150
+\IEEEilabelindentB=\dimen151
+\IEEEilabelindent=\dimen152
+\IEEEelabelindent=\dimen153
+\IEEEdlabelindent=\dimen154
+\IEEElabelindent=\dimen155
+\IEEEiednormlabelsep=\dimen156
+\IEEEiedmathlabelsep=\dimen157
+\IEEEiedtopsep=\skip48
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@IEEEsubequation=\count192
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\c@figure=\count193
+\c@table=\count194
+\@IEEEeqnnumcols=\count195
+\@IEEEeqncolcnt=\count196
+\@IEEEsubeqnnumrollback=\count197
+\@IEEEquantizeheightA=\dimen158
+\@IEEEquantizeheightB=\dimen159
+\@IEEEquantizeheightC=\dimen160
+\@IEEEquantizeprevdepth=\dimen161
+\@IEEEquantizemultiple=\count198
+\@IEEEquantizeboxA=\box51
+\@IEEEtmpitemindent=\dimen162
+\IEEEPARstartletwidth=\dimen163
+\c@IEEEbiography=\count199
+\@IEEEtranrubishbin=\box52
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2022/04/08 v2.17n AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen164
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen165
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count266
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count267
+\leftroot@=\count268
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count269
+\DOTSCASE@=\count270
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen166
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count271
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count272
+\dotsspace@=\muskip16
+\c@parentequation=\count273
+\dspbrk@lvl=\count274
+\tag@help=\toks18
+\row@=\count275
+\column@=\count276
+\maxfields@=\count277
+\andhelp@=\toks19
+\eqnshift@=\dimen167
+\alignsep@=\dimen168
+\tagshift@=\dimen169
+\tagwidth@=\dimen170
+\totwidth@=\dimen171
+\lineht@=\dimen172
+\@envbody=\toks20
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+\c@ALC@unique=\count278
+\c@ALC@line=\count279
+\c@ALC@rem=\count280
+\c@ALC@depth=\count281
+\ALC@tlm=\skip54
+\algorithmicindent=\skip55
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count282
+\float@exts=\toks23
+\float@box=\box55
+\@float@everytoks=\toks24
+\@floatcapt=\box56
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip56
+\bibsep=\skip57
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count283
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen175
+\lightrulewidth=\dimen176
+\cmidrulewidth=\dimen177
+\belowrulesep=\dimen178
+\belowbottomsep=\dimen179
+\aboverulesep=\dimen180
+\abovetopsep=\dimen181
+\cmidrulesep=\dimen182
+\cmidrulekern=\dimen183
+\defaultaddspace=\dimen184
+\@cmidla=\count284
+\@cmidlb=\count285
+\@aboverulesep=\dimen185
+\@belowrulesep=\dimen186
+\@thisruleclass=\count286
+\@lastruleclass=\count287
+\@thisrulewidth=\dimen187
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/mdwtools/mdwtab.sty
+Package: mdwtab 1998/04/28 1.9 Table typesetting with style
+\tab@state=\count288
+\tab@columns=\count289
+\tab@preamble=\toks25
+\tab@shortline=\toks26
+\extrarowheight=\dimen188
+\tabextrasep=\dimen189
+\arrayextrasep=\dimen190
+\smarraycolsep=\dimen191
+\smarrayextrasep=\dimen192
+\tab@width=\dimen193
+\col@sep=\dimen194
+\tab@endheight=\dimen195
+\tab@leftskip=\skip58
+\tab@rightskip=\skip59
+\fn@notes=\box57
+\fn@width=\dimen196
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip60
+\multirow@cntb=\count290
+\multirow@dima=\skip61
+\bigstrutjot=\dimen197
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count291
+\l__pdf_internal_box=\box58
+) (./os_innovation_2026.aux
+
+LaTeX Warning: Label `dotL' multiply defined.
+
+
+LaTeX Warning: Label `Lsol' multiply defined.
+
+
+LaTeX Warning: Label `Asol' multiply defined.
+
+)
+\openout1 = `os_innovation_2026.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+
+-- Lines per column: 56 (exact).
+(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count292
+\scratchdimen=\dimen198
+\scratchbox=\box59
+\nofMPsegments=\count293
+\nofMParguments=\count294
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count295
+\MPscratchDim=\dimen199
+\MPnumerator=\count296
+\makeMPintoPDFobject=\count297
+\everyMPtoPDFconversion=\toks28
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 65.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 65.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 65.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[][][]$\OT1/ptm/m/n/8 https : / / www . prnewswire . com / news-[]releases /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\OT1/ptm/m/n/8 linux-[]foundation-[]research-[]shows-[]economic-[]value-[]of-[]open-[]source-[]software \OMS/cmsy/m/n/8 n
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 67.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+<figures/pandas_A_t.png, id=1, 363.5181pt x 271.7352pt>
+File: figures/pandas_A_t.png Graphic file (type png)
+<use figures/pandas_A_t.png>
+Package pdftex.def Info: figures/pandas_A_t.png  used on input line 71.
+(pdftex.def)             Requested size: 236.28397pt x 176.62576pt.
+<figures/pandas_L_t.png, id=3, 376.5267pt x 271.7352pt>
+File: figures/pandas_L_t.png Graphic file (type png)
+<use figures/pandas_L_t.png>
+Package pdftex.def Info: figures/pandas_L_t.png  used on input line 72.
+(pdftex.def)             Requested size: 244.73944pt x 176.62576pt.
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 73.
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 73.
+
+Missing character: There is no ² in font cmr9!
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 73.
+
+
+LaTeX Warning: Command \texttwosuperior invalid in math mode on input line 73.
+
+Missing character: There is no ² in font cmr9!
+[1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]
+Underfull \vbox (badness 1072) has occurred while \output is active []
+
+
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no “ in font ptmr7t!
+[2 <./figures/pandas_A_t.png> <./figures/pandas_L_t.png>] [3]
+<figures/pandas-dev-pandas_fit_contributors.png, id=40, 398.9304pt x 328.8285pt>
+File: figures/pandas-dev-pandas_fit_contributors.png Graphic file (type png)
+<use figures/pandas-dev-pandas_fit_contributors.png>
+Package pdftex.def Info: figures/pandas-dev-pandas_fit_contributors.png  used on input line 211.
+(pdftex.def)             Requested size: 239.36008pt x 197.29861pt.
+ [4 <./figures/pandas-dev-pandas_fit_contributors.png>]
+<figures/pandas-dev-pandas_innovation_fit.png, id=45, 462.528pt x 346.896pt>
+File: figures/pandas-dev-pandas_innovation_fit.png Graphic file (type png)
+<use figures/pandas-dev-pandas_innovation_fit.png>
+Package pdftex.def Info: figures/pandas-dev-pandas_innovation_fit.png  used on input line 229.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+
+Overfull \hbox (25.51894pt too wide) in paragraph at lines 229--231
+ [][] 
+ []
+
+<figures/pandas-dev-pandas_forecasts.png, id=46, 1075.3776pt x 354.123pt>
+File: figures/pandas-dev-pandas_forecasts.png Graphic file (type png)
+<use figures/pandas-dev-pandas_forecasts.png>
+Package pdftex.def Info: figures/pandas-dev-pandas_forecasts.png  used on input line 265.
+(pdftex.def)             Requested size: 483.91545pt x 159.35387pt.
+<figures/all_project_lifecycles.png, id=47, 894.7026pt x 395.3169pt>
+File: figures/all_project_lifecycles.png Graphic file (type png)
+<use figures/all_project_lifecycles.png>
+Package pdftex.def Info: figures/all_project_lifecycles.png  used on input line 317.
+(pdftex.def)             Requested size: 501.03004pt x 221.37595pt.
+<figures/all_project_lifecycles_normalized.png, id=48, 891.0891pt x 395.3169pt>
+File: figures/all_project_lifecycles_normalized.png Graphic file (type png)
+<use figures/all_project_lifecycles_normalized.png>
+Package pdftex.def Info: figures/all_project_lifecycles_normalized.png  used on input line 318.
+(pdftex.def)             Requested size: 499.0065pt x 221.37595pt.
+<figures/dask-dask_compare_forecasts.png, id=49, 1076.823pt x 354.123pt>
+File: figures/dask-dask_compare_forecasts.png Graphic file (type png)
+<use figures/dask-dask_compare_forecasts.png>
+Package pdftex.def Info: figures/dask-dask_compare_forecasts.png  used on input line 327.
+(pdftex.def)             Requested size: 376.89369pt x 123.9449pt.
+<figures/huggingface-transformers_compare_forecasts.png, id=50, 1076.1003pt x 342.5598pt>
+File: figures/huggingface-transformers_compare_forecasts.png Graphic file (type png)
+<use figures/huggingface-transformers_compare_forecasts.png>
+Package pdftex.def Info: figures/huggingface-transformers_compare_forecasts.png  used on input line 328.
+(pdftex.def)             Requested size: 376.64075pt x 119.89772pt.
+<figures/jupyterlab-jupyterlab_compare_forecasts.png, id=51, 1076.1003pt x 354.123pt>
+File: figures/jupyterlab-jupyterlab_compare_forecasts.png Graphic file (type png)
+<use figures/jupyterlab-jupyterlab_compare_forecasts.png>
+Package pdftex.def Info: figures/jupyterlab-jupyterlab_compare_forecasts.png  used on input line 329.
+(pdftex.def)             Requested size: 376.64075pt x 123.9449pt.
+<figures/kubernetes-kubernetes_compare_forecasts.png, id=52, 1076.1003pt x 342.5598pt>
+File: figures/kubernetes-kubernetes_compare_forecasts.png Graphic file (type png)
+<use figures/kubernetes-kubernetes_compare_forecasts.png>
+Package pdftex.def Info: figures/kubernetes-kubernetes_compare_forecasts.png  used on input line 330.
+(pdftex.def)             Requested size: 376.64075pt x 119.89772pt.
+<figures/langchain-ai-langchain_compare_forecasts.png, id=53, 1076.1003pt x 342.5598pt>
+File: figures/langchain-ai-langchain_compare_forecasts.png Graphic file (type png)
+<use figures/langchain-ai-langchain_compare_forecasts.png>
+Package pdftex.def Info: figures/langchain-ai-langchain_compare_forecasts.png  used on input line 331.
+(pdftex.def)             Requested size: 376.64075pt x 119.89772pt.
+<figures/microsoft-DeepSpeed_compare_forecasts.png, id=54, 1076.1003pt x 354.123pt>
+File: figures/microsoft-DeepSpeed_compare_forecasts.png Graphic file (type png)
+<use figures/microsoft-DeepSpeed_compare_forecasts.png>
+Package pdftex.def Info: figures/microsoft-DeepSpeed_compare_forecasts.png  used on input line 338.
+(pdftex.def)             Requested size: 376.64075pt x 123.9449pt.
+<figures/numpy-numpy_compare_forecasts.png, id=55, 1075.3776pt x 354.123pt>
+File: figures/numpy-numpy_compare_forecasts.png Graphic file (type png)
+<use figures/numpy-numpy_compare_forecasts.png>
+Package pdftex.def Info: figures/numpy-numpy_compare_forecasts.png  used on input line 339.
+(pdftex.def)             Requested size: 376.3878pt x 123.9449pt.
+<figures/pandas-dev-pandas_compare_forecasts.png, id=56, 1076.823pt x 354.123pt>
+File: figures/pandas-dev-pandas_compare_forecasts.png Graphic file (type png)
+<use figures/pandas-dev-pandas_compare_forecasts.png>
+Package pdftex.def Info: figures/pandas-dev-pandas_compare_forecasts.png  used on input line 340.
+(pdftex.def)             Requested size: 376.89369pt x 123.9449pt.
+<figures/pytorch-pytorch_compare_forecasts.png, id=57, 1075.3776pt x 354.123pt>
+File: figures/pytorch-pytorch_compare_forecasts.png Graphic file (type png)
+<use figures/pytorch-pytorch_compare_forecasts.png>
+Package pdftex.def Info: figures/pytorch-pytorch_compare_forecasts.png  used on input line 341.
+(pdftex.def)             Requested size: 376.3878pt x 123.9449pt.
+<figures/vllm-project-vllm_compare_forecasts.png, id=58, 1076.1003pt x 354.123pt>
+File: figures/vllm-project-vllm_compare_forecasts.png Graphic file (type png)
+<use figures/vllm-project-vllm_compare_forecasts.png>
+Package pdftex.def Info: figures/vllm-project-vllm_compare_forecasts.png  used on input line 342.
+(pdftex.def)             Requested size: 376.64075pt x 123.9449pt.
+[5 <./figures/pandas-dev-pandas_innovation_fit.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./figures/pandas-dev-pandas_forecasts.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./figures/all_project_lifecycles.png> <./figures/all_project_lifecycles_normalized.png>] [8 <./figures/dask-dask_compare_forecasts.png> <./figures/huggingface-transformers_compare_forecasts.png> <./figures/jupyterlab-jupyterlab_compare_forecasts.png> <./figures/kubernetes-kubernetes_compare_forecasts.png> <./figures/langchain-ai-langchain_compare_forecasts.png>] [9 <./figures/microsoft-DeepSpeed_compare_forecasts.png> <./figures/numpy-numpy_compare_forecasts.png> <./figures/pandas-dev-pandas_compare_forecasts.png> <./figures/pytorch-pytorch_compare_forecasts.png> <./figures/vllm-project-vllm_compare_forecasts.png>]
+
+LaTeX Font Warning: Font shape `TS1/ptm/m/sc' undefined
+(Font)              using `TS1/ptm/m/n' instead
+(Font)              for symbol `textdollar' on input line 372.
+
+<figures/downloads_per_change.png, id=90, 571.6557pt x 426.393pt>
+File: figures/downloads_per_change.png Graphic file (type png)
+<use figures/downloads_per_change.png>
+Package pdftex.def Info: figures/downloads_per_change.png  used on input line 410.
+(pdftex.def)             Requested size: 400.15625pt x 298.47305pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+[][][]$\OT1/ptm/m/n/8 https : / / softwareengineering . stackexchange . com / questions / 40100 /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+[][][]$\OT1/ptm/m/n/8 https : / / stackover^^Mow . com / questions / 966800 /
+ []
+
+
+Overfull \hbox (3.16576pt too wide) in paragraph at lines 448--448
+\OT1/ptm/m/n/8 mythical-[]man-[]month-[]10-[]lines-[]per-[]developer-[]day-[]how-[]close-[]on-[]large-[]projects$| 
+ []
+
+[10] [11 <./figures/downloads_per_change.png>] (./os_innovation_2026.bbl
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 5.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
+ [12])
+Overfull \hbox (2.2469pt too wide) in alignment at lines 521--524
+ [][][] []
+ []
+
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[13] (./os_innovation_2026.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5324 strings out of 476025
+ 86510 string characters out of 5790017
+ 1887388 words of memory out of 5000000
+ 25680 multiletter control sequences out of 15000+600000
+ 556081 words of font info for 120 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,11n,62p,1637b,289s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on os_innovation_2026.pdf (13 pages, 1451798 bytes).
+PDF statistics:
+ 206 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+

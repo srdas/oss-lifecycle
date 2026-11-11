@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSS Life Cycle & Endogenous Growth Simulator</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for responsive analytics plotting -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering paper equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        amberAccent: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #0284c7;
+            color: #0284c7;
+            font-weight: 600;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-brand-600 text-white p-2 rounded-lg shadow">
+                        <i class="fa-solid me-0.5 fa-code-branch text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight text-slate-900 dark:text-white">OSS Project Life Cycles</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Interactive Modeling based on Das et al. (AWS AI/ML)</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button id="themeToggle" class="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700">
+                        <i class="fa-solid fa-moon text-lg" id="themeIcon"></i>
+                    </button>
+                    <a href="#paper-summary" onclick="switchTab('summary')" class="hidden sm:flex items-center space-x-1 text-xs bg-brand-50 text-brand-700 dark:bg-slate-700 dark:text-brand-100 px-3 py-2 rounded-lg font-medium hover:bg-brand-100 transition">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Read Abstract</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-nav Tabs -->
+        <div class="bg-slate-100 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto flex space-x-6 overflow-x-auto text-sm font-medium">
+                <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn py-3 px-1 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white whitespace-nowrap active">
+                    <i class="fa-solid fa-sliders mr-2"></i>Interactive Model Engine
+                </button>
+                <button onclick="switchTab('dataset')" id="tab-dataset" class="tab-btn py-3 px-1 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-chart-line mr-2"></i>Empirical OSS Benchmark (10 Projects)
+                </button>
+                <button onclick="switchTab('valuation')" id="tab-valuation" class="tab-btn py-3 px-1 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-calculator mr-2"></i>Supply vs Demand Valuation
+                </button>
+                <button onclick="switchTab('summary')" id="tab-summary" class="tab-btn py-3 px-1 text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white whitespace-nowrap">
+                    <i class="fa-solid fa-book-open mr-2"></i>Theoretical Framework
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: INTERACTIVE SIMULATOR -->
+        <div id="view-simulator" class="tab-content space-y-6">
+            <!-- Top Description -->
+            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>Dual ODE Life Cycle & Endogenous Growth Simulator</span>
+                        </h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                            Simulate how developer engagement \(L(t)\) follows the Bass Diffusion S-curve and interacts with cumulative code growth \(A(t)\) via Cobb-Douglas production: 
+                            <span class="font-mono text-xs bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded ml-1">\(\dot{A} = \gamma L^\lambda A^\phi\)</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Presets:</label>
+                        <select id="presetSelect" onchange="loadPreset(this.value)" class="bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 text-xs rounded-lg p-2 font-medium focus:ring-brand-500">
+                            <option value="pandas">Pandas (Data Science)</option>
+                            <option value="pytorch">PyTorch (Deep Learning)</option>
+                            <option value="transformers">HuggingFace Transformers</option>
+                            <option value="kubernetes">Kubernetes (Infrastructure)</option>
+                            <option value="langchain">LangChain (AI Agents)</option>
+                            <option value="custom">Custom Parameters</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Layout: Controls & Plot -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Control Panel -->
+                <div class="lg:col-span-4 bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-6">
+                    <div>
+                        <h3 class="text-sm font-bold text-brand-600 dark:text-brand-500 uppercase tracking-wider mb-3 flex items-center justify-between">
+                            <span>1. Developer Engagement (Bass Model)</span>
+                            <i class="fa-solid fa-users text-slate-400"></i>
+                        </h3>
+                        
+                        <!-- Control: p -->
+                        <div class="space-y-1 mb-4">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300" title="Independent propensity to contribute">Propensity \(p\) (Innovation):</span>
+                                <span id="val-p" class="font-mono text-brand-600 dark:text-brand-500 font-bold">0.00078</span>
+                            </div>
+                            <input type="range" id="param-p" min="0.0001" max="0.01" step="0.0001" value="0.00078" oninput="updateSim()" class="w-full accent-brand-600">
+                            <p class="text-[11px] text-slate-400">Spontaneous developer interest independent of others.</p>
+                        </div>
+
+                        <!-- Control: q -->
+                        <div class="space-y-1 mb-4">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300" title="Network contagion effect">Contagion \(q\) (Imitation/Network):</span>
+                                <span id="val-q" class="font-mono text-brand-600 dark:text-brand-500 font-bold">0.02833</span>
+                            </div>
+                            <input type="range" id="param-q" min="0.005" max="0.2" step="0.001" value="0.02833" oninput="updateSim()" class="w-full accent-brand-600">
+                            <p class="text-[11px] text-slate-400">Social proof & ecosystem adoption attraction.</p>
+                        </div>
+
+                        <!-- Control: m -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Lifetime Dev-Months (\(m\)):</span>
+                                <span id="val-m" class="font-mono text-brand-600 dark:text-brand-500 font-bold">9085</span>
+                            </div>
+                            <input type="range" id="param-m" min="500" max="30000" step="250" value="9085" oninput="updateSim()" class="w-full accent-brand-600">
+                            <p class="text-[11px] text-slate-400">Total expected cumulative contributor months.</p>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-200 dark:border-slate-700">
+
+                    <div>
+                        <h3 class="text-sm font-bold text-amberAccent uppercase tracking-wider mb-3 flex items-center justify-between">
+                            <span>2. Code Production (Romer Endogenous)</span>
+                            <i class="fa-solid fa-code text-slate-400"></i>
+                        </h3>
+
+                        <!-- Control: Gamma -->
+                        <div class="space-y-1 mb-4">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Efficiency Constant (\(\gamma\)):</span>
+                                <span id="val-gamma" class="font-mono text-amber-600 font-bold">1.4e6</span>
+                            </div>
+                            <input type="range" id="param-gamma" min="100" max="5000000" step="1000" value="1433331" oninput="updateSim()" class="w-full accent-amber-500">
+                            <p class="text-[11px] text-slate-400">Baseline technology production rate.</p>
+                        </div>
+
+                        <!-- Control: Lambda -->
+                        <div class="space-y-1 mb-4">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Dev Elasticity (\(\lambda\)):</span>
+                                <span id="val-lambda" class="font-mono text-amber-600 font-bold">1.707</span>
+                            </div>
+                            <input type="range" id="param-lambda" min="-0.5" max="3.0" step="0.05" value="1.707" oninput="updateSim()" class="w-full accent-amber-500">
+                            <p class="text-[11px] text-slate-400">\(\lambda > 1\): Increasing returns to dev team size.</p>
+                        </div>
+
+                        <!-- Control: Phi -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs">
+                                <span class="font-medium text-slate-700 dark:text-slate-300">Spillover Elasticity (\(\phi\)):</span>
+                                <span id="val-phi" class="font-mono text-amber-600 font-bold">-0.977</span>
+                            </div>
+                            <input type="range" id="param-phi" min="-1.5" max="0.8" step="0.01" value="-0.977" oninput="updateSim()" class="w-full accent-amber-500">
+                            <p class="text-[11px] text-slate-400">\(\phi < 0\): Code base saturation ("Fishing out").</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="resetParams()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-semibold rounded-lg transition">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Reset Default Parameters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simulation Displays -->
+                <div class="lg:col-span-8 space-y-6">
+                    <!-- Key Computed Metrics Banner -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Peak Dev Activity</span>
+                            <div id="stat-peak-dev" class="text-xl font-bold text-slate-900 dark:text-white mt-1">--</div>
+                            <span id="stat-peak-month" class="text-[11px] text-brand-600">at month --</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Time to Maturation</span>
+                            <div id="stat-maturation" class="text-xl font-bold text-slate-900 dark:text-white mt-1">--</div>
+                            <span class="text-[11px] text-slate-400">(\(L < 0.5\) dev/mo)</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Lifetime Innovation \(A(T)\)</span>
+                            <div id="stat-lifetime-code" class="text-xl font-bold text-amber-600 mt-1">--</div>
+                            <span class="text-[11px] text-slate-400">Million Lines Code</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Scale Elasticity (\(\lambda+\phi\))</span>
+                            <div id="stat-returns" class="text-xl font-bold text-slate-900 dark:text-white mt-1">--</div>
+                            <span id="stat-returns-lbl" class="text-[11px] font-medium text-emerald-600">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Chart 1: Developer Activity & Growth over Time -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-chart-area text-brand-600"></i>
+                                Developer Activity \(L(t)\) & Cumulative Code Changes \(A(t)\)
+                            </h3>
+                            <span class="text-xs bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-1 rounded">Time Horizon: 400 Months</span>
+                        </div>
+                        <div class="relative h-72">
+                            <canvas id="timeSeriesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Phase Diagram L vs A -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-arrows-spin text-purple-600"></i>
+                                    Phase Space Diagram: Developer Trajectory \(L\) vs Innovation Level \(A\)
+                                </h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Illustrates flywheel phase acceleration and eventual maturation drift.</p>
+                            </div>
+                        </div>
+                        <div class="relative h-60">
+                            <canvas id="phaseChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: EMPIRICAL DATASET (PAPER DATA) -->
+        <div id="view-dataset" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Cross-Sectional Empirical Project Calibrations</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300">
+                    Data compiled directly from GitHub commit logs across flagship open-source libraries (Table II & III in paper).
+                </p>
+            </div>
+
+            <!-- Table of Projects -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white">Empirical OSS Parameters & Forecast Lifetime</h3>
+                    <span class="text-xs text-slate-500">Calibrated via GitHub commit histories</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="p-3">Project</th>
+                                <th class="p-3">Inception</th>
+                                <th class="p-3">Bass \(p\)</th>
+                                <th class="p-3">Bass \(q\)</th>
+                                <th class="p-3">Dev Elasticity \(\lambda\)</th>
+                                <th class="p-3">Spillover \(\phi\)</th>
+                                <th class="p-3">Lifetime \(m\) (Dev-Mo)</th>
+                                <th class="p-3">Cur Life (Mo)</th>
+                                <th class="p-3">Est. Rem Life (Yrs)</th>
+                                <th class="p-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="project-table-body" class="divide-y divide-slate-200 dark:divide-slate-700">
+                            <!-- Populated via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Download to Effort Efficiency Bar Chart -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-download text-emerald-500"></i>
+                        6-Month PyPi Downloads / Lines Changed Ratio
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">Measures user community impact per developer code edit.</p>
+                    <div class="relative h-72">
+                        <canvas id="downloadRatioChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-hourglass-half text-brand-600"></i>
+                        Expected Total Project Lifespan (Months)
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">Comparing current project age vs predicted total lifespan till steady state.</p>
+                    <div class="relative h-72">
+                        <canvas id="lifespanChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: VALUATION CALCULATOR -->
+        <div id="view-valuation" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white">Supply-Side vs. Demand-Side Valuation Engine</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                    Calculate production cost value (supply-side labor investment) vs user economic value (demand-side utility) for any open-source codebase based on the paper's theoretical framework.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Valuation Parameter Inputs -->
+                <div class="lg:col-span-5 bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-5">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-2">
+                        Economic Valuation Parameters
+                    </h3>
+
+                    <!-- Select target project -->
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-700 dark:text-slate-300">Select Project Template:</label>
+                        <select id="valProjectSelect" onchange="loadValuationProject(this.value)" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 text-xs rounded-lg p-2.5 font-medium">
+                            <option value="pandas">Pandas</option>
+                            <option value="pytorch">PyTorch</option>
+                            <option value="transformers">HuggingFace Transformers</option>
+                            <option value="kubernetes">Kubernetes</option>
+                            <option value="numpy">NumPy</option>
+                            <option value="dask">Dask</option>
+                        </select>
+                    </div>
+
+                    <!-- Supply side controls -->
+                    <div class="bg-slate-50 dark:bg-slate-700/40 p-4 rounded-lg space-y-3">
+                        <h4 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wide">Supply-Side Assumptions</h4>
+                        
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span>Monthly Developer Cost ($):</span>
+                                <span id="lbl-dev-cost" class="font-mono font-bold">$10,000</span>
+                            </div>
+                            <input type="range" id="val-dev-cost" min="3000" max="25000" step="500" value="10000" oninput="calculateValuation()" class="w-full accent-brand-600">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span>Time Dedicated to Project (%):</span>
+                                <span id="lbl-time-pct" class="font-mono font-bold">50%</span>
+                            </div>
+                            <input type="range" id="val-time-pct" min="10" max="100" step="5" value="50" oninput="calculateValuation()" class="w-full accent-brand-600">
+                        </div>
+                    </div>
+
+                    <!-- Demand side controls -->
+                    <div class="bg-slate-50 dark:bg-slate-700/40 p-4 rounded-lg space-y-3">
+                        <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Demand-Side Assumptions</h4>
+                        
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span>Imputed Economic Value / Download:</span>
+                                <span id="lbl-dl-value" class="font-mono font-bold">$0.05</span>
+                            </div>
+                            <input type="range" id="val-dl-value" min="0.001" max="0.50" step="0.005" value="0.05" oninput="calculateValuation()" class="w-full accent-emerald-500">
+                            <p class="text-[11px] text-slate-400 mt-0.5">Value delivered to end users per package download.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Valuation Results Output -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Current Supply Side Card -->
+                        <div class="bg-gradient-to-br from-brand-50 to-white dark:from-slate-800 dark:to-slate-800/80 p-5 rounded-xl border border-brand-200 dark:border-slate-700 shadow-sm">
+                            <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase">Current Supply-Side Value</div>
+                            <div id="out-supply-curr" class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">$38.53M</div>
+                            <p class="text-xs text-slate-500 mt-1">Based on historical developer effort invested to date.</p>
+                        </div>
+
+                        <!-- Lifetime Supply Side Card -->
+                        <div class="bg-gradient-to-br from-blue-50 to-white dark:from-slate-800 dark:to-slate-800/80 p-5 rounded-xl border border-blue-200 dark:border-slate-700 shadow-sm">
+                            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase">Lifetime Maturation Supply Value</div>
+                            <div id="out-supply-life" class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">$39.93M</div>
+                            <p class="text-xs text-slate-500 mt-1">Total projected builder cost at project steady-state.</p>
+                        </div>
+                    </div>
+
+                    <!-- Demand Side Projection Card -->
+                    <div class="bg-gradient-to-br from-emerald-50 to-white dark:from-slate-800 dark:to-slate-800/80 p-5 rounded-xl border border-emerald-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase">Estimated Lifetime Demand-Side Value</div>
+                                <div id="out-demand-life" class="text-4xl font-black text-emerald-700 dark:text-emerald-400 mt-2">$22.9 Billion</div>
+                            </div>
+                            <span class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-200 text-xs px-2.5 py-1 rounded-full font-bold">
+                                Demand vs Supply Ratio: ~570x
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 mt-3">
+                            Estimated from projected lifetime package downloads (<span id="out-est-downloads" class="font-semibold">458 Billion</span> downloads) multiplied by imputed download utility. Consistent with findings in Hoffmann et al. (2024) showing demand-side value often exceeds supply-side costs by 100x–2000x!
+                        </p>
+                    </div>
+
+                    <!-- Paper Insights Callout -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs leading-relaxed space-y-2">
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            Key Insight on Open Source Economic Asymmetry
+                        </h4>
+                        <p class="text-slate-600 dark:text-slate-300">
+                            Because open-source software is non-rival and non-excludable, standard GDP accounting fails to capture its real wealth creation. While developer labor costs (supply-side) remain bounded in tens of millions of dollars, user cost-savings and velocity enhancements across commercial codebases generate trillions in demand-side surplus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: THEORETICAL FRAMEWORK (PAPER SUMMARY) -->
+        <div id="view-summary" class="tab-content hidden space-y-6">
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Research Paper Blueprint</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">Project Life Cycles in Open-Source Software</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        Sanjiv Das, Brian Granger, Piyush Jain, David Qiu, Andrii Ieroshenko, Michael Chin — <em>AI/ML Open-Source Team, Amazon Web Services (AWS)</em>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-square-root-variable text-brand-600"></i>
+                            1. Dev Engagement (Bass Diffusion Adaptation)
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xs">
+                            Adapts product diffusion models (Bass 1969) to repeated monthly developer contributions \(L(t)\). Dev propensity arises from independent utility \(p\) and network imitation/contagion \(q\):
+                        </p>
+                        <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg font-mono text-xs overflow-x-auto">
+                            $$\frac{f(t)}{1-F(t)} = p + q \cdot F(t)$$
+                            $$f(t) = \frac{e^{(p+q)t} p (p+q)^2}{[p e^{(p+q)t} + q]^2}$$
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-amber-500"></i>
+                            2. Endogenous Growth Dynamics (Romer 1990)
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-xs">
+                            Code growth rate \(\dot{A}\) (measured in total line additions & deletions) is modeled using Cobb-Douglas production incorporating "standing on shoulders of giants" vs "fishing out" effects:
+                        </p>
+                        <div class="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg font-mono text-xs overflow-x-auto">
+                            $$\dot{A} = \frac{dA}{dt} = \gamma L^\lambda A^\phi$$
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200 dark:border-slate-700">
+
+                <div class="space-y-3">
+                    <h3 class="font-bold text-slate-900 dark:text-white">Key Research Findings & Answers</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                            <span class="font-bold text-brand-600 dark:text-brand-400 block mb-1">Q: Do OSS projects follow life cycles?</span>
+                            <p class="text-slate-600 dark:text-slate-300">Yes. Developer engagement follows the classic S-curve lifecycle, peaking and eventually declining toward steady-state maintenance.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                            <span class="font-bold text-brand-600 dark:text-brand-400 block mb-1">Q: Is growth endogenous?</span>
+                            <p class="text-slate-600 dark:text-slate-300">Yes. Calibrated parameters (\(\lambda > 0, \phi < 0\)) show that initial developer expansion accelerates innovation, but code base size eventually leads to saturation ("fishing out").</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                            <span class="font-bold text-brand-600 dark:text-brand-400 block mb-1">Q: Are early life cycle forecasts stable?</span>
+                            <p class="text-slate-600 dark:text-slate-300">Extremely. Fitting the model on only the first 75% of a project's lifetime yields almost identical trajectory forecasts compared to full-sample calibrations.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                            <span class="font-bold text-brand-600 dark:text-brand-400 block mb-1">Q: What defines project maturation?</span>
+                            <p class="text-slate-600 dark:text-slate-300">Maturation is defined when active developer engagement drops below 0.5 developer-months/month, leaving a core maintenance baseline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400">
+            OSS Project Life Cycles Simulator • Built for Interactive Research Demonstration based on Das et al. (AWS)
+        </div>
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        // --- Dark Mode Toggle ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            }
+            // Re-render charts for theme contrast
+            renderSimCharts();
+            renderEmpiricalCharts();
+        });
+
+        // --- Navigation Tabs ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            if (tabId === 'dataset') {
+                renderEmpiricalCharts();
+            }
+            if (tabId === 'summary' && window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // --- Empirical Data Store (Paper Tables II & III) ---
+        const PROJECT_DATA = [
+            { id: 'pandas', name: 'pandas-dev/pandas', p: 0.00078, q: 0.02833, m: 9085, gamma: 143333165.61, lambda: 1.7070, phi: -0.9769, curLife: 187, fullLife: 339, remYrs: 12.70, curGrowth: 7.10, lifeGrowth: 7.36, curDevMo: 7707, ratio: 62242.25, inception: '2009-07' },
+            { id: 'pytorch', name: 'pytorch/pytorch', p: 0.00065, q: 0.03372, m: 28125, gamma: 12.86, lambda: 0.2813, phi: 0.5119, curLife: 157, fullLife: 336, remYrs: 14.88, curGrowth: 23.12, lifeGrowth: 61.17, curDevMo: 22518, ratio: 0.65, inception: '2012-01' },
+            { id: 'transformers', name: 'huggingface/transformers', p: 0.00270, q: 0.03506, m: 10381, gamma: 19799.16, lambda: -0.9491, phi: 0.3716, curLife: 76, fullLife: 246, remYrs: 14.20, curGrowth: 6.30, lifeGrowth: 1774.14, curDevMo: 5557, ratio: 611.60, inception: '2018-10' },
+            { id: 'kubernetes', name: 'kubernetes/kubernetes', p: 0.00462, q: 0.02596, m: 22322, gamma: 17172.65, lambda: 2.7311, phi: -0.5453, curLife: 128, fullLife: 298, remYrs: 14.15, curGrowth: 134.30, lifeGrowth: 135.42, curDevMo: 19627, ratio: 107.97, inception: '2014-06' },
+            { id: 'langchain', name: 'langchain-ai/langchain', p: 0.01197, q: 0.18074, m: 4799, gamma: 0.05, lambda: 6.4637, phi: -1.2194, curLife: 28, fullLife: 53, remYrs: 2.12, curGrowth: 8.77, lifeGrowth: 8.77, curDevMo: 4455, ratio: 214.26, inception: '2022-10' },
+            { id: 'numpy', name: 'numpy/numpy', p: 0.00019, q: 0.01721, m: 5961, gamma: 219002.65, lambda: 0.5762, phi: -0.1793, curLife: 278, fullLife: 596, remYrs: 26.51, curGrowth: 18.31, lifeGrowth: 30.97, curDevMo: 5495, ratio: 1803.93, inception: '2001-12' },
+            { id: 'dask', name: 'dask/dask', p: 0.00210, q: 0.03841, m: 2179, gamma: 666550.65, lambda: -0.5419, phi: -0.2432, curLife: 122, fullLife: 200, remYrs: 6.54, curGrowth: 0.91, lifeGrowth: 2.04, curDevMo: 1851, ratio: 334.21, inception: '2014-12' },
+            { id: 'jupyterlab', name: 'jupyterlab/jupyterlab', p: 0.00351, q: 0.03381, m: 2648, gamma: 73686.07, lambda: 1.5335, phi: -0.2960, curLife: 115, fullLife: 205, remYrs: 7.48, curGrowth: 9.71, lifeGrowth: 10.22, curDevMo: 2265, ratio: 2100.00, inception: '2015-07' },
+            { id: 'ray', name: 'ray-project/ray', p: 0.00105, q: 0.04912, m: 5377, gamma: 1665.11, lambda: 0.9161, phi: 0.0301, curLife: 108, fullLife: 202, remYrs: 7.86, curGrowth: 8.24, lifeGrowth: 10.27, curDevMo: 4369, ratio: 93.50, inception: '2016-02' },
+            { id: 'scikit-learn', name: 'scikit-learn/scikit-learn', p: 0.00164, q: 0.01746, m: 9697, gamma: 150000.0, lambda: 0.8, phi: -0.3, curLife: 181, fullLife: 438, remYrs: 21.41, curGrowth: 15.2, lifeGrowth: 25.0, curDevMo: 6100, ratio: 8887.72, inception: '2010-01' }
+        ];
+
+        // Global Chart Instances
+        let timeSeriesChartInstance = null;
+        let phaseChartInstance = null;
+        let downloadRatioChartInstance = null;
+        let lifespanChartInstance = null;
+
+        // --- Bass Diffusion Model Computation ---
+        function computeBassL(t, p, q, m) {
+            // f(t) density from equation (8)
+            const expTerm = Math.exp((p + q) * t);
+            const num = expTerm * p * Math.pow(p + q, 2);
+            const den = Math.pow(p * expTerm + q, 2);
+            const ft = num / den;
+            return m * ft; // L(t) = m * f(t)
+        }
+
+        // --- Simulator State & Updating ---
+        function updateSim() {
+            // Read inputs
+            const p = parseFloat(document.getElementById('param-p').value);
+            const q = parseFloat(document.getElementById('param-q').value);
+            const m = parseFloat(document.getElementById('param-m').value);
+            const gamma = parseFloat(document.getElementById('param-gamma').value);
+            const lambda = parseFloat(document.getElementById('param-lambda').value);
+            const phi = parseFloat(document.getElementById('param-phi').value);
+
+            // Update UI label readings
+            document.getElementById('val-p').innerText = p.toFixed(5);
+            document.getElementById('val-q').innerText = q.toFixed(5);
+            document.getElementById('val-m').innerText = Math.round(m);
+            document.getElementById('val-gamma').innerText = gamma >= 1e5 ? gamma.toExponential(2) : gamma.toFixed(0);
+            document.getElementById('val-lambda').innerText = lambda.toFixed(3);
+            document.getElementById('val-phi').innerText = phi.toFixed(3);
+
+            // Simulation loop over 400 months
+            const months = 400;
+            const labels = [];
+            const devData = []; // L(t)
+            const growthData = []; // A(t) in Millions
+
+            let peakDev = 0;
+            let peakMonth = 0;
+            let maturationMonth = null;
+
+            // ODE Integration for A(t)
+            let currentA = 0.01; // Initial small code base
+            const dt = 1.0; // monthly step
+
+            for (let t = 1; t <= months; t++) {
+                labels.push(t);
+                const Lt = computeBassL(t, p, q, m);
+                devData.push(Lt);
+
+                if (Lt > peakDev) {
+                    peakDev = Lt;
+                    peakMonth = t;
+                }
+
+                if (Lt < 0.5 && t > peakMonth && maturationMonth === null) {
+                    maturationMonth = t;
+                }
+
+                // Compute dA/dt = gamma * L^lambda * A^phi
+                // Guard against negative/zero bases in fractional exponent
+                const safeL = Math.max(0.001, Lt);
+                const safeA = Math.max(0.0001, currentA);
+                
+                let dAdt = gamma * Math.pow(safeL, lambda) * Math.pow(safeA, phi);
+                if (isNaN(dAdt) || !isFinite(dAdt)) dAdt = 0;
+
+                currentA += dAdt * dt;
+                growthData.push(currentA / 1e6); // Convert to Millions
+            }
+
+            // Update Metric Cards
+            document.getElementById('stat-peak-dev').innerText = `${Math.round(peakDev)} devs/mo`;
+            document.getElementById('stat-peak-month').innerText = `at month ${peakMonth}`;
+            document.getElementById('stat-maturation').innerText = maturationMonth ? `${maturationMonth} mos` : '> 400 mos';
+            document.getElementById('stat-lifetime-code').innerText = `${currentA > 1e6 ? (currentA / 1e6).toFixed(2) : (currentA / 1e6).toFixed(4)}M`;
+            
+            const returnsScale = lambda + phi;
+            document.getElementById('stat-returns').innerText = returnsScale.toFixed(2);
+            const returnsLbl = document.getElementById('stat-returns-lbl');
+            if (returnsScale > 1) {
+                returnsLbl.innerText = "Increasing Returns";
+                returnsLbl.className = "text-[11px] font-medium text-emerald-600";
+            } else if (Math.abs(returnsScale - 1) < 0.05) {
+                returnsLbl.innerText = "Constant Returns";
+                returnsLbl.className = "text-[11px] font-medium text-blue-600";
+            } else {
+                returnsLbl.innerText = "Decreasing Returns";
+                returnsLbl.className = "text-[11px] font-medium text-amber-600";
+            }
+
+            renderSimCharts(labels, devData, growthData);
+        }
+
+        function renderSimCharts(labels = [], devData = [], growthData = []) {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#cbd5e1' : '#475569';
+            const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+
+            // --- Chart 1: Time Series ---
+            const ctx1 = document.getElementById('timeSeriesChart').getContext('2d');
+            if (timeSeriesChartInstance) timeSeriesChartInstance.destroy();
+
+            timeSeriesChartInstance = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Devs / Month L(t)',
+                            data: devData,
+                            borderColor: '#0284c7',
+                            backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                            fill: true,
+                            yAxisID: 'yDev',
+                            tension: 0.3,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'Cumulative Code A(t) (MM Lines)',
+                            data: growthData,
+                            borderColor: '#f59e0b',
+                            borderDash: [4, 4],
+                            fill: false,
+                            yAxisID: 'yGrowth',
+                            tension: 0.2,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Months Since Inception', color: textColor },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        yDev: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Active Developers L(t)', color: '#0284c7' },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        yGrowth: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Cumulative Growth A(t) (MM)', color: '#f59e0b' },
+                            ticks: { color: textColor },
+                            grid: { drawOnChartArea: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: textColor } }
+                    }
+                }
+            });
+
+            // --- Chart 2: Phase Diagram (L vs A) ---
+            const ctx2 = document.getElementById('phaseChart').getContext('2d');
+            if (phaseChartInstance) phaseChartInstance.destroy();
+
+            const phasePoints = devData.map((l, idx) => ({ x: l, y: growthData[idx] }));
+
+            phaseChartInstance = new Chart(ctx2, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Phase Path (L -> A)',
+                        data: phasePoints,
+                        showLine: true,
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                        pointRadius: 1.5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Developer Labor L(t)', color: textColor },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        y: {
+                            title: { display: true, text: 'Cumulative Innovation A(t) (MM)', color: textColor },
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: textColor } }
+                    }
+                }
+            });
+        }
+
+        // --- Load Presets ---
+        function loadPreset(presetKey) {
+            const proj = PROJECT_DATA.find(p => p.id === presetKey);
+            if (!proj) return;
+
+            document.getElementById('param-p').value = proj.p;
+            document.getElementById('param-q').value = proj.q;
+            document.getElementById('param-m').value = proj.m;
+            document.getElementById('param-gamma').value = proj.gamma;
+            document.getElementById('param-lambda').value = proj.lambda;
+            document.getElementById('param-phi').value = proj.phi;
+
+            updateSim();
+        }
+
+        function resetParams() {
+            loadPreset('pandas');
+            document.getElementById('presetSelect').value = 'pandas';
+        }
+
+        // --- Populate Empirical Data Table ---
+        function populateProjectTable() {
+            const tbody = document.getElementById('project-table-body');
+            tbody.innerHTML = '';
+
+            PROJECT_DATA.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/30 transition";
+                tr.innerHTML = `
+                    <td class="p-3 font-medium text-slate-900 dark:text-white">${p.name}</td>
+                    <td class="p-3 text-slate-500">${p.inception}</td>
+                    <td class="p-3 font-mono">${p.p}</td>
+                    <td class="p-3 font-mono">${p.q}</td>
+                    <td class="p-3 font-mono ${p.lambda > 0 ? 'text-emerald-600' : 'text-amber-600'}">${p.lambda}</td>
+                    <td class="p-3 font-mono ${p.phi < 0 ? 'text-slate-600 dark:text-slate-400' : 'text-purple-600'}">${p.phi}</td>
+                    <td class="p-3 font-mono">${p.m}</td>
+                    <td class="p-3">${p.curLife}</td>
+                    <td class="p-3 font-bold text-brand-600">${p.remYrs} yrs</td>
+                    <td class="p-3 text-right">
+                        <button onclick="selectAndSimulate('${p.id}')" class="px-2 py-1 bg-brand-50 hover:bg-brand-100 text-brand-700 dark:bg-slate-700 dark:text-brand-300 rounded font-semibold text-[11px]">
+                            Simulate
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function selectAndSimulate(projectId) {
+            switchTab('simulator');
+            document.getElementById('presetSelect').value = projectId;
+            loadPreset(projectId);
+        }
+
+        // --- Empirical Charts (Tab 2) ---
+        function renderEmpiricalCharts() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#cbd5e1' : '#475569';
+            const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+
+            // Sorted downloads ratio data
+            const ratioSorted = [...PROJECT_DATA].sort((a, b) => b.ratio - a.ratio);
+            const ratioNames = ratioSorted.map(p => p.name.split('/')[1]);
+            const ratioVals = ratioSorted.map(p => p.ratio);
+
+            const ctxRatio = document.getElementById('downloadRatioChart').getContext('2d');
+            if (downloadRatioChartInstance) downloadRatioChartInstance.destroy();
+
+            downloadRatioChartInstance = new Chart(ctxRatio, {
+                type: 'bar',
+                data: {
+                    labels: ratioNames,
+                    datasets: [{
+                        label: 'Downloads / Lines Changed Ratio',
+                        data: ratioVals,
+                        backgroundColor: '#10b981',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { type: 'logarithmic', title: { display: true, text: 'Ratio (Log Scale)', color: textColor }, ticks: { color: textColor }, grid: { color: gridColor } },
+                        y: { ticks: { color: textColor }, grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Lifespan Chart
+            const ctxLife = document.getElementById('lifespanChart').getContext('2d');
+            if (lifespanChartInstance) lifespanChartInstance.destroy();
+
+            const names = PROJECT_DATA.map(p => p.name.split('/')[1]);
+            const curLifes = PROJECT_DATA.map(p => p.curLife);
+            const totalLifes = PROJECT_DATA.map(p => p.fullLife);
+
+            lifespanChartInstance = new Chart(ctxLife, {
+                type: 'bar',
+                data: {
+                    labels: names,
+                    datasets: [
+                        { label: 'Current Age (Mo)', data: curLifes, backgroundColor: '#0284c7', borderRadius: 4 },
+                        { label: 'Forecast Total Life (Mo)', data: totalLifes, backgroundColor: '#cbd5e1', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { ticks: { color: textColor, maxRotation: 45, minRotation: 45 }, grid: { display: false } },
+                        y: { title: { display: true, text: 'Months', color: textColor }, ticks: { color: textColor }, grid: { color: gridColor } }
+                    },
+                    plugins: { legend: { labels: { color: textColor } } }
+                }
+            });
+        }
+
+        // --- Valuation Engine (Tab 3) ---
+        function loadValuationProject(projId) {
+            calculateValuation();
+        }
+
+        function calculateValuation() {
+            const projId = document.getElementById('valProjectSelect').value;
+            const proj = PROJECT_DATA.find(p => p.id === projId) || PROJECT_DATA[0];
+
+            const monthlySalary = parseFloat(document.getElementById('val-dev-cost').value);
+            const timePct = parseFloat(document.getElementById('val-time-pct').value) / 100.0;
+            const valuePerDownload = parseFloat(document.getElementById('val-dl-value').value);
+
+            document.getElementById('lbl-dev-cost').innerText = `$${monthlySalary.toLocaleString()}`;
+            document.getElementById('lbl-time-pct').innerText = `${Math.round(timePct * 100)}%`;
+            document.getElementById('lbl-dl-value').innerText = `$${valuePerDownload.toFixed(3)}`;
+
+            // Supply-Side Calculation
+            // Value = DevMonths * MonthlySalary * TimeFraction
+            const currentSupplyVal = proj.curDevMo * monthlySalary * timePct;
+            const lifetimeSupplyVal = proj.m * monthlySalary * timePct;
+
+            document.getElementById('out-supply-curr').innerText = `$${(currentSupplyVal / 1e6).toFixed(2)}M`;
+            document.getElementById('out-supply-life').innerText = `$${(lifetimeSupplyVal / 1e6).toFixed(2)}M`;
+
+            // Demand-Side Calculation
+            // Lifetime Downloads = Lifetime Growth (MM Lines) * Ratio
+            const estLifetimeDownloads = (proj.lifeGrowth * 1e6) * proj.ratio;
+            const demandSideVal = estLifetimeDownloads * valuePerDownload;
+
+            const dlFormat = estLifetimeDownloads > 1e9 ? `${(estLifetimeDownloads / 1e9).toFixed(1)} Billion` : `${(estLifetimeDownloads / 1e6).toFixed(1)} Million`;
+            document.getElementById('out-est-downloads').innerText = dlFormat;
+
+            if (demandSideVal >= 1e9) {
+                document.getElementById('out-demand-life').innerText = `$${(demandSideVal / 1e9).toFixed(2)} Billion`;
+            } else {
+                document.getElementById('out-demand-life').innerText = `$${(demandSideVal / 1e6).toFixed(2)} Million`;
+            }
+        }
+
+        // --- Initial Onload Setup ---
+        window.onload = function() {
+            updateSim();
+            populateProjectTable();
+            calculateValuation();
+        };
+    </script>
+</body>
+</html>
